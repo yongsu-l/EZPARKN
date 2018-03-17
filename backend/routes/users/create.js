@@ -1,4 +1,4 @@
-//routes/user/signup.js
+//routes/user/create.js
 
 module.exports = (db, express, createToken) => ({
   router() {
