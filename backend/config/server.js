@@ -13,6 +13,9 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => res.send('Welcome to EZPARKN REST API'));
 
 //API Routes 
+const user = require('../users');
+
+app.use('/user', user['router']);
 
 app.listen(CONFIG.port, () => {
   console.log("Server is up and running on port ".green + CONFIG.port.yellow);
