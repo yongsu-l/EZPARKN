@@ -8,7 +8,8 @@ module.exports = {
     password: 'password',
     database: 'ezparkn',
     host: '127.0.0.1',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    secretOrKey: 'parknsoez'
   },
   test: {
     username: 'database_test',
