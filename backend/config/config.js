@@ -1,14 +1,28 @@
 // config.js
 
-require('dotenv').config();
+const fs = require('fs');
 
-CONFIG = {}; 
+module.exports = {
+  development: {
+    username: 'root',
+    password: 'password',
+    database: 'ezparkn',
+    host: '127.0.0.1',
+    dialect: 'mysql'
+  },
+  test: {
+    username: 'database_test',
+    password: 'password',
+    database: 'database_test',
+    host: '127.0.0.1',
+    dialect: 'mysql'
+  },
+  production: {
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    host:     process.env.DB_HOSTNAME,
+    dialect: 'mysql'
+  }
+};
 
-CONFIG.port         =   process.env.PORT;
-
-CONFIG.db_host      =   process.env.DB_HOST;
-CONFIG.db_port      =   process.env.DB_PORT;
-CONFIG.db_name      =   process.env.DB_NAME;
-CONFIG.db_user      =   process.env.DB_USER;
-CONFIG.db_password  =   process.env.DB_PASSWORD;
-CONFIG.secretKey    =   "DontLookAtMe";
