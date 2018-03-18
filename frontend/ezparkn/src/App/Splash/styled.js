@@ -9,11 +9,39 @@ const Container = styled.div`
     width: 100%;
 `
 
+const Box = styled.div`
+    position: absolute;
+    height: 300px;
+    width: 400px;
+    margin: -100px 0 0 -200px;
+    top: 50%;
+    left: 50%;
+    background-color: white;
+    opacity: 0.9;
+`
+const RightSide = styled.div`
+    width: 30%;
+    margin-left: 10px;
+    float:left;
+`
+
+const LeftSide = styled.div`
+    width: 40%;
+    float: left;
+    text-align: right;
+`
+
 const Title = styled.h1`
   color: black;
-  font-size: 50px;
+  font-size: 65px;
   text-outline: white;
+  font-family: "Tahoma", Times, serif;
 
+`
+
+const Box2 = styled.div`
+    text-align: center;
+    vertical-align: middle; 
 `
 
 const Button = styled.button`
@@ -23,12 +51,17 @@ const Button = styled.button`
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  padding: ${props => props.small ? '0.25em 1em' : '0.5em 2em'};
-  font-size: ${props => props.small ? '12px' : '16px'};
+  padding: ${props => props.small ? '0.75em 1.25em' : '1.0em 2.5em'};
+  font-size: ${props => props.small ? '14px' : '18px'};
+  border-radius: 15px;
 `
 
 export {
   Button,
   Container,
   Title,
+  Box,
+  Box2,
+  RightSide,
+  LeftSide
 };
