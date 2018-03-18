@@ -23,6 +23,7 @@ sudo pacman -S node npm mariadb
 
 Make sure that you are running the db service and execute sequelize by executing 
 ```
+node_modules/.bin/sequelize init
 node_modules/.bin/sequelize db:create
 node_modules/.bin/sequelize db:migrate
 ```
