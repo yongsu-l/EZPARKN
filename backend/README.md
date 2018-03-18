@@ -21,9 +21,10 @@ sudo pacman -S node npm mariadb
 
 ## Initalizing the Database
 
-Make sure that you are running the db service and execute within the scripts folder
+Make sure that you are running the db service and execute sequelize by executing 
 ```
-mysql --user [USERNAME] -p < initDB.sql
+node_modules/.bin/sequelize db:create
+node_modules/.bin/sequelize db:migrate
 ```
 This should setup the minimal requirements to setup the database system.
 
@@ -44,6 +45,8 @@ WIP
 * [NodeJS](https://nodejs.org/en/)
 * * [MySQLJS](https://github.com/mysqljs/mysql)
 * * [JWT](https://github.com/auth0/node-jsonwebtoken)
+* * [Sequelize](https://github.com/sequelize/sequelize)
+
 ## Contributing
 
 ## Authors
