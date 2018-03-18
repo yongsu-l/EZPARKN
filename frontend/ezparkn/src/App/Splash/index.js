@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {FormGroup} from 'react-bootstrap';
 
 import {
   Button,
@@ -12,42 +13,70 @@ import {
 } from './styled';
 
 class Splash extends Component{
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
+    this.state={
+      identifier: '',
+      password: '',
+      errors: {},
+      isLoading: false
+    };
+
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onSubmit(e){
+    e.preventDefault();
+  }
+
+  onChange(e){
+    this.setState({[e.target.name]: e.target.value});
   }
 
   render(){
+    const { errors, identifier, password, isLoading} = this.state;
     return (
       <Container>
         <Box>
           <Box2>
+            <form onSubmit={this.onSubmit}>
             <Title> EZPARKN </Title>
-              <div>
-                <div>
-                  <LeftSide>
-                      <label for="email">Email:</label>
-                  </LeftSide>
-                  <RightSide>
-                      <input type="text" className="form-control" placeholder="Email" id="email"/>
-                  </RightSide>
-                </div>
-                
-                <div>
-                  <LeftSide>
-                      <label for="password">Password:</label>
-                  </LeftSide>
-                  <RightSide>
-                      <input type="text" className="form-control" placeholder="Password" id="password"/>
-                  </RightSide>
-                </div>
-
-                <br></br>
-                <br></br>
+              <div className="form-group">
+                <LeftSide>
+                  <label for="email">Email</label>
+                </LeftSide>
+                <RightSide>
+                  <input 
+                    type="email" 
+                    className="form-control" 
+                    id="email" 
+                    onChange={ this.onChange }
+                  />
+                </RightSide>
               </div>
+
+              <div class="form-group">
+                <LeftSide>
+                  <label for="password">Password</label>
+                </LeftSide>
+                <RightSide>
+                  <input 
+                    type="password" 
+                    className="form-control" 
+                    id="password" 
+                    onChange={ this.onChange }/>
+                </RightSide>
+              </div>
+              <p></p>
               <br></br>
-              <Button small>Sign In</Button>
-                <br></br>
-                <p> Don't have an account? Sign up </p>
+              <br></br>
+              <br></br>
+              <br></br>
+              <div className="form-group"><button className="btn btn-primary btn-lg" disabled={isLoading}>Login</button></div>
+
+              <p> Don't have an account? <a href="/signup">Sign Up</a></p>
+            </form>
             </Box2>
           </Box>
       </Container>
