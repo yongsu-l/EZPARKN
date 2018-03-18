@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter, Switch, Route } from 'react-router-dom';
 
 import Splash from './Splash';
+import Signup from './Signup/Signup';
 
 import {
   AppView,
@@ -28,10 +29,11 @@ class App extends Component {
 
           <Switch>
             <Route exact path='/splash' component={Splash} />
+            <Route exact path='/signup' component={Signup} />
           </Switch>
 
         </MainView>
-        
+
       </AppView>
     );
   }
