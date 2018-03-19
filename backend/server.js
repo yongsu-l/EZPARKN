@@ -9,6 +9,7 @@ const env           = process.env.NODE_ENV || 'development';
 const port          = process.env.PORT || 3001;
 const config        = require('./config/config')[env];
 const colors        = require('colors');
+const cors          = require('cors');
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 //Add routes
 app.use('/', require('./routes'));
