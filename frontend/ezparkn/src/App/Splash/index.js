@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {FormGroup} from 'react-bootstrap';
+import {login} from '../../utils/Users';
+import { Redirect } from 'react-router';
 
 import {
   Button,
@@ -12,45 +14,55 @@ import {
 
 } from './styled';
 
-class Splash extends Component{
+class Splash extends React.Component{
   constructor(props){
     super(props);
     this.state={
       identifier: '',
       password: '',
       errors: {},
-      isLoading: false
+      isLoading: false,
+      redirectToNewPage: false
     };
 
-    this.onSubmit = this.onSubmit.bind(this);
+    this.login = this.login.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
-  onSubmit(e){
-    e.preventDefault();
-  }
+  login = () => {
+    console.log(this.state.username)
+    console.log(this.state.password)
+    login(this.state.username, this.state.password).then(response => 
+        this.setState({redirectToNewPage: true}));
+  };
 
-  onChange(e){
-    this.setState({[e.target.name]: e.target.value});
-  }
+  onChange = (event) => {
+    const target = event.target;
+    const id = target.id;
+    this.setState({
+      [id]: event.target.value
+    });
+  };
 
   render(){
-    const { errors, identifier, password, isLoading} = this.state;
+    const { errors, identifier, password, isLoading, redirectToNewPage} = this.state;
+    if(this.state.redirectToNewPage) {
+      return <Redirect to="/home"/>;
+    }
     return (
       <Container>
         <Box>
           <Box2>
-            <form onSubmit={this.onSubmit}>
             <Title> EZPARKN </Title>
               <div className="form-group">
                 <LeftSide>
-                  <label for="email">Email</label>
+                  <label for="username">Username</label>
                 </LeftSide>
                 <RightSide>
                   <input 
-                    type="email" 
+                    type="username" 
                     className="form-control" 
-                    id="email" 
+                    id="username" 
                     onChange={ this.onChange }
                   />
                 </RightSide>
@@ -73,10 +85,9 @@ class Splash extends Component{
               <br></br>
               <br></br>
               <br></br>
-              <div className="form-group"><button className="btn btn-primary btn-lg" disabled={isLoading}>Login</button></div>
+              <button class="btn btn-raised btn-primary" onClick={ this.login } >Log In</button>
 
               <p> Don't have an account? <a href="/signup">Sign Up</a></p>
-            </form>
             </Box2>
           </Box>
       </Container>

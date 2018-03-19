@@ -18,7 +18,6 @@ export function register(Username, Password, Email) {
         })
         .then(function (response) {
             console.log(response.data)
-            alert('Registering user...')
         })
         .catch((error) => {
             if(error.request.status === 500) {
@@ -28,4 +27,31 @@ export function register(Username, Password, Email) {
                 alert(error)
             }
         })
+}
+
+
+export function login(Username, Password){
+    return axios({
+      method:'post',
+      url:'/user/login',
+      headers:{
+        "Content-Type": "application/json",
+      },
+      data:JSON.stringify({
+        username: Username,
+        password: Password,
+      })
+      })
+      .then(function (response) {
+          console.log(response.data)
+          
+      })
+      .catch((error) => {
+          if(error.request.status === 500) {
+              alert("Username already exists")
+          } else {
+            console.log(error);
+              alert(error)
+          }
+      })
 }
