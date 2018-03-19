@@ -21,6 +21,9 @@ sudo pacman -S node npm mariadb
 
 ## Initalizing the Database
 
+First check the config.js file within config directory to make sure that the credentials for your db
+is setup properly.
+
 Make sure that you are running the db service and execute sequelize by executing 
 ```
 node_modules/.bin/sequelize init
