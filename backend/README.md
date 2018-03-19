@@ -19,7 +19,7 @@ Arch Linux
 sudo pacman -S node npm mariadb
 ```
 
-## Initalizing the Database
+## Initalizing the Database for Development
 
 Make sure that you are running the db service and execute sequelize by executing 
 ```
