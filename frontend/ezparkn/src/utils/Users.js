@@ -1,9 +1,12 @@
 import axios from 'axios'
+
+import {URL, LOGIN, USER, CREATE} from '../urls/API'
+
 export function register(Username, Password, Email) {
 
     return axios({
         method: 'post',
-        url: '/api/user/create',
+        url: '/' + USER + CREATE,
         headers: {
             "Content-Type": "application/json",
         },
@@ -30,7 +33,7 @@ export function register(Username, Password, Email) {
 export function login(Username, Password){
     return axios({
       method:'post',
-      url:'/api/user/login',
+      url: '/' + USER + LOGIN,
       headers:{
         "Content-Type": "application/json",
       },
