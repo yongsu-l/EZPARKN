@@ -42,7 +42,7 @@ module.exports = (db, express, createToken) => ({
             db.cars.update({
               size: req.body.size,
               make: req.body.make,
-              model: req.body.model,
+              //model: req.body.model,
               color: req.body.color
             },
             {
