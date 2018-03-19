@@ -34,8 +34,9 @@ This should setup the minimal requirements to setup the database system.
 ## API Endpoint
 
 ```
-Creating Users: /api/user/create (Body: username, email and password)
-Login User: /api/user/login (Body: username, password)
+Creating Users:     /api/user/create (Body: username, email and password)
+Login User:         /api/user/login (Body: username, password)
+Create/Update Car:  /api/car/create (Body: make, model, color, size)(Header: x-access-token)
 ```
 
 ## Running the tests
