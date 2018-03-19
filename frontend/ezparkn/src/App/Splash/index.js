@@ -73,13 +73,14 @@ class Splash extends Component{
               <br></br>
               <br></br>
               <br></br>
-              <div className="form-group"><button className="btn btn-primary btn-lg" disabled={isLoading}>Login</button></div>
+              <div className="form-group"><a href="/Location" className="btn btn-primary btn-lg" href="/Location" disabled={isLoading}>Login</a></div>
 
               <p> Don't have an account? <a href="/signup">Sign Up</a></p>
             </form>
             </Box2>
           </Box>
       </Container>
+      
 
         );
   }

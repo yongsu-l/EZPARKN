@@ -3,6 +3,7 @@ import { withRouter, Switch, Route } from 'react-router-dom';
 
 import Splash from './Splash';
 import Signup from './Signup/Signup';
+import Location from './Location/Location';
 
 import {
   AppView,
@@ -30,6 +31,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/splash' component={Splash} />
             <Route exact path='/signup' component={Signup} />
+            <Route exact path='/location' component={Location} />
           </Switch>
 
         </MainView>
