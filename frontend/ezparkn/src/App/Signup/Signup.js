@@ -6,9 +6,11 @@ class Signup extends Component {
     super();
     this.state = {
       email: '',
+      username: '',
       password: '',
       confirmPassword: ''
     }
+    this.register = this.register.bind(this);
   }
   handleChange = (event) => {
     const target = event.target;
@@ -20,6 +22,7 @@ class Signup extends Component {
   register = () => {
     // Handle click event
     // TODO: Send request to backend
+    //console.log(this.state);
     register(this.username, this.password, this.email);
   };
   render() {
@@ -31,6 +34,10 @@ class Signup extends Component {
               <div className="card-body">
                 <p className="h2">Sign up</p>
                 <p className="text-muted">Create your account below.</p>
+                <div className="form-group">
+                  <label for="username">Username</label>
+                  <input type="username" className="form-control" id="username" onChange={ this.handleChange }/>
+                </div>
                 <div className="form-group">
                   <label for="email">Email address</label>
                   <input type="email" className="form-control" id="email" onChange={ this.handleChange }/>
