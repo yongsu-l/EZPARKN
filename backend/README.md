@@ -21,12 +21,14 @@ sudo pacman -S node npm mariadb
 
 ## Initalizing the Database for Development
 
-Make sure that you are running the db service and execute sequelize by executing 
+For development, we will be using sqlite but will use mysql for production.
+This is for easier setup for developers. By running the command below, it should setup the sqlite3 db
+and also startup the server.
+
 ```
-node_modules/.bin/sequelize init
-node_modules/.bin/sequelize db:create
-node_modules/.bin/sequelize db:migrate
+npm start
 ```
+
 This should setup the minimal requirements to setup the database system.
 
 ## Running the tests
