@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import {register} from '../../utils/Users';
+import { Redirect } from 'react-router';
 
-class Signup extends Component {
-  constructor() {
-    super();
+class Signup extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
       email: '',
       username: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      redirectToNewPage: false
     }
     this.register = this.register.bind(this);
   }
+
   handleChange = (event) => {
     const target = event.target;
     const id = target.id;
@@ -19,13 +22,15 @@ class Signup extends Component {
       [id]: event.target.value
     });
   };
+
   register = () => {
-    // Handle click event
-    // TODO: Send request to backend
-    //console.log(this.state);
-    register(this.username, this.password, this.email);
+    register(this.state.username, this.state.password, this.state.email).then(response => 
+        this.setState({redirectToNewPage: true}));
   };
   render() {
+    if(this.state.redirectToNewPage) {
+      return <Redirect to="/splash"/>;
+    }
     return (
       <div className="container-fluid">
         <div className="row mt-5">
