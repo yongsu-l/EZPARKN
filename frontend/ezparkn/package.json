@@ -5,12 +5,17 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.0.0",
-    "morgan": "^1.9.0",
+    "google-map-react": "^0.34.0",
+    "google-maps-react": "^1.1.4",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
+    "react-gmaps": "^1.9.0",
+    "react-responsive-sidebar": "^0.1.16",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
+    "semantic-ui": "^2.2.14",
+    "semantic-ui-react": "^0.78.1",
     "styled-components": "^3.1.6"
   },
   "scripts": {
@@ -18,6 +23,5 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "proxy": "http://localhost:3001"
+  }
 }

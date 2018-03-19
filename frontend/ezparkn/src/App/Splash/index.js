@@ -86,11 +86,12 @@ class Splash extends React.Component{
               <br></br>
               <br></br>
               <button class="btn btn-raised btn-primary" onClick={ this.login } >Log In</button>
-
+              
               <p> Don't have an account? <a href="/signup">Sign Up</a></p>
             </Box2>
           </Box>
       </Container>
+      
 
         );
   }
