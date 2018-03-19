@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter, Switch, Route } from 'react-router-dom';
 
 import Splash from './Splash';
-import Signup from './Signup/Signup';
+import Signup from './Signup';
 import Location from './Location/Location';
 
 import {
