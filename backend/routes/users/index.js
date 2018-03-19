@@ -11,6 +11,7 @@ const config  = require('../../config/config')[env];
 const router  = express.Router();
 //Create token
 function createToken(user) {
+  console.log(config.secretOrKey);
   return jwt.sign(_.omit(user, 'password'), config.secretOrKey, {expiresIn: '24h'});
 };
 
