@@ -14,13 +14,14 @@ module.exports = (db, express, createToken) => ({
 
   createCar(req, res) {
     if (!req.body.make || !req.body.model || !req.body.color || !req.body.size)
-      res.status(400).json({success: false, msg: 'Failed to create user'});
+      res.status(400).json({success: false, msg: 'Failed to create car'});
     else {
       db.users.find({
         where: {
-          id: req.userID
+          id: req.id
         }
       }).then(user => {
+        console.log(req.id );
         res.status(202).json({success: false, msg: 'The request has been accepted for processing. CreateCar implimintation not complete.'});
         // if (!user) {
         //   db.users.find({
@@ -48,7 +49,11 @@ module.exports = (db, express, createToken) => ({
         // } else {
         //   res.status(400).json({success: false, msg: 'Username already exists'});
         // }
-      })
+      }).catch(() => {
+        //Good token but no user found?????
+        res.status(404).json({success: false, msg: 'You seem to be lost...'});  
+        
+      });
     }
   }
 });
