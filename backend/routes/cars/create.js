@@ -21,38 +21,20 @@ module.exports = (db, express, createToken) => ({
           id: req.id
         }
       }).then(user => {
-        console.log(req.id );
-        res.status(202).json({success: false, msg: 'The request has been accepted for processing. CreateCar implimintation not complete.'});
-        // if (!user) {
-        //   db.users.find({
-        //     where: {
-        //       email: req.body.email
-        //     }
-        //   }).then(user => {
-        //     if (!user) {
-        //       db.users.create({
-        //         username: req.body.username,
-        //         email: req.body.email,
-        //         password: req.body.password
-        //       }).then((user) => {
-        //         if (!user)
-        //           res.status(400).json({success: false, msg: 'Failed to create user'});
-        //         else {
-        //           let token = createToken(user['dataValues']);
-        //           res.status(201).json({success: true, token});
-        //         }
-        //       })
-        //     } else {
-        //       res.status(400).json({success: false, msg: 'Email already exists'});
-        //     }
-        //   })
-        // } else {
-        //   res.status(400).json({success: false, msg: 'Username already exists'});
-        // }
+        db.cars.create({
+          user_id: user.id,
+          size: req.body.size,
+          make: req.body.make,
+          model: req.body.model,
+          color: req.body.color
+        }).then((car) => {
+            res.status(200).json({success: true, msg: 'Car created'});
+        }).catch(() => {
+            res.status(400).json({success: false, msg: 'Failed to create a car'});
+        })
       }).catch(() => {
         //Good token but no user found?????
         res.status(404).json({success: false, msg: 'You seem to be lost...'});  
-        
       });
     }
   }
