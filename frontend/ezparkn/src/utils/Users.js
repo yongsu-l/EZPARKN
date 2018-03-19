@@ -6,7 +6,7 @@ export function register(Username, Password, Email) {
 
     return axios({
         method: 'post',
-        url: 'http://localhost:3001/user/create',
+        url: '/user/create',
         headers: {
             "Content-Type": "application/json",
         },
