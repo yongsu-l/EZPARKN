@@ -18,7 +18,6 @@ module.exports = (db, express, createToken) => ({
         }
       }).then(user => {
         db.cars.find({
-          //attributes: ['id','userId', 'size', 'make','model','color'], //sequelize added a invalid data field to the query
           where:{
             userId: user.id,
           }
