@@ -9,5 +9,5 @@ export {
   API,
   LOGIN,
   USER,
-  CREATE
+  CREATE,
 }
