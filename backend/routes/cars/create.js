@@ -7,7 +7,7 @@ module.exports = (db, express, createToken) => ({
     router.put('/',verifyToken, this.createCar);
     return router;
   },
-
+ 
   createCar(req, res) {
     if (!req.body.make || !req.body.model || !req.body.color || !req.body.size)
       res.status(400).json({success: false, msg: 'Failed to create car'});
@@ -18,12 +18,11 @@ module.exports = (db, express, createToken) => ({
         }
       }).then(user => {
         db.cars.find({
-          //attributes: ['id','userId', 'size', 'make','model','color'], //sequelize added a invalid data field to the query
           where:{
             userId: user.id,
           }
         }).then(oldCar => {
-          console.log(!oldCar);
+
           if(!oldCar){
             db.cars.create({
               userId: user.id,

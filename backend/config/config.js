@@ -4,11 +4,8 @@ const fs = require('fs');
 
 module.exports = {
   development: {
-    username: 'root',
-    password: 'password',
-    database: 'ezparkn',
-    host: '127.0.0.1',
-    dialect: 'mysql',
+    dialect: 'sqlite',
+    storage: 'data/dev-db.sqlite3',
     secretOrKey: 'parknsoez'
   },
   test: {
