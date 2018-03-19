@@ -1,26 +1,22 @@
 // models/index.js
 
+const path      = require('path');
 const Sequelize = require('sequelize');
+const basename  = path.basename(module.filename);
 const env       = process.env.NODE_ENV || 'development';
-const config    = require('../config/config')[env];
+const config    = require(path.join(__dirname, '..', 'config', 'config.js'))[env]
 const db        = {};
 
-const sequelize = new Sequelize(config.database, config.username, config.password, {
-  host: config.host,
-  port: config.port,
-  dialect: config.dialect,
-  operatorsAliases: false,
-  define: {
-    timestamps: false
-  }
+const sequelize = new Sequelize(config.database, config.username, config.password, config, {
+  timestamps: false
 });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 //Models/tables
-db.users = require('./users')(sequelize, Sequelize);
-db.cars = require('./cars')(sequelize, Sequelize);
+db.users = require('./user')(sequelize, Sequelize);
+db.cars = require('./car')(sequelize, Sequelize);
 
 //Relations
 db.users.hasOne(db.cars);
