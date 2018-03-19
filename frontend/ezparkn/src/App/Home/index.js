@@ -12,7 +12,7 @@ const coords = {
   
   const params = {v: '3.exp', key: 'AIzaSyAnSgqK0QCLi98urC5vRWCFnfmi9GR7nQI'};
 
-export default class Location extends Component {
+export default class Home extends Component {
     onMapCreated(map) {
         map.setOptions({
           disableDefaultUI: true
