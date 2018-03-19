@@ -19,7 +19,7 @@ Arch Linux
 sudo pacman -S node npm mariadb
 ```
 
-## Initalizing the Database
+## Initalizing the Database for Development
 
 First check the config.js file within config directory to make sure that the credentials for your db
 is setup properly.
