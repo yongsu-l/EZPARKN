@@ -18,15 +18,15 @@ module.exports = (db, express, createToken) => ({
         }
       }).then(user => {
         db.cars.find({
-          attributes: ['user_id', 'size', 'make','model','color'], //sequelize added a invalid data field to the query
+          //attributes: ['id','userId', 'size', 'make','model','color'], //sequelize added a invalid data field to the query
           where:{
-            user_id: user.id,
+            userId: user.id,
           }
         }).then(oldCar => {
           console.log(!oldCar);
           if(!oldCar){
             db.cars.create({
-              user_id: user.id,
+              userId: user.id,
               size: req.body.size,
               make: req.body.make,
               model: req.body.model,
@@ -42,12 +42,12 @@ module.exports = (db, express, createToken) => ({
             db.cars.update({
               size: req.body.size,
               make: req.body.make,
-              //model: req.body.model,
+              model: req.body.model,
               color: req.body.color
             },
             {
               where:{
-                user_id: user.id,
+                userId: user.id,
               },
               returning: true,
             }).then((car) => {
