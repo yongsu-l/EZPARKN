@@ -1,12 +1,9 @@
-import axios from 'axios';
-
-//Register user
-//Register user
+import axios from 'axios'
 export function register(Username, Password, Email) {
 
     return axios({
         method: 'post',
-        url: '/user/create',
+        url: '/api/user/create',
         headers: {
             "Content-Type": "application/json",
         },
@@ -33,7 +30,7 @@ export function register(Username, Password, Email) {
 export function login(Username, Password){
     return axios({
       method:'post',
-      url:'/user/login',
+      url:'/api/user/login',
       headers:{
         "Content-Type": "application/json",
       },
