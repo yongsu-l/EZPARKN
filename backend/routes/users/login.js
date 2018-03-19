@@ -20,7 +20,7 @@ module.exports = (db, express, createToken) => ({
           res.status(400).json({success:false, msg: 'Login failed'});
         } else {
           let token = createToken(user['dataValues']);
-          res.status(400).json({success:true, token});
+          res.status(200).json({success:true, token});
         }
       })
     }

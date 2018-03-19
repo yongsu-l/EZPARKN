@@ -16,5 +16,6 @@ function createToken(user) {
 
 router.use('/create', require('./create')(db, express, createToken).router());
 router.use('/login', require('./login')(db, express, createToken).router());
+router.use('/profile', require('./profile')(db, express, createToken, verifyToken).router());
 
 module.exports = router;
