@@ -31,6 +31,13 @@ npm start
 
 This should setup the minimal requirements to setup the database system.
 
+## API Endpoint
+
+```
+Creating Users: /api/user/create (Body: username, email and password)
+Login User: /api/user/login (Body: username, password)
+```
+
 ## Running the tests
 
 WIP
