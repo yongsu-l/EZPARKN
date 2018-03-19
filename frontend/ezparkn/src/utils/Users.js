@@ -18,7 +18,7 @@ export function register(Username, Password, Email) {
         })
         .then(function (response) {
             console.log(response.data)
-            alert("Sending request to admin")
+            alert('Registering user...')
         })
         .catch((error) => {
             if(error.request.status === 500) {

@@ -23,7 +23,7 @@ class Signup extends Component {
     // Handle click event
     // TODO: Send request to backend
     //console.log(this.state);
-    register(this.username, this.password, this.email);
+    register(this.state.username, this.state.password, this.state.email);
   };
   render() {
     return (
