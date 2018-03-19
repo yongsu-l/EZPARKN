@@ -11,10 +11,12 @@ const config  = require('../../config/config')[env];
 const router  = express.Router();
 //Create token
 function createToken(user) {
+  console.log(config.secretOrKey);
   return jwt.sign(_.omit(user, 'password'), config.secretOrKey, {expiresIn: '24h'});
 };
 
 router.use('/create', require('./create')(db, express, createToken).router());
 router.use('/login', require('./login')(db, express, createToken).router());
+router.use('/profile', require('./profile')(db, express, createToken, verifyToken).router());
 
 module.exports = router;

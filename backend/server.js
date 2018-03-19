@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Add routes
-app.use('/', require('./routes'));
+app.use('/api', require('./routes'));
 
 app.listen(port, () => {
   console.log("Server is up and running on port ".green + port);
