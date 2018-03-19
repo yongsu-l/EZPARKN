@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {register} from '../../utils/Users';
 
 class Signup extends Component {
   constructor() {
@@ -19,7 +20,7 @@ class Signup extends Component {
   register = () => {
     // Handle click event
     // TODO: Send request to backend
-
+    register(this.username, this.password, this.email);
   };
   render() {
     return (
