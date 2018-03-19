@@ -85,12 +85,13 @@ class Splash extends React.Component{
               <br></br>
               <br></br>
               <br></br>
-              <button class="btn btn-raised btn-primary" onClick={ this.login } >Log In</button>
+              <div className="form-group"><a href="/Location" className="btn btn-primary btn-lg" href="/Location" disabled={isLoading}>Login</a></div>
 
               <p> Don't have an account? <a href="/signup">Sign Up</a></p>
             </Box2>
           </Box>
       </Container>
+      
 
         );
   }
