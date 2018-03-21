@@ -1,4 +1,5 @@
 //routes/user/login.js
+const bcrypt = require('bcrypt');
 
 module.exports = (db, express, createToken) => ({
   router() {
@@ -12,15 +13,21 @@ module.exports = (db, express, createToken) => ({
     else {
       db.users.find({
         where: {
-          username: req.body.username,
-          password: req.body.password
+          username: req.body.username
         }
       }).then(user => {
         if (!user) {
-          res.status(400).json({success:false, msg: 'Login failed'});
+          res.status(400).json({success:false, msg: 'Username does not exist'});
         } else {
-          let token = createToken(user['dataValues']);
-          res.status(200).json({success:true, token});
+          bcrypt.compare(req.body.password, user['dataValues'].password, function(err, result) {
+            if (err) throw err;
+            if (result) {
+              let token = createToken(user['dataValues']);
+              res.status(200).json({success:true, token});
+            } else {
+              res.status(400).json({success:false, msg: 'Password is incorrect'});
+            }
+          });
         }
       })
     }
