@@ -60,4 +60,5 @@ typings/
 # Don't push sqlite to github
 *.sqlite3
 
+# Macs
 .DS_Store
