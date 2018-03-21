@@ -1,6 +1,22 @@
 .map {
-    margin: 7%;
+    margin: 25px 0px 0px 5px;
 }
-.sidebar{
-    width: 400px;
+.content {
+    margin-top: 20px;
+}
+.parking {
+    float:right;
+    background-color: white;
+}
+.message {
+    margin-left: 5px;
+    float: left;
+    background-color: white;
+}
+.header {
+    margin-top: 20px;
+    padding: 2px;
+}
+.header span {
+    background-color: white;
 }
