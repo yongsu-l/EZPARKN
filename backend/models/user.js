@@ -22,7 +22,7 @@ module.exports = (sequelize, Sequelize) => {
       required: true,
       allowNull: false,
       unique: true,
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
       validate: {
         isEmail: true
       }
