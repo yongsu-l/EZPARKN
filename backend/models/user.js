@@ -6,10 +6,12 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
+      unique: true,
       type: Sequelize.INTEGER
     },
     username : {
       required: true,
+      unique: true,
       type: Sequelize.STRING
     },
     password: {
@@ -18,7 +20,12 @@ module.exports = (sequelize, Sequelize) => {
     },
     email : {
       required: true,
-      type: Sequelize.STRING
+      allowNull: false,
+      unique: true,
+      type: Sequelize.STRING,
+      validate: {
+        isEmail: true
+      }
     },
     firstname: {
       allowNull: true,

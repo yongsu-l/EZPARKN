@@ -6,11 +6,13 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
+      unique: true,
       type: Sequelize.INTEGER
     },
 
     userId: {
       allowNull: false,
+      unique: true,
       type: Sequelize.INTEGER,
       references: {
         model: {
