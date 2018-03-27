@@ -12,5 +12,6 @@ router.get('/', function(req, res) {
 
 router.use('/user', require('./users'));
 router.use('/car', require('./cars'));
+router.use('/message', require('./messages'));
 
 module.exports = router;
