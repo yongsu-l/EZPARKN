@@ -1,5 +1,6 @@
-var User = require('../models/user')
+// test/1user.js
 
+var User = require('../models/user');
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var server = require('../server');
@@ -13,7 +14,7 @@ describe('Users',() => {
 			username: "TESTUSER",
 			password: "password",
 			email:"TESTUSER@myemail.com"
-		}
+		};
 		chai.request(server)
 				.post('/api/user/create/delete')
 				.send(user)
@@ -31,7 +32,7 @@ describe('Users',() => {
 				username: "TESTUSER",
 				password: "password",
 				email:"TESTUSER@myemail.com"
-			}
+			};
 			chai.request(server)
 				.post('/api/user/create')
 				.send(user)
@@ -47,7 +48,7 @@ describe('Users',() => {
 			var user = {
 				username: "TESTUSER",
 				password: "password",
-			}
+			};
 			chai.request(server)
 				.post('/api/user/login')
 				.send(user)
@@ -65,7 +66,7 @@ describe('Users',() => {
 					username: "TESTUSER",
 					password: "password",
 					email:"TESTUSER1@myemail.com"
-				}
+				};
 				chai.request(server)
 					.post('/api/user/create')
 					.send(user)
@@ -85,7 +86,7 @@ describe('Users',() => {
 				username: "TESTUSER1",
 				password: "password",
 				email:"TESTUSER@myemail.com"
-			}
+			};
 			chai.request(server)
 				.post('/api/user/create')
 				.send(user)

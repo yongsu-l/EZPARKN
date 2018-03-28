@@ -1,5 +1,6 @@
-var Car = require('../models/car')
+// test/2car.js
 
+var Car = require('../models/car');
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var server = require('../server');
@@ -15,13 +16,13 @@ describe('Cars',() => {
 				username: "TESTUSER",
 				password: "password",
 				email:"TESTUSER@myemail.com"
-			}
+			};
 			var car = {
 				make:"Honda",
 				model:"Civic",
 				color:"White",
 				size: "Compact"
-			}
+			};
 			chai.request(server)
 				.post('/api/user/login')
 				.send(user)
@@ -52,13 +53,13 @@ describe('Cars',() => {
 				username: "TESTUSER",
 				password: "password",
 				email:"TESTUSER@myemail.com"
-			}
+			};
 			var car = {
 				make:"Honda",
 				model:"Civic",
 				color:"White",
 				size: "Compact"
-			}
+			};
 			chai.request(server)
 				.post('/api/user/login')
 				.send(user)
