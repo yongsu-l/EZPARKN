@@ -3,7 +3,7 @@
 var Car = require('../models/car');
 var chai = require('chai');
 var chaiHttp = require('chai-http');
-var server = require('../server');
+var server = require('./test-server');
 var should = chai.should();
 
 chai.use(chaiHttp);
