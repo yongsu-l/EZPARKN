@@ -4,7 +4,7 @@
   "description": "Backend REST API for EZPARKN",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --timeout 10000",
     "prestart": "node_modules/.bin/sequelize db:migrate",
     "start": "nodemon -L server.js"
   },
@@ -39,6 +39,9 @@
   },
   "devDependencies": {
     "nodemon": "^1.17.2",
-    "sequelize-cli": "^4.0.0"
+    "sequelize-cli": "^4.0.0",
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",    
+    "mocha": "^2.4.5"
   }
 }
