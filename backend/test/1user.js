@@ -1,29 +1,20 @@
 // test/1user.js
 
 var User = require('../models/user');
+var db    = require('../models');
 var chai = require('chai');
 var chaiHttp = require('chai-http');
-var server = require('../server');
+var server = require('./test-server');
 var should = chai.should();
 
 chai.use(chaiHttp);
 
 describe('Users',() => {
+  
 	before((done)=>{
-		var user = {
-			username: "TESTUSER",
-			password: "password",
-			email:"TESTUSER@myemail.com"
-		};
-		chai.request(server)
-				.post('/api/user/create/delete')
-				.send(user)
-				.end((err,res) => {
-					res.should.have.status(200);
-					res.body.should.be.a('object');
-					res.body.should.have.property('success',true);
-				done();
-			});
+    db.sequelize.sync({force:true}).then(() => {
+      done();
+    });
 	});
 
 	describe('/Create a user, and log in',() => {
