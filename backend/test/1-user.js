@@ -11,11 +11,6 @@ describe('Users',() => {
     });
 	});
 
-  after((done) => {
-    console.log(server.close());    
-    done();
-  });
-
 	describe('/Create a user, and log in',() => {
 		it('it should create a user', (done)=>{
 			var user = {
@@ -30,8 +25,8 @@ describe('Users',() => {
 					res.should.have.status(201);
 					res.body.should.be.a('object');
 					res.body.should.have.property('success',true);
-				done();
-				});
+        done();
+        });
 		});
 
 		it('it should log in as user', (done)=>{
@@ -50,27 +45,28 @@ describe('Users',() => {
 				});
 		});
 	});
-		describe('/Test username is taken',() => {
-			it('it should try to create a user but get a 400 back', (done)=>{
-				var user = {
-					username: "TESTUSER",
-					password: "password",
-					email:"TESTUSER1@myemail.com"
-				};
-				chai.request(app)
-					.post('/api/user/create')
-					.send(user)
-					.end((err,res) => {
-						res.should.have.status(400);
-						res.body.should.be.a('object');
-						res.body.should.have.property('success',false);
-						res.body.should.have.property('msg','Username already exists');
-					done();
-					});
-			});
-		});
 
-		describe('/Test email is taken',() => {
+  describe('/Test username is taken',() => {
+    it('it should try to create a user but get a 400 back', (done)=>{
+      var user = {
+        username: "TESTUSER",
+        password: "password",
+        email:"TESTUSER1@myemail.com"
+      };
+      chai.request(app)
+        .post('/api/user/create')
+        .send(user)
+        .end((err,res) => {
+          res.should.have.status(400);
+          res.body.should.be.a('object');
+          res.body.should.have.property('success',false);
+          res.body.should.have.property('msg','Username already exists');
+        done();
+        });
+    });
+  });
+
+  describe('/Test email is taken',() => {
 		it('it should try to create a user but get a 400 back', (done)=>{
 			var user = {
 				username: "TESTUSER1",

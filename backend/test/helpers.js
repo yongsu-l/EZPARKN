@@ -2,7 +2,6 @@
 var supertest = require('supertest');
 var chai      = require('chai');
 var chaiHttp  = require('chai-http');
-var uuid      = require('uuid');
 var app       = require('server')['app'];
 var server    = require('server')['server'];
 var db        = require('models');
