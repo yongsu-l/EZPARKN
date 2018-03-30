@@ -11,5 +11,5 @@ chai.use(chaiHttp);
 global.app = app;
 global.server = server;
 global.chai = chai;
-global.request = supertest(app);
+global.request = chai.request(app);
 global.db = db;

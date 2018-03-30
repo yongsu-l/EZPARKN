@@ -18,7 +18,7 @@ describe('Users',() => {
 				password: "password",
 				email:"TESTUSER@myemail.com"
 			};
-			chai.request(app)
+			request
 				.post('/api/user/create')
 				.send(user)
 				.end((err,res) => {
@@ -34,7 +34,7 @@ describe('Users',() => {
 				username: "TESTUSER",
 				password: "password",
 			};
-			chai.request(app)
+			request
 				.post('/api/user/login')
 				.send(user)
 				.end((err,res) => {
@@ -53,7 +53,7 @@ describe('Users',() => {
         password: "password",
         email:"TESTUSER1@myemail.com"
       };
-      chai.request(app)
+      request
         .post('/api/user/create')
         .send(user)
         .end((err,res) => {
@@ -73,7 +73,7 @@ describe('Users',() => {
 				password: "password",
 				email:"TESTUSER@myemail.com"
 			};
-			chai.request(app)
+			request
 				.post('/api/user/create')
 				.send(user)
 				.end((err,res) => {

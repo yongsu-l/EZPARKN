@@ -17,7 +17,7 @@ describe('Cars',() => {
 				color:"White",
 				size: "Compact"
 			};
-			chai.request(app)
+			request
 				.post('/api/user/login')
 				.send(user)
 				.end((err,res) => {
@@ -25,7 +25,7 @@ describe('Cars',() => {
 					res.body.should.be.a('object');
 					res.body.should.have.property('success');
 					token = res.body.token;
-					chai.request(app)
+					request
 						.put('/api/car/create')
 						.set('x-access-token',token)
 						.send(car)
