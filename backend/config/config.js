@@ -1,19 +1,25 @@
 // config.js
 
-const fs = require('fs');
-
 module.exports = {
   development: {
     dialect: 'sqlite',
     storage: 'data/dev-db.sqlite3',
-    secretOrKey: 'parknsoez'
+    secretOrKey: 'parknsoez',
+    define: {
+      timestamps: false
+    },
+    operatorsAliases: false,
+    logging: false
   },
   test: {
-    username: 'database_test',
-    password: 'password',
-    database: 'database_test',
-    host: '127.0.0.1',
-    dialect: 'mysql'
+    dialect: 'sqlite',
+    storage: 'data/test-db.sqlite3',
+    secretOrKey: 'parknsoez',
+    define: {
+      timestamps: false
+    },
+    operatorsAliases: false,
+    logging: false
   },
   production: {
     username: process.env.DB_USERNAME,
