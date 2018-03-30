@@ -1,13 +1,7 @@
 // test/1user.js
 
-var User = require('../models/user');
-var db    = require('../models');
-var chai = require('chai');
-var chaiHttp = require('chai-http');
-var server = require('./test-server');
-var should = chai.should();
-
-chai.use(chaiHttp);
+var User      = db['users'];
+var should    = chai.should();
 
 describe('Users',() => {
   
@@ -17,6 +11,11 @@ describe('Users',() => {
     });
 	});
 
+  after((done) => {
+    console.log(server.close());    
+    done();
+  });
+
 	describe('/Create a user, and log in',() => {
 		it('it should create a user', (done)=>{
 			var user = {
@@ -24,7 +23,7 @@ describe('Users',() => {
 				password: "password",
 				email:"TESTUSER@myemail.com"
 			};
-			chai.request(server)
+			chai.request(app)
 				.post('/api/user/create')
 				.send(user)
 				.end((err,res) => {
@@ -40,7 +39,7 @@ describe('Users',() => {
 				username: "TESTUSER",
 				password: "password",
 			};
-			chai.request(server)
+			chai.request(app)
 				.post('/api/user/login')
 				.send(user)
 				.end((err,res) => {
@@ -58,7 +57,7 @@ describe('Users',() => {
 					password: "password",
 					email:"TESTUSER1@myemail.com"
 				};
-				chai.request(server)
+				chai.request(app)
 					.post('/api/user/create')
 					.send(user)
 					.end((err,res) => {
@@ -78,7 +77,7 @@ describe('Users',() => {
 				password: "password",
 				email:"TESTUSER@myemail.com"
 			};
-			chai.request(server)
+			chai.request(app)
 				.post('/api/user/create')
 				.send(user)
 				.end((err,res) => {
