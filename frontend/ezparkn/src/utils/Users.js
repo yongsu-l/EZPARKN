@@ -1,6 +1,9 @@
-import axios from 'axios'
+// src/utils/Users.js
 
+import axios from 'axios'
 import {URL, API, LOGIN, USER, CREATE} from '../urls/API'
+import { store } from '../store';
+import { setToken } from '../actions';
 
 export function register(Username, Password, Email) {
 
@@ -29,7 +32,6 @@ export function register(Username, Password, Email) {
     })
 }
 
-
 export function login(Username, Password){
   return axios({
     method:'post',
@@ -37,14 +39,14 @@ export function login(Username, Password){
     headers:{
       "Content-Type": "application/json",
     },
-    data:JSON.stringify({
+    data: {
       username: Username,
       password: Password,
-    })
+    }
   })
     .then(function (response) {
-      console.log(response.data)
-
+      const token = response.data.token;
+      store.dispatch(setToken(token));
     })
     .catch((error) => {
       if(error.request.status === 500) {
