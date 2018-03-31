@@ -4,9 +4,9 @@
   "description": "Backend REST API for EZPARKN",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "node_modules/.bin/sequelize db:migrate",
-    "start": "nodemon -L server.js"
+    "test": "mocha --exit",
+    "prestart": "sequelize db:migrate",
+    "start": "NODE_PATH=. nodemon -L server.js"
   },
   "repository": {
     "type": "git",
