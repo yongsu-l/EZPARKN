@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { FormGroup } from 'react-bootstrap';
 import postLogin from 'lib/postLogin';
 import { Redirect } from 'react-router';
+import { store } from 'store';
+import { setToken } from 'actions';
 
 import {
   Button,
@@ -11,17 +13,14 @@ import {
   Box2,
   LeftSide,
   RightSide
-
 } from './styled';
 
 class Splash extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      identifier: '',
       username: '',
       password: '',
-      errors: {},
       isLoading: false,
       redirectToNewPage: false
     };
@@ -38,6 +37,14 @@ class Splash extends React.Component{
     postLogin({
       username,
       password
+    }).then(json => {
+      if (json && json.success) {
+        store.dispatch(setToken(json.token));
+        this.setState({redirectToNewPage: true});
+      } else {
+        alert(json.msg);
+      }
+      console.log(json);
     });
   } 
 
@@ -50,7 +57,6 @@ class Splash extends React.Component{
   };
 
   render(){
-    const { errors, identifier, password, isLoading, redirectToNewPage} = this.state;
     if(this.state.redirectToNewPage) {
       return <Redirect to="/home"/>;
     }

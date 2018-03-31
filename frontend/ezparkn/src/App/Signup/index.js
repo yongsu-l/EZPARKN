@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import postSignup from 'lib/postSignup';
 import { Redirect } from 'react-router';
 import FormValidator from './FormValidator';
 import './Signup.css'
+
+import postSignup from 'lib/postSignup';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -111,6 +112,14 @@ class Signup extends React.Component {
       username,
       password,
       email
+    }).then(json => {
+      if (json && json.success) {
+        //Placeholder until we get email verification
+        alert('Registered successfully');
+      } else {
+        alert(json.msg);
+      }
+      console.log(json);
     });
   }
 

@@ -1,25 +1,19 @@
 // src/lib/postLogin.js
 
-import axios from 'axios';
-import {URL, API, LOGIN, USER, CREATE} from '../urls/API';
-import { store } from '../store';
-import { setToken } from '../actions';
+import {URL, API, LOGIN, USER, CREATE} from 'urls/API';
 
 function postLogin(body){
-  return axios({
-    method:'post',
-    url: API + USER + LOGIN,
-    headers:{
-      "Content-Type": "application/json",
-    },
-    data: body
-  }).then(function (response) {
-      const token = response.data.token;
-      store.dispatch(setToken(token));
+  return (
+    fetch(API+USER+LOGIN, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
     })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then(res => res.json())
+      .catch(e => console.log(e))
+  )
 }
 
 export default postLogin;
