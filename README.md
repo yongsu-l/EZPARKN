@@ -39,12 +39,12 @@ This rough draft is using what is known as a MEAN stack, which uses the followin
 
 ### Iteration 2
 
-* Abu Butt - Code Reviewer
+* Abu Butt - Tracker
 * Steven Barrios - Customer
 * Yong Su Lee - Continuous Integrator
 * Mostafizur Rahman - 
 * Kenny Tan - 
-* Yuan Zhou - Tracker
+* Yuan Zhou - Code Reviewer
 * Julia Lau - Designer
 * Mikhail Kreytser - Presenter
 * Steven McDonald - 
