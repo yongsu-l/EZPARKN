@@ -7,7 +7,7 @@ const env     = process.env.NODE_ENV || 'development';
 const config  = require('../config/config')[env];
 
 router.get('/', function(req, res) {
-  res.status(200).send("hi")
+  res.status(200).send("hi");
 });
 
 router.use('/user', require('./users'));
