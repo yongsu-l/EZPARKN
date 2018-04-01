@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { withRouter, Switch, Route } from 'react-router-dom';
 
 import Splash from './Splash';
-import Signup from './Signup/Signup';
+import Signup from './Signup';
+import Home from './Home';
 
 import {
   AppView,
@@ -30,6 +31,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/splash' component={Splash} />
             <Route exact path='/signup' component={Signup} />
+            <Route exact path='/home' component={Home} />
           </Switch>
 
         </MainView>
