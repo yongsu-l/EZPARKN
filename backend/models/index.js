@@ -4,10 +4,12 @@ var path      = require('path');
 var Sequelize = require('sequelize');
 var basename  = path.basename(module.filename);
 var env       = process.env.NODE_ENV || 'development';
-var config    = require(path.join(__dirname, '..', 'config', 'config.js'))[env];
+var config    = require(path.join(__dirname, '..', 'config', 'config.js'))[env]
 var db        = {};
 
-console.log(config);
+config.define = {};
+config.define.timestamps = false;
+config.operatorsAliases = false;
 
 var sequelize = new Sequelize(config.database, config.username, config.password, config);
 

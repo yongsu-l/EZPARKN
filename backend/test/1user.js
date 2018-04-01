@@ -1,7 +1,13 @@
 // test/1user.js
 
-var User      = db['users'];
-var should    = chai.should();
+var User = require('../models/user');
+var db    = require('../models');
+var chai = require('chai');
+var chaiHttp = require('chai-http');
+var server = require('./test-server');
+var should = chai.should();
+
+chai.use(chaiHttp);
 
 describe('Users',() => {
   
@@ -18,15 +24,15 @@ describe('Users',() => {
 				password: "password",
 				email:"TESTUSER@myemail.com"
 			};
-			request
+			chai.request(server)
 				.post('/api/user/create')
 				.send(user)
 				.end((err,res) => {
 					res.should.have.status(201);
 					res.body.should.be.a('object');
 					res.body.should.have.property('success',true);
-        done();
-        });
+				done();
+				});
 		});
 
 		it('it should log in as user', (done)=>{
@@ -34,7 +40,7 @@ describe('Users',() => {
 				username: "TESTUSER",
 				password: "password",
 			};
-			request
+			chai.request(server)
 				.post('/api/user/login')
 				.send(user)
 				.end((err,res) => {
@@ -45,35 +51,34 @@ describe('Users',() => {
 				});
 		});
 	});
+		describe('/Test username is taken',() => {
+			it('it should try to create a user but get a 400 back', (done)=>{
+				var user = {
+					username: "TESTUSER",
+					password: "password",
+					email:"TESTUSER1@myemail.com"
+				};
+				chai.request(server)
+					.post('/api/user/create')
+					.send(user)
+					.end((err,res) => {
+						res.should.have.status(400);
+						res.body.should.be.a('object');
+						res.body.should.have.property('success',false);
+						res.body.should.have.property('msg','Username already exists');
+					done();
+					});
+			});
+		});
 
-  describe('/Test username is taken',() => {
-    it('it should try to create a user but get a 400 back', (done)=>{
-      var user = {
-        username: "TESTUSER",
-        password: "password",
-        email:"TESTUSER1@myemail.com"
-      };
-      request
-        .post('/api/user/create')
-        .send(user)
-        .end((err,res) => {
-          res.should.have.status(400);
-          res.body.should.be.a('object');
-          res.body.should.have.property('success',false);
-          res.body.should.have.property('msg','Username already exists');
-        done();
-        });
-    });
-  });
-
-  describe('/Test email is taken',() => {
+		describe('/Test email is taken',() => {
 		it('it should try to create a user but get a 400 back', (done)=>{
 			var user = {
 				username: "TESTUSER1",
 				password: "password",
 				email:"TESTUSER@myemail.com"
 			};
-			request
+			chai.request(server)
 				.post('/api/user/create')
 				.send(user)
 				.end((err,res) => {
