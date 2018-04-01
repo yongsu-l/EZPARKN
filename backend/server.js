@@ -9,8 +9,8 @@ const env           = process.env.NODE_ENV || 'development';
 const port          = process.env.PORT || 3001;
 const config        = require('./config/config')[env];
 const colors        = require('colors');
-
-const app = express();
+const app           = express();
+const server        = require('http').createServer(app);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -25,4 +25,7 @@ app.listen(port, () => {
   console.log("Server is up and running on port ".green + port);
 });
 
-module.exports = app;
+module.exports = {
+  server,
+  app
+};
