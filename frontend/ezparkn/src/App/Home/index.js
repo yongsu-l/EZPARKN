@@ -1,29 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps';
+import { FormGroup } from 'react-bootstrap';
 import { Message } from 'semantic-ui-react'
 import './styled.css';
+import Map from '../Map/Map';
 
-const params = {key: 'AIzaSyAnSgqK0QCLi98urC5vRWCFnfmi9GR7nQI'};
 
 export default class Home extends Component {
-  onMapCreated(map) {
-    map.setOptions({
-      disableDefaultUI: true
-    });
-  }
-
-  onDragEnd(e) {
-    console.log('onDragEnd', e);
-  }
-
-  onCloseClick() {
-    console.log('onCloseClick');
-  }
-
-  onClick(e) {
-    console.log('onClick', e);
-  }
 
   render() {
     const messages = [
@@ -37,26 +20,19 @@ export default class Home extends Component {
     ]
 
     return (
-      <div className="container">
+      <div>
         <div className="text-center header">
           <h2><span>FIND PARKING WITH EZPARKN</span></h2>
         </div>
 
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 map">
-          <Gmaps width={'1075px'} height={'400px'} lat={40.8197255} lng={-73.9501939} zoom={16} params={params} onMapCreated={this.onMapCreated} scrollwheel={false}>
+        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-4 map">
+        <Map />
 
-            <Marker lat={40.819970} lng={-73.946783} draggable={false} />
-            <InfoWindow lat={40.819970} lng={-73.946783} content={'139 ST: St Nicholas Ave'} onCloseClick={this.onCloseClick} />
-
-            <Marker lat={40.819508} lng={-73.951885} draggable={false} />
-            <InfoWindow lat={40.819508} lng={-73.951885} content={'136 ST: Amsterdam Ave'} onCloseClick={this.onCloseClick} />
-
-            <Marker lat={40.817870} lng={-73.949802} draggable={false} />
-            <InfoWindow lat={40.817870} lng={-73.949802} content={'135 ST: St Nicholas Terrace'} onCloseClick={this.onCloseClick} />
-
-          </Gmaps>
         </div>
 
+        {/* <div className="nav-container nav-container--sidebar">
+        <div className="nav-sidebar-column" style={{padding: 0}}>
+        
         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 content">
 
           <div className="col-xs-12 col-sm-12 col-md-5 col-lg-5 message">
@@ -68,8 +44,79 @@ export default class Home extends Component {
             <h2 className="text-center">Current Parking Spots</h2>
             <a href="#"><Message list={parkingSpots}/></a>
           </div>
+          </div>
         </div>
+        </div> */}
+
+
       </div>
     );
   }
 }
+
+
+// //pop-dialog 
+
+// import React, { Component } from 'react';
+// import ReactDOM from 'react-dom';
+// import ReactConfirmAlert, { confirmAlert } from 'react-confirm-alert'
+// // import '../src/react-confirm-alert.css'
+// import './styled.css';
+
+// export default class Home extends Component {
+
+//   submit = () => {
+//     confirmAlert({
+//       title: 'Confirm to submit',
+//       message: 'Are you sure to do this.',
+//       buttons: [
+//         {
+//           label: 'Yes',
+//           onClick: () => alert('Click Yes')
+//         },
+//         {
+//           label: 'No',
+//           onClick: () => alert('Click No')
+//         }
+//       ]
+//     })
+//   }
+
+//   submitCustomUI = () => {
+//     confirmAlert({
+//       customUI: ({ onClose }) => {
+//         return (
+//           <div className='custom-ui'>
+//             <h1>Are you sure?</h1>
+//             <p>You want to delete this file?</p>
+//             <button onClick={onClose}>No</button>
+//             <button onClick={onClose}>Yes, Delete it!</button>
+//           </div>
+//         )
+//       }
+//     })
+//   }
+
+//   render () {
+//     return (
+//       <div className='main-container'>
+//         <section className='section1'>
+//           <div className='center'>
+//             <div className='title'>React confirm alert 2</div>
+//             <br />
+//             <br />
+//             <a href='javascript:;' className='button' onClick={this.submit}>
+//               Show confirm
+//             </a>
+//             <a
+//               href='javascript:;'
+//               className='button outline'
+//               onClick={this.submitCustomUI}>
+//               Show confirm Custom UI
+//             </a>
+//           </div>
+//         </section>
+//       </div>
+//     )
+//   }
+// }
