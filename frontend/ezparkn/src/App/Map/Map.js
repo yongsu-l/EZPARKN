@@ -30,9 +30,9 @@ export default class Map extends Component {
     return (
       <div className="container">
 
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-4 map">
+        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-6 map">
 
-          <Gmaps width={'1075px'} height={'400px'} lat={40.8197255} lng={-73.9501939} zoom={16} params={params} onMapCreated={this.onMapCreated} scrollwheel={false}>
+          <Gmaps width={'950px'} height={'400px'} lat={40.8197255} lng={-73.9501939} zoom={16} params={params} onMapCreated={this.onMapCreated} scrollwheel={false}>
             
 
             <Marker lat={40.819970} lng={-73.946783} draggable={false} name={'Current location'} />
