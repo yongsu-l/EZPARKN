@@ -17,7 +17,7 @@ module.exports = (db, express, createToken) => ({
         }
       }).then(user => {
         if (!user) {
-          res.status(400).json({success:false, msg: 'Username does not exist'});
+          res.status(404).json({success:false, msg: 'Username does not exist'});
         } else {
           bcrypt.compare(req.body.password, user['dataValues'].password, function(err, result) {
             if (err) throw err;
@@ -25,7 +25,7 @@ module.exports = (db, express, createToken) => ({
               let token = createToken(user['dataValues']);
               res.status(200).json({success:true, token});
             } else {
-              res.status(400).json({success:false, msg: 'Password is incorrect'});
+              res.status(401).json({success:false, msg: 'Password is incorrect'});
             }
           });
         }
