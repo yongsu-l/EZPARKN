@@ -1,5 +1,4 @@
 // test/helpers.js
-var supertest = require('supertest');
 var chai      = require('chai');
 var chaiHttp  = require('chai-http');
 var app       = require('server')['app'];
