@@ -23,12 +23,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Add routes
 app.use('/api', require('routes'));
 
-//Add socket directory
-require('./sockets')(io, db);
-
-app.listen(port, () => {
+server.listen(port, () => {
   console.log("Server is up and running on port ".green + port.yellow);
 });
+
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+//Add socket directory
+require('sockets')(io, db);
 
 module.exports = {
   server,

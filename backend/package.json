@@ -4,7 +4,7 @@
   "description": "Backend REST API for EZPARKN",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --exit",
+    "test": "NODE_PATH=. mocha --exit",
     "migrate": "sequelize db:migrate",
     "start": "NODE_PATH=. node server.js"
   },
