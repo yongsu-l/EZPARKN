@@ -1,4 +1,4 @@
-// routes/messages/index.js
+// routes/queues/index.js
 
 const db          = require('../../models');
 const express     = require('express');

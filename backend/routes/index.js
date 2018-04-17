@@ -12,6 +12,7 @@ router.get('/', function(req, res) {
 
 router.use('/user', require('./users'));
 router.use('/car', require('./cars'));
-router.use('/message', require('./messages'));
+//router.use('/message', require('./messages'));
+router.use('/queue', require('./queues'));
 
 module.exports = router;
