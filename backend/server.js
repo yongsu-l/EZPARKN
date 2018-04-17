@@ -30,4 +30,7 @@ app.listen(port, () => {
   console.log("Server is up and running on port ".green + port.yellow);
 });
 
-module.exports = app;
+module.exports = {
+  server,
+  app
+};
