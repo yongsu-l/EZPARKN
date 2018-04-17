@@ -1,7 +1,5 @@
 //routes/car/create.js
-const verifyToken  = require('../../auth/verifyToken');
-
-module.exports = (db, express, createToken) => ({
+module.exports = (db, express, verifyToken) => ({
   router() {
     const router = express.Router();
     router.put('/',verifyToken, this.createCar);
