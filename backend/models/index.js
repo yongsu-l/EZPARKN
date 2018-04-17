@@ -17,12 +17,10 @@ db.Sequelize = Sequelize;
 //Models/tables
 db.users = require('./user')(sequelize, Sequelize);
 db.cars = require('./car')(sequelize, Sequelize);
-db.messages = require('./message')(sequelize, Sequelize);
 db.queues = require('./queue')(sequelize, Sequelize);
 
 //Relations
 db.users.hasOne(db.cars);
-db.messages.belongsTo(db.users);
 db.cars.belongsTo(db.users);
 db.queues.belongsTo(db.users);
 
