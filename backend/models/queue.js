@@ -13,18 +13,18 @@ module.exports = (sequelize, Sequelize) => {
     msg: {
       allowNull: false,
       type: Sequelize.STRING
-    }
+    },
     time: {
       allowNull: false,
       type: Sequelize.DATE
     },
-    userId: {
+    parkingId: {
       allowNull: false,
       unique: true,
       type: Sequelize.INTEGER,
       references: {
         model: {
-          tableName: 'users'
+          tableName: 'parkings'
         },
         key: 'id'
       }
