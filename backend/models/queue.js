@@ -18,13 +18,13 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       type: Sequelize.DATE
     },
-    userId: {
+    parkingId: {
       allowNull: false,
       unique: true,
       type: Sequelize.INTEGER,
       references: {
         model: {
-          tableName: 'users'
+          tableName: 'parkings'
         },
         key: 'id'
       }

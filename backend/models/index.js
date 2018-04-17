@@ -18,10 +18,12 @@ db.Sequelize = Sequelize;
 db.users = require('./user')(sequelize, Sequelize);
 db.cars = require('./car')(sequelize, Sequelize);
 db.queues = require('./queue')(sequelize, Sequelize);
+db.parkings = require('./parking')(sequelize, Sequelize);
 
 //Relations
 db.users.hasOne(db.cars);
 db.cars.belongsTo(db.users);
-db.queues.belongsTo(db.users);
+db.queues.belongsTo(db.parkings);
+db.parkings.belongsTo(db.users);
 
 module.exports = db;
