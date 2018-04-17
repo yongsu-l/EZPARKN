@@ -12,6 +12,7 @@ const colors        = require('colors');
 const app           = express();
 const server        = require('http').Server(app);
 const io            = require('socket.io')(server);
+const db            = require('models');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -23,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', require('routes'));
 
 //Add socket directory
-require('./sockets')(io);
+require('./sockets')(io, db);
 
 app.listen(port, () => {
   console.log("Server is up and running on port ".green + port.yellow);
