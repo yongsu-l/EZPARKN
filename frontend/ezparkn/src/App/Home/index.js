@@ -38,7 +38,7 @@ export default class Home extends Component {
     // alert("The value is ", e.target.value)
     
     this.setState({selectValue: event.target.value,
-    messageSent: true,
+      messageSent: true,
     });
   }
 

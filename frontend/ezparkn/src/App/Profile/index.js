@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
-
+import { store } from 'store';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -22,14 +22,14 @@ export default class Profile extends Component {
               </a>
             </div>
             <div className="form-group col-md-3">
-              <p className="h3">Drake</p>
+              <p className="h3">{store.getState().profile.firstname ? store.getState().profile.firstname : "UPDATE NAME"}</p>
               <p className="text-muted">General information</p>
             </div>
             <div className="form-group col-md-6">
               <div className="row mb-1">
                 <div className="col-md-12">
                   <label htmlFor="email">Email address</label>
-                  <input type="text" id="email" className="form-control" value="ChampagnePapi@gmail.com"/>
+                  <input type="text" id="email" className="form-control" value={store.getState().profile.email}/>
                 </div>
               </div>
               <div className="row mb-3">
