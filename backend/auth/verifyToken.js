@@ -15,7 +15,6 @@ module.exports = function verifyToken(req, res, next) {
     if (err)
       return res.status(500).json({success: false, msg: 'Failed to authenticate'});
 
-    console.log(decoded.id);
     req.id = decoded.id;
     next();
   });
