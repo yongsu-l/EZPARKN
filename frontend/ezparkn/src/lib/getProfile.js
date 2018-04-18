@@ -1,6 +1,7 @@
 // src/lib/getProfile.js
 
 import {URL, API, USER, PROFILE} from 'urls/API';
+import { store } from 'store';
 
 function postLogin(body){
   return (

@@ -117,8 +117,9 @@ class Signup extends React.Component {
       if (data && data.success) {
         //Placeholder until we get email verification
         alert('Registered successfully');
-        this.setState({ redirectToNewPage: true });
+
         //Redirect user to splash page after the user successfully registers
+        this.setState({ redirectToNewPage: true });
 
       } else {
         console.log(data);

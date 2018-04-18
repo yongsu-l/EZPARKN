@@ -8,6 +8,7 @@ import ParkingForm from '../ParkingForm';
 import Switch from "react-switch";
 import { Button } from 'semantic-ui-react';
 import './style.css';
+import { store } from 'store';
 
 export default class Home extends Component {
   constructor(props){
@@ -24,9 +25,11 @@ export default class Home extends Component {
       showProfile: false,
     }
   }
+
   toggleParking = () => {
     this.setState({showParking: !this.state.showParking});
   }
+
   toggleProfile = () => {
     this.setState({showProfile: !this.state.showProfile});
   }
@@ -38,6 +41,7 @@ export default class Home extends Component {
     messageSent: true,
     });
   }
+
   handleSubmit = (event) => {
     // alert('Your parking waiting time is: ' + this.state.selectValue);
     this.setState({messageSent: true})
@@ -56,14 +60,17 @@ export default class Home extends Component {
       newMessageBody: e.target.value,
     })
   }
+
   handleChangeSpot = (checkedSpot) => {
     this.setState({ checkedSpot });
     // alert("The value is" + checked);
   }
+
   handleChangeLocation = (checkedLocation) => {
     this.setState({ checkedLocation });
     // alert("The value is" + checked);
   }
+
   render() {
     var parkingMessage='You Parking Waiting Time is : '+this.state.selectValue;
 

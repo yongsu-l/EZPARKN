@@ -15,3 +15,10 @@ export const setUser = (data) => {
     data
   };
 };
+
+export const setProfile = (data) => {
+  return {
+    type: actionType.SET_PROFILE,
+    data
+  };
+};

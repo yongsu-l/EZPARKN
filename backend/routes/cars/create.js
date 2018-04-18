@@ -1,8 +1,9 @@
 //routes/car/create.js
 module.exports = (db, express, verifyToken) => ({
+
   router() {
     const router = express.Router();
-    router.put('/',verifyToken, this.createCar);
+    router.put('/', verifyToken, this.createCar);
     return router;
   },
  
@@ -55,9 +56,10 @@ module.exports = (db, express, verifyToken) => ({
           }
         }).catch(()=>{
           res.status(400).json({success: false, msg: 'Failed to create a car'});
-        })
+        });
       }).catch(() => {
         //Good token but no user found?????
+        console.log(req.id);
         res.status(404).json({success: false, msg: 'You seem to be lost... Are you sure you are logged in?'});  
       });
     }

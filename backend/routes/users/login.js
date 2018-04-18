@@ -14,7 +14,8 @@ module.exports = (db, express, createToken) => ({
       db.users.find({
         where: {
           username: req.body.username
-        }
+        },
+        attributes: ['username', 'firstname', 'lastname', 'password']
       }).then(user => {
         if (!user) {
           res.status(404).json({success:false, msg: 'Username does not exist'});
@@ -23,13 +24,15 @@ module.exports = (db, express, createToken) => ({
             if (err) throw err;
             if (result) {
               let token = createToken(user['dataValues']);
-              res.status(200).json({success:true, token});
+              console.log(user);
+              delete user['dataValues'].password;
+              res.status(200).json({success:true, token, profile: user});
             } else {
               res.status(401).json({success:false, msg: 'Password is incorrect'});
             }
           });
         }
-      })
+      });
     }
   }
 });
