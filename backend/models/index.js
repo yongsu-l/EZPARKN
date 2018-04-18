@@ -21,7 +21,7 @@ db.parkings = require('./parking')(sequelize, Sequelize);
 //Relations
 db.users.hasOne(db.cars);
 db.cars.belongsTo(db.users);
-db.queues.belongsTo(db.parkings);
+db.queues.belongsTo(db.users);
 db.parkings.belongsTo(db.users);
 
 // Operations
