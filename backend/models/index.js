@@ -24,4 +24,7 @@ db.cars.belongsTo(db.users);
 db.queues.belongsTo(db.parkings);
 db.parkings.belongsTo(db.users);
 
+// Operations
+db.op = Sequelize.Op;
+
 module.exports = db;
