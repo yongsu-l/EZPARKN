@@ -39,9 +39,37 @@ Login User:         /api/user/login (Body: username, password)
 Create/Update Car:  /api/car/create (Body: make, model, color, size)(Header: x-access-token)
 ```
 
+## Socket Enpoint
+
+Sockets will be accessed on the same server port. 
+Clients must have open connects where clients wait for messages from the server.
+Once on the maps page, the client server will be expected to open up the socket
+connection. As of now, there are no authentications for sockets but will be implemented in the future.
+```
+Setup connection first then use the following listeners check for updates.
+
+To get a feed of all parking: socket.on('spots')
+To post a place of where you've parked: socket.emit('park', {lat: LATVAL, long: LONGVAL, userId})
+
+To request to be added in queue, and ask for notifications emit: socket.emit('join queue')
+This will allow the user to be added into a room for the queue then the client can listen for notify with socket.on('notify' (data) =>) which will listen on notification but only be send to those who have subscribed to the queue
+```
+
 ## Running the tests
 
-WIP
+To run the tests run the following below.
+
+```
+npm run test
+```
+
+## Running the migrations
+
+To run the migrations run the following below.
+
+```
+npm run migrations
+```
 
 ### Break down into end to end tests
 
