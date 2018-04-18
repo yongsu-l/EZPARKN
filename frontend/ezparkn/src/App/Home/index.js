@@ -1,74 +1,132 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps';
-import { Message } from 'semantic-ui-react'
-import './styled.css';
-
-const params = {key: 'AIzaSyAnSgqK0QCLi98urC5vRWCFnfmi9GR7nQI'};
+import { FormGroup, Panel } from 'react-bootstrap';
+import Map from '../Map/Map';
+import Messages from '../Messages/Messages';
+import Switch from "react-switch";
+import { Button } from 'semantic-ui-react';
+import './style.css';
 
 export default class Home extends Component {
-  onMapCreated(map) {
-    map.setOptions({
-      disableDefaultUI: true
+  constructor(props){
+    super(props);
+
+    this.state ={
+      selectValue:'',
+      checkedSpot: false,
+      checkedLocation: false,
+      messages: [],
+      newMessageBody: '',
+      messageSent: false,
+    }
+  }
+
+  handleChange = (event) => {
+    // alert("The value is ", e.target.value)
+    
+    this.setState({selectValue: event.target.value,
+    messageSent: true,
     });
   }
-
-  onDragEnd(e) {
-    console.log('onDragEnd', e);
+  handleSubmit = (event) => {
+    // alert('Your parking waiting time is: ' + this.state.selectValue);
+    this.setState({messageSent: true})
+    event.preventDefault();
   }
 
-  onCloseClick() {
-    console.log('onCloseClick');
+  addMessage = () => {
+    const newState = Object.assign({}, this.state);
+    newState.messages.push(this.state.newMessageBody);
+    newState.newMessageBody = '';
+    this.setState(newState);
   }
 
-  onClick(e) {
-    console.log('onClick', e);
+  handleInputChange = (e) => {
+    this.setState({
+      newMessageBody: e.target.value,
+    })
   }
-
+  handleChangeSpot = (checkedSpot) => {
+    this.setState({ checkedSpot });
+    // alert("The value is" + checked);
+  }
+  handleChangeLocation = (checkedLocation) => {
+    this.setState({ checkedLocation });
+    // alert("The value is" + checked);
+  }
   render() {
-    const messages = [
-      'Friend A is leaving in 20 Minutes.',
-      'Never Miss A Parking Spot At CCNY',
-    ];
+    var parkingMessage='You Parking Waiting Time is : '+this.state.selectValue;
 
-    const parkingSpots = [
-      '139 ST: St Nicholas Ave',
-      '136 ST: Amsterdam Ave',
-    ]
+    const renderMessage = () => {
+      return(
+        <div className="messages">
+        <div>{ this.state.messages.map((messageBody, id) => { return ( <Messages key={id} messageBody={messageBody}/>) })}</div>
+        <div> <div className="panel panel-default message-editor">
 
+          <div className="panel-body"> 
+          <textarea className="form-control message-editor-input" value={this.state.newMessageBody}onChange={this.handleInputChange}/>
+          <button className="btn btn-success message-editor-button" onClick={this.addMessage}>Message</button> </div>
+        </div> </div>
+        </div>
+      )
+    }
+
+    const renderParkingForm = () => {
+      return(
+      <div className="parking-request col-lg-12">
+
+      <form onSubmit={this.handleSubmit} className="parkingForm">
+      
+        <label>
+          
+          <h4 className="parkSpotHeading">Leaving In:</h4>
+          <select value={this.state.selectValue} onChange={this.handleChange} className="park-selectors">
+          <option value=""></option>
+            <option value="10 mins">10 Mins</option>
+            <option value="20 mins">20 Mins</option>
+            <option value="30 mins">30 Mins</option>
+            <option value="40 mins">40 Mins</option>
+          </select>
+        </label>
+    
+        {/* <Button value="send" className="send-btn">Send</Button> */}
+      </form>
+      </div>
+      )
+    }
     return (
-      <div className="container">
+
+      <div>
         <div className="text-center header">
           <h2><span>FIND PARKING WITH EZPARKN</span></h2>
         </div>
+      <div className="col-lg-12 ">
+      <div className="hidden-xs col-sm-6 col-md-4 col-lg-3 sidebar">
 
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 map">
-          <Gmaps width={'1075px'} height={'400px'} lat={40.8197255} lng={-73.9501939} zoom={16} params={params} onMapCreated={this.onMapCreated} scrollwheel={false}>
+      <div className="col-lg-12 first-switch">
+      <label htmlFor="normal-switch"> <span className="spot-switch">I'm looking for a Spot</span>
+       <Switch onChange={this.handleChangeSpot} checked={this.state.checkedSpot} className="normal-switch" />
+       </label>
+       </div>
 
-            <Marker lat={40.819970} lng={-73.946783} draggable={false} />
-            <InfoWindow lat={40.819970} lng={-73.946783} content={'139 ST: St Nicholas Ave'} onCloseClick={this.onCloseClick} />
-
-            <Marker lat={40.819508} lng={-73.951885} draggable={false} />
-            <InfoWindow lat={40.819508} lng={-73.951885} content={'136 ST: Amsterdam Ave'} onCloseClick={this.onCloseClick} />
-
-            <Marker lat={40.817870} lng={-73.949802} draggable={false} />
-            <InfoWindow lat={40.817870} lng={-73.949802} content={'135 ST: St Nicholas Terrace'} onCloseClick={this.onCloseClick} />
-
-          </Gmaps>
+       <div className="col-lg-12 second-switch">
+      <label htmlFor="normal-switch1"> <span className="location-switch">Share my location</span>
+       <Switch onChange={this.handleChangeLocation} checked={this.state.checkedLocation} id="normal-switch" />
+       </label>
+       </div>
+        {/* {renderMessage()} */}
+      
+        {renderParkingForm()}
+      <div className="parkingMessages">
+        <h4 className="parking-header">Messages:</h4>
+        <p className="messagesText"> {this.state.messageSent ? (parkingMessage) : '' }</p>
         </div>
-
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 content">
-
-          <div className="col-xs-12 col-sm-12 col-md-5 col-lg-5 message">
-            <h2 className="text-center">Important Messages</h2>
-            <Message list={messages}/>
-          </div>
-
-          <div className="col-xs-12 col-sm-12 col-md-5 col-lg-5 parking">
-            <h2 className="text-center">Current Parking Spots</h2>
-            <a href="#"><Message list={parkingSpots}/></a>
-          </div>
-        </div>
+      </div>
+    
+      <div className="hidden-xs col-sm-6 col-md-4 col-lg-8 map">
+      <Map />
+      </div>
+      </div>
       </div>
     );
   }

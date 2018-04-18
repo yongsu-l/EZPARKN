@@ -117,7 +117,8 @@ class Signup extends React.Component {
         //Placeholder until we get email verification
         alert('Registered successfully');
       } else {
-        alert(json.msg);
+        // alert(json.msg);
+        alert('Not Successfully');
       }
       console.log(json);
     });
