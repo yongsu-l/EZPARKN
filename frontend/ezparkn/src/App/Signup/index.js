@@ -3,7 +3,7 @@ import { Redirect } from 'react-router';
 import FormValidator from './FormValidator';
 import './Signup.css'
 
-// import postSignup from 'lib/postSignup';
+import postSignup from 'lib/postSignup';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class Signup extends React.Component {
       redirectToNewPage: false
     }
     this.onSignup = this.onSignup.bind(this);
-  }
+  };
 
   handleChange = (event) => {
     const target = event.target;
@@ -40,6 +40,7 @@ class Signup extends React.Component {
     
     );
   };
+
   validateFormField = (formId,value) => { 
     let formControlErrors = this.state.errors;
     let usernameValid = this.state.usernameValid;
@@ -108,25 +109,29 @@ class Signup extends React.Component {
     const password = this.state.password;
     const email = this.state.email;
 
-    // postSignup({
-    //   username,
-    //   password,
-    //   email
-    // }).then(json => {
-    //   if (json && json.success) {
-    //     //Placeholder until we get email verification
-    //     alert('Registered successfully');
-    //   } else {
-    //     // alert(json.msg);
-    //     alert('Not Successfully');
-    //   }
-    //   console.log(json);
-    // });
+    postSignup({
+      username,
+      password,
+      email
+    }).then(data => {
+      if (data && data.success) {
+        //Placeholder until we get email verification
+        alert('Registered successfully');
+        this.setState({ redirectToNewPage: true });
+        //Redirect user to splash page after the user successfully registers
+
+      } else {
+        console.log(data);
+        alert(data.msg);
+      }
+      console.log(data);
+    });
   }
 
   hasError = (field) =>{
     return(field.length === 0 ? '' : 'is-invalid');
   }
+
   render() {
     if(this.state.redirectToNewPage) {
       return <Redirect to="/splash"/>;
