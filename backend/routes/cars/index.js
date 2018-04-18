@@ -10,6 +10,6 @@ const config  = require('../../config/config')[env];
 
 const router  = express.Router();
 
-router.use('/create', require('./create')(db, express).router());
+router.use('/create', require('./create')(db, express, verifyToken).router());
 
 module.exports = router;

@@ -1,7 +1,5 @@
 //routes/car/create.js
-const verifyToken  = require('../../auth/verifyToken');
-
-module.exports = (db, express, createToken) => ({
+module.exports = (db, express, verifyToken) => ({
   router() {
     const router = express.Router();
     router.put('/',verifyToken, this.createCar);
@@ -34,7 +32,7 @@ module.exports = (db, express, createToken) => ({
                 res.status(200).json({success: true, msg: 'Car created'});
             }).catch(() => {
                 res.status(400).json({success: false, msg: 'Failed to create a car'});
-            })
+            });
             
           }
           else{
