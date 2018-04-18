@@ -20,26 +20,25 @@ describe('Socket IO Queue Connection', function() {
 
 	describe('Joining queue room', function(){
 
-		it('Client should be able to join the room of queue when requested', function(done){
+		it('Client should be notified when another client is posting leave time', function(done){
 
       // First park a user
       sender.emit('park', {lat: 1, long: 1, userId: 2});
       sender.emit('leaving parking', {leavingTime: Date.now(), id: 1});
 
       sender.on('updated parking', function(data) {
-        console.log(data);
         expect(data.leavingTime).to.not.be.null;
       });
 
-      notreceiver.on('new parking spots', function(spots) {
+      notreceiver.on('spots', function(spots) {
         // Those who didn't subscribe to queue should not receive anything so this would automatically throw error
-        expect.to.be.empty(spots);
+        expect(1).to.equal(0);
       });
 
       // The clients who are in the queue should now be able to get an emit
       // which is triggered when a car leaves;
-      receiver.emit('enter queue', {});
-      receiver.on('new parking spots', function(spots) {
+      receiver.emit('join queue', {});
+      receiver.on('notify', function(spots) {
         expect(spots).to.not.be.empty;
         done();
       });

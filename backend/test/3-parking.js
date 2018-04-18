@@ -17,9 +17,8 @@ describe('Socket IO Queue Connection', function() {
 
   describe('Parking Spots on Connection', function(){
     it('Clients should receive parking spots on connection.', function(done){
-      sender.emit('get parking', '123'); // Must pass token
-      sender.on('parking spots', function(parkings){
-        console.log(parkings);
+      sender.emit('parking'); // Must pass token
+      sender.on('spots', function(parkings){
         expect(parkings).to.not.be.null;
         done();
       });
@@ -34,7 +33,6 @@ describe('Socket IO Queue Connection', function() {
         userId: 1
       });
       receiver.on('parking spots', function(parkings){
-        console.log(parkings);
         expect(parkings).to.not.be.null;
         done();
       });
