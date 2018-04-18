@@ -23,7 +23,12 @@ module.exports = function Server(io, socket, db) {
 
   // To mark that one is leaving, the leaving time value is passed
   socket.on('leaving parking', function(data) {
-    db.parkings.update({leavingTime: data.leavingTime}, {where: {id: data.id}})
+    db.parkings.update({leavingTime: data.leavingTime}, 
+      {
+        where: {
+          id: data.id 
+        }
+      })
       .then((result) => {
         if (!result)
           socket.emit('error', 'Error in add leaving time');
@@ -36,11 +41,19 @@ module.exports = function Server(io, socket, db) {
             }
           }).then((spots) => {
             if (!spots)
-              io.to('queues').emit('error', "Error updating parking spots");
-            else
-              io.to('queues').emit('new parking spots', spots);
-          });
+              io.to('queue').emit('error', "Error updating parking spots");
+            else {
+              io.to('queue').emit('notify', spots);
+              socket.emit('spots', spots);
+            }
+          })
+            .catch(err => {
+              console.log(err);
+            });
         }
+      })
+      .catch(err => {
+        console.log(err);
       });
   });
 };

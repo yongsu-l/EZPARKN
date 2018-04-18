@@ -11,9 +11,9 @@ module.exports = function Server(io, db) {
       userCount--;
     });
 
-    socket.on('get parking', (token) => {
+    socket.on('parking', () => {
       db.parkings.findAll().then(function(parkings) {
-        socket.emit('parking spots', parkings);
+        socket.emit('spots', parkings);
       }).catch(function(err) {
         console.log(err);
         socket.emit('error', "Error trying to get parking spots");
