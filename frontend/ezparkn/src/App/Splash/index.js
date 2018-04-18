@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { FormGroup } from 'react-bootstrap';
-import postLogin from 'lib/postLogin';
+// import postLogin from 'lib/postLogin';
 import { Redirect } from 'react-router';
-import { store } from 'store';
-import { setToken } from 'actions';
+// import { store } from 'store';
+// import { setToken } from 'actions';
 
 import {
   Button,
@@ -34,18 +34,18 @@ class Splash extends React.Component{
     const username = this.state.username;
     const password = this.state.password;
 
-    postLogin({
-      username,
-      password
-    }).then(json => {
-      if (json && json.success) {
-        store.dispatch(setToken(json.token));
-        this.setState({redirectToNewPage: true});
-      } else {
-        alert(json.msg);
-      }
-      console.log(json);
-    });
+    // postLogin({
+    //   username,
+    //   password
+    // }).then(json => {
+    //   if (json && json.success) {
+    //     store.dispatch(setToken(json.token));
+    //     this.setState({redirectToNewPage: true});
+    //   } else {
+    //     alert(json.msg);
+    //   }
+    //   console.log(json);
+    // });
   } 
 
   onChange = (event) => {

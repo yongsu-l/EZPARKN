@@ -1,103 +1,95 @@
-.map {
-    margin: 0px 0px 0px 0px;
-    float:left;
+#wrapper {
+  margin-left: 200px;
+  margin-top: 1.5%;
+}
+#main-view {
+
+}
+#sidebar li {
+  width: 100%;
+  min-height: 42.5px;
+  display: block;
+  border-top: 1px solid #e3e9ea;
+}
+#sidebar li:hover {
+  background-color: #eee;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+}
+#sidebar {
+  background-color: #fff;
+  padding-left: 0;
+  padding-right: 0;
+  position: fixed;
+  left: 0;
+  height: calc(100% - 50%);
+  width: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid #E9E9E9;
 }
 
-.content {
-    margin-top: 20px;
-}
-.parking {
-    float:right;
-    background-color: white;
-}
-.message {
-    margin-left: 5px;
-    float: left;
-    background-color: white;
-}
-.header {
-    margin-top: 20px;
-    padding: 2px;
-}
-.header span {
-    background-color: white;
-}
-.messages {
-    margin-top: 5px;
-}
-.message-editor{
-    /* margin: 1em 20%; */
-    padding: .5%;
-    display: grid;
-    border: outset;
-}
-.message-editor-button{
-    float: right;
-    margin-top: 1em;
-}
-.message-editor-input {
-    margin-top: 2%;
-}
-
-@media(max-width: 900px) {
-    .message-editor {
-        margin:1em;
-    }
-}
-.sidebar {
-    background-color: transparent!important;
-    border-style: solid;
-    position: relative;
-    float: left;
+/* Viewport changes */
+@media screen and (max-width: 64em) {
+  #sidebar {
+    top: 100px;
+    left: -200px;
+    -webkit-transition: left .5s;
+    transition: left .5s;
+    z-index: 9999;
+  }
+  #main-view {
     margin-left: 0;
-    height: 675px;
-    margin-bottom: 5px;
+  }
 }
-.spot-switch {
-    margin-right: 30px;
-    float: left;
+.nav .nav-item {
+  padding: 0 25px 0 25px;
+  -webkit-transition-duration: 0.45s;
+  -moz-transition-duration: 0.45s;
+  -o-transition-duration: 0.45s;
+  transition-duration: 0.45s;
+  transition-property: background;
+  -webkit-transition-property: background;
 }
-.first-switch {
-    color: white;
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    margin-top: 5px;
+.map-wrapper > div {
+  /* position: absolute; 
+  top: 0; 
+  right: 0; 
+  bottom: 0; 
+  left: 0; */
+  width: 95%;
+  height: 95%;
 }
-.location-switch {
-    margin-right: 62px;
-    float: left;
+.h5 {
+  color: #614385 !important;
 }
-.second-switch {
-    color: white;
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    margin-top: 1px;
+.h5 span {
+  color: #516395;
 }
-.parkSpotHeading {
-    color:  white;
-    margin-right: 0;
+a {
+  color: #516395 !important;
 }
-.parkingForm {
-    padding: 5px;
-    
+a:hover {
+  color: #614385 !important;
 }
-.parking-request {   
-    border: outset;
-    border-color: white;
-    /* margin-top: 475px; */
+.profile-modal {
+  background-color: #fff;
+  position: absolute;
+  top:0;
+  left:1.5;
+  margin: 0 auto;
+  width: 57.5%;
 }
-.parking-selectors {
-    margin-left: 0;
-    float: left;
-    position: top;
+.right-modal {
+  position: absolute;
+  top:0;
+  right: 1.5%;
+  width: 22.5%;
+  
 }
-.parking-header {
-    color: white;
+.pr-20 {
+  padding-right: 20px !important;
 }
-.parkingMessages {
-    margin-top: 10px;
-    padding: 5px;
-    border: outset;
-}
-p {
-    font-size: 20px;
-    color: white;
+.pl-20 {
+  padding-left: 20px !important;
 }

@@ -1,0 +1,20 @@
+.avatar-lg {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: bottom;
+  border-radius: 1000px !important;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.avatar-lg img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border: 0 none;
+  border-radius: 1000px !important;
+  
+}
+.form-control {
+  font-size: .85rem !important;
+}
