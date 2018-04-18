@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
       unique: true,
       type: Sequelize.INTEGER
     },
-    time: {
+    leavingTime: {
       allowNull: true,
       type: Sequelize.DATE,
       defaultValue: null
