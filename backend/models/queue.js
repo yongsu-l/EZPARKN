@@ -1,20 +1,23 @@
-// models/users.js
+// models/queue.js
 
 module.exports = (sequelize, Sequelize) => {
-  const Message = sequelize.define('messages', {
 
-    id : {
+  const Queue = sequelize.define('queues', {
+    id: {
       allowNull: false,
-      type: Sequelize.INTEGER,
       autoIncrement: true,
-      primaryKey: true
+      primaryKey: true,
+      unique: true,
+      type: Sequelize.INTEGER
     },
-    msg: {
+    time: {
       allowNull: false,
-      type: Sequelize.STRING
-    },   
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.NOWW
+    },
     userId: {
       allowNull: false,
+      unique: true,
       type: Sequelize.INTEGER,
       references: {
         model: {
@@ -22,8 +25,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         key: 'id'
       }
-    }    	  
+    } 
   });
-
-  return Message;
+  return Queue;
 };

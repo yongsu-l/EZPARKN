@@ -1,12 +1,12 @@
-//routes/messages/create.js
+//routes/queues/create.js
 
 module.exports = (db, express, verifyToken) => ({
   router() {
     const router = express.Router();
-    router.post('/', verifyToken, this.createMessage);
+    router.post('/', verifyToken, this.createQueue);
     return router;
   },
-  createMessage(req, res) {
+  createQueue(req, res) {
     console.log(req.body.msg);
     if (!req.body.msg) {
       res.status(400).json({success: false, msg: 'Need to send back msg'});
@@ -18,7 +18,7 @@ module.exports = (db, express, verifyToken) => ({
         }
       }).then(user => {
         if(user){
-          db.messages.create({
+          db.queues.create({
             userId: req.id,
             msg: req.body.msg
           }).then(msg => {
@@ -31,3 +31,4 @@ module.exports = (db, express, verifyToken) => ({
     }
   }
 });
+

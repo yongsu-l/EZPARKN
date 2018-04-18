@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import {FormGroup} from 'react-bootstrap';
-import {login} from '../../utils/Users';
+import { FormGroup } from 'react-bootstrap';
+import postLogin from 'lib/postLogin';
 import { Redirect } from 'react-router';
+import { store } from 'store';
+import { setToken, setProfile } from 'actions';
 
 import {
   Button,
@@ -11,30 +13,42 @@ import {
   Box2,
   LeftSide,
   RightSide
-
 } from './styled';
 
 class Splash extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      identifier: '',
+      username: '',
       password: '',
-      errors: {},
       isLoading: false,
       redirectToNewPage: false
     };
 
-    this.login = this.login.bind(this);
+    this.onLogin = this.onLogin.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
-  login = () => {
-    console.log(this.state.username)
-    console.log(this.state.password)
-    login(this.state.username, this.state.password).then(response => 
-        this.setState({redirectToNewPage: true}));
-  };
+  onLogin(e) {
+    e.preventDefault;
+    const username = this.state.username;
+    const password = this.state.password;
+
+    postLogin({
+      username,
+      password
+    }).then(json => {
+      if (json && json.success) {
+        store.dispatch(setToken(json.token));
+        console.log(json);
+        store.dispatch(setProfile(json.profile));
+        this.setState({redirectToNewPage: true});
+      } else {
+        alert(json.msg);
+      }
+      console.log(json);
+    });
+  } 
 
   onChange = (event) => {
     const target = event.target;
@@ -45,7 +59,6 @@ class Splash extends React.Component{
   };
 
   render(){
-    const { errors, identifier, password, isLoading, redirectToNewPage} = this.state;
     if(this.state.redirectToNewPage) {
       return <Redirect to="/home"/>;
     }
@@ -85,14 +98,12 @@ class Splash extends React.Component{
               <br></br>
               <br></br>
               <br></br>
-              <button class="btn btn-raised btn-primary" onClick={ this.login } >Log In</button>
+              <button class="btn btn-raised btn-primary" onClick={ this.onLogin } >Log In</button>
               
               <p> Don't have an account? <a href="/signup">Sign Up</a></p>
             </Box2>
           </Box>
       </Container>
-      
-
         );
   }
 }
