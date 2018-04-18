@@ -3,7 +3,7 @@ import { FormGroup } from 'react-bootstrap';
 import postLogin from 'lib/postLogin';
 import { Redirect } from 'react-router';
 import { store } from 'store';
-import { setToken } from 'actions';
+import { setToken, setProfile } from 'actions';
 
 import {
   Button,
@@ -40,6 +40,8 @@ class Splash extends React.Component{
     }).then(json => {
       if (json && json.success) {
         store.dispatch(setToken(json.token));
+        console.log(json);
+        store.dispatch(setProfile(json.profile));
         this.setState({redirectToNewPage: true});
       } else {
         alert(json.msg);
