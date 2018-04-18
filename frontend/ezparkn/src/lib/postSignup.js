@@ -12,9 +12,9 @@ function postSignup(body) {
       },
       body: JSON.stringify(body),
     })
-      .then(res => res.data)
+      .then(res => res.json())
       .catch(e => console.log(e))
-  )
+  );
 }
 
 export default postSignup;
