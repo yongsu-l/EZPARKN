@@ -1,75 +1,135 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps';
-import { Message } from 'semantic-ui-react'
-import './styled.css';
-
-const params = {key: 'AIzaSyAnSgqK0QCLi98urC5vRWCFnfmi9GR7nQI'};
+import { FormGroup, Panel } from 'react-bootstrap';
+import Map from '../Map';
+import Messages from '../Messages';
+import Profile from '../Profile';
+import ParkingForm from '../ParkingForm';
+import Switch from "react-switch";
+import { Button } from 'semantic-ui-react';
+import './style.css';
 
 export default class Home extends Component {
-  onMapCreated(map) {
-    map.setOptions({
-      disableDefaultUI: true
+  constructor(props){
+    super(props);
+
+    this.state ={
+      selectValue:'',
+      checkedSpot: false,
+      checkedLocation: false,
+      messages: [],
+      newMessageBody: '',
+      messageSent: false,
+      showParking: false,
+      showProfile: false,
+    }
+  }
+  toggleParking = () => {
+    this.setState({showParking: !this.state.showParking});
+  }
+  toggleProfile = () => {
+    this.setState({showProfile: !this.state.showProfile});
+  }
+
+  handleChange = (event) => {
+    // alert("The value is ", e.target.value)
+    
+    this.setState({selectValue: event.target.value,
+    messageSent: true,
     });
   }
-
-  onDragEnd(e) {
-    console.log('onDragEnd', e);
+  handleSubmit = (event) => {
+    // alert('Your parking waiting time is: ' + this.state.selectValue);
+    this.setState({messageSent: true})
+    event.preventDefault();
   }
 
-  onCloseClick() {
-    console.log('onCloseClick');
+  addMessage = () => {
+    const newState = Object.assign({}, this.state);
+    newState.messages.push(this.state.newMessageBody);
+    newState.newMessageBody = '';
+    this.setState(newState);
   }
 
-  onClick(e) {
-    console.log('onClick', e);
+  handleInputChange = (e) => {
+    this.setState({
+      newMessageBody: e.target.value,
+    })
   }
-
+  handleChangeSpot = (checkedSpot) => {
+    this.setState({ checkedSpot });
+    // alert("The value is" + checked);
+  }
+  handleChangeLocation = (checkedLocation) => {
+    this.setState({ checkedLocation });
+    // alert("The value is" + checked);
+  }
   render() {
-    const messages = [
-      'Friend A is leaving in 20 Minutes.',
-      'Never Miss A Parking Spot At CCNY',
-    ];
+    var parkingMessage='You Parking Waiting Time is : '+this.state.selectValue;
 
-    const parkingSpots = [
-      '139 ST: St Nicholas Ave',
-      '136 ST: Amsterdam Ave',
-    ]
-
-    return (
-      <div className="container">
-        <div className="text-center header">
-          <h2><span>FIND PARKING WITH EZPARKN</span></h2>
-        </div>
-
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 map">
-          <Gmaps width={'1075px'} height={'400px'} lat={40.8197255} lng={-73.9501939} zoom={16} params={params} onMapCreated={this.onMapCreated} scrollwheel={false}>
-
-            <Marker lat={40.819970} lng={-73.946783} draggable={false} />
-            <InfoWindow lat={40.819970} lng={-73.946783} content={'139 ST: St Nicholas Ave'} onCloseClick={this.onCloseClick} />
-
-            <Marker lat={40.819508} lng={-73.951885} draggable={false} />
-            <InfoWindow lat={40.819508} lng={-73.951885} content={'136 ST: Amsterdam Ave'} onCloseClick={this.onCloseClick} />
-
-            <Marker lat={40.817870} lng={-73.949802} draggable={false} />
-            <InfoWindow lat={40.817870} lng={-73.949802} content={'135 ST: St Nicholas Terrace'} onCloseClick={this.onCloseClick} />
-
-          </Gmaps>
-        </div>
-
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 content">
-
-          <div className="col-xs-12 col-sm-12 col-md-5 col-lg-5 message">
-            <h2 className="text-center">Important Messages</h2>
-            <Message list={messages}/>
+    const renderMessage = () => {
+      return(
+        <div className="messages">
+          <div>
+            { this.state.messages.map((messageBody, id) => { return ( <Messages key={id} messageBody={messageBody}/>) })}
           </div>
-
-          <div className="col-xs-12 col-sm-12 col-md-5 col-lg-5 parking">
-            <h2 className="text-center">Current Parking Spots</h2>
-            <a href="#"><Message list={parkingSpots}/></a>
+          <div> 
+            <div className="panel panel-default message-editor">
+            <div className="panel-body"> 
+            <textarea className="form-control message-editor-input" value={this.state.newMessageBody}onChange={this.handleInputChange}/>
+            <button className="btn btn-success message-editor-button" onClick={this.addMessage}>Message</button> </div>
+            </div> 
+          </div>
+        </div>
+      )
+    }
+    return (
+    <div id="wrapper">
+      <div id="sidebar">
+        <ul className="nav">
+          <li className="nav-item align-middle">
+            <p className="h5">EZ<span>PARKN</span></p>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#" onClick={ this.toggleProfile }>Profile</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#" onClick={ this.toggleParking } >Find Parking</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">Chat</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">Feed</a>
+          </li>
+        </ul>
+      </div>
+      <div id="main-view">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="map-wrapper">
+                <Map></Map>
+              </div>
+            </div>
+          </div>
+          <div className="profile-modal">
+            <div className="row">
+              <div className="col-md-12">
+                <Profile show={ this.state.showProfile } onClose={this.toggleProfile} />
+              </div>
+            </div>
+          </div>
+          <div className="right-modal">
+            <div className="row">
+              <div className="col-md-12">
+                <ParkingForm show={ this.state.showParking } onClose={this.toggleParking} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
     );
   }
 }

@@ -1,0 +1,13 @@
+.message-body{
+    background-color: white;
+    /* color: white; */
+    /* margin: 1em 20%; */
+    display: grid;
+    border: outset;
+    padding: 1%;
+}
+@media(max-width: 900px) {
+    .message-body {
+        margin:1em;
+    }
+}
