@@ -23,8 +23,18 @@ const user = (state = userInitialState, action) => {
   };
 };
 
+const profileInitialState = {};
+const profile = (state = profileInitialState, action) => {
+  switch(action.type) {
+    case actionType.SET_PROFILE:
+      return action.data;
+    default:
+      return state;
+  };
+};
+
 const appReducer = combineReducers({
-  token, user,
+  token, profile, user,
 });
 
 const rootReducer = (state, action) => {
