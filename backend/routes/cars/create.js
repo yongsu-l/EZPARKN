@@ -32,7 +32,7 @@ module.exports = (db, express, verifyToken) => ({
                 res.status(200).json({success: true, msg: 'Car created'});
             }).catch(() => {
                 res.status(400).json({success: false, msg: 'Failed to create a car'});
-            })
+            });
             
           }
           else{

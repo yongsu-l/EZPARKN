@@ -1,10 +1,11 @@
 // test/helpers.js
-var supertest = require('supertest');
-var chai      = require('chai');
-var chaiHttp  = require('chai-http');
-var app       = require('server')['app'];
-var server    = require('server')['server'];
-var db        = require('models');
+const chai      = require('chai');
+const chaiHttp  = require('chai-http');
+const app       = require('server')['app'];
+const server    = require('server')['server'];
+const db        = require('models');
+const io        = require('socket.io-client');
+const socketURL = 'http://localhost:3001';
 
 chai.use(chaiHttp);
 
@@ -13,3 +14,5 @@ global.server = server;
 global.chai = chai;
 global.request = chai.request(app);
 global.db = db;
+global.io = io;
+global.socketURL = socketURL;

@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "test": "NODE_ENV=test NODE_PATH=. mocha --exit",
-    "prestart": "sequelize db:migrate",
     "migrate": "sequelize db:migrate",
     "start": "NODE_PATH=. node server.js"
   },
