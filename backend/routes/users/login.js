@@ -12,10 +12,13 @@ module.exports = (db, express, createToken) => ({
       res.status(400).json({success: false, msg: 'Need username and password'});
     else {
       db.users.find({
+        include: [{
+          model: db.cars,
+          attributes: ['make', 'model', 'color', 'size']
+        }],
         where: {
           username: req.body.username
         },
-        attributes: ['username', 'firstname', 'lastname', 'password']
       }).then(user => {
         if (!user) {
           res.status(404).json({success:false, msg: 'Username does not exist'});
@@ -24,8 +27,11 @@ module.exports = (db, express, createToken) => ({
             if (err) throw err;
             if (result) {
               let token = createToken(user['dataValues']);
-              console.log(user);
+
+              //Delete values that are not supposed to be returned
               delete user['dataValues'].password;
+              delete user['dataValues'].id;
+
               res.status(200).json({success:true, token, profile: user});
             } else {
               res.status(401).json({success:false, msg: 'Password is incorrect'});
