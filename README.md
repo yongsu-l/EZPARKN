@@ -43,7 +43,7 @@ This rough draft is using what is known as a MEAN stack, which uses the followin
 * Steven Barrios - Customer
 * Yong Su Lee - Continuous Integrator
 * Mostafizur Rahman - 
-* Kenny Tan - 
+* Kenny Tan - Acceptance Tester
 * Yuan Zhou - Code Reviewer
 * Julia Lau - Designer
 * Mikhail Kreytser - Presenter
