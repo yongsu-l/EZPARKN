@@ -12,6 +12,7 @@ describe('Users',() => {
 	});
 
 	describe('/Create a user, and log in',() => {
+
 		it('it should create a user', (done)=>{
 			var user = {
 				username: "TESTUSER",
@@ -44,6 +45,44 @@ describe('Users',() => {
 				done();
 				});
 		});
+
+	});
+
+	describe('/Create a user, and log in',() => {
+
+		it('it should create second user', (done)=>{
+			var user = {
+				username: "TESTUSER2",
+				password: "password",
+				email:"TESTUSER2@myemail.com"
+			};
+			request
+				.post('/api/user/create')
+				.send(user)
+				.end((err,res) => {
+					res.should.have.status(201);
+					res.body.should.be.a('object');
+					res.body.should.have.property('success',true);
+        done();
+        });
+		});
+
+		it('it should log in as user', (done)=>{
+			var user = {
+				username: "TESTUSER2",
+				password: "password",
+			};
+			request
+				.post('/api/user/login')
+				.send(user)
+				.end((err,res) => {
+					res.should.have.status(200);
+					res.body.should.be.a('object');
+					res.body.should.have.property('success',true);
+				done();
+				});
+		});
+
 	});
 
   describe('/Test username is taken',() => {
@@ -85,5 +124,6 @@ describe('Users',() => {
 				});
 		});
 	});
+
 });
 

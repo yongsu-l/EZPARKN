@@ -7,8 +7,6 @@ var env       = process.env.NODE_ENV || 'development';
 var config    = require(path.join(__dirname, '..', 'config', 'config.js'))[env];
 var db        = {};
 
-console.log(config);
-
 var sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 db.sequelize = sequelize;
@@ -17,11 +15,16 @@ db.Sequelize = Sequelize;
 //Models/tables
 db.users = require('./user')(sequelize, Sequelize);
 db.cars = require('./car')(sequelize, Sequelize);
-db.messages = require('./message')(sequelize, Sequelize);
+db.queues = require('./queue')(sequelize, Sequelize);
+db.parkings = require('./parking')(sequelize, Sequelize);
 
 //Relations
 db.users.hasOne(db.cars);
-db.messages.belongsTo(db.users);
 db.cars.belongsTo(db.users);
+db.queues.belongsTo(db.users);
+db.parkings.belongsTo(db.users);
+
+// Operations
+db.op = Sequelize.Op;
 
 module.exports = db;

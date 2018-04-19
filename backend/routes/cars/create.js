@@ -1,10 +1,9 @@
 //routes/car/create.js
-const verifyToken  = require('../../auth/verifyToken');
+module.exports = (db, express, verifyToken) => ({
 
-module.exports = (db, express, createToken) => ({
   router() {
     const router = express.Router();
-    router.put('/',verifyToken, this.createCar);
+    router.put('/', verifyToken, this.createCar);
     return router;
   },
  
@@ -34,7 +33,7 @@ module.exports = (db, express, createToken) => ({
                 res.status(200).json({success: true, msg: 'Car created'});
             }).catch(() => {
                 res.status(400).json({success: false, msg: 'Failed to create a car'});
-            })
+            });
             
           }
           else{
@@ -53,13 +52,14 @@ module.exports = (db, express, createToken) => ({
                 res.status(200).json({success: true, msg: 'Car updated'});
             }).catch(() => {
                 res.status(400).json({success: false, msg: 'Failed to update a car'});
-            })
+            });
           }
         }).catch(()=>{
           res.status(400).json({success: false, msg: 'Failed to create a car'});
-        })
+        });
       }).catch(() => {
         //Good token but no user found?????
+        console.log(req.id);
         res.status(404).json({success: false, msg: 'You seem to be lost... Are you sure you are logged in?'});  
       });
     }

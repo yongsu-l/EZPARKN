@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { register } from '../../utils/Users';
 import { Redirect } from 'react-router';
 import FormValidator from './FormValidator';
 import './Signup.css'
+
+import postSignup from 'lib/postSignup';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -25,8 +26,8 @@ class Signup extends React.Component {
       formValid: false,
       redirectToNewPage: false
     }
-    this.register = this.register.bind(this);
-  }
+    this.onSignup = this.onSignup.bind(this);
+  };
 
   handleChange = (event) => {
     const target = event.target;
@@ -39,6 +40,7 @@ class Signup extends React.Component {
     
     );
   };
+
   validateFormField = (formId,value) => { 
     let formControlErrors = this.state.errors;
     let usernameValid = this.state.usernameValid;
@@ -101,13 +103,36 @@ class Signup extends React.Component {
   validateForm = () => {
     this.setState({formValid: this.state.usernameValid && this.state.emailValid && this.state.passwordValid && this.state.confirmPasswordValid});
   }
-  register = () => {
-    register(this.state.username, this.state.password, this.state.email).then(response => 
-        this.setState({redirectToNewPage: true}));
-  };
+  onSignup(e) {
+    e.preventDefault;
+    const username = this.state.username;
+    const password = this.state.password;
+    const email = this.state.email;
+
+    postSignup({
+      username,
+      password,
+      email
+    }).then(data => {
+      if (data && data.success) {
+        //Placeholder until we get email verification
+        alert('Registered successfully');
+
+        //Redirect user to splash page after the user successfully registers
+        this.setState({ redirectToNewPage: true });
+
+      } else {
+        console.log(data);
+        alert(data.msg);
+      }
+      console.log(data);
+    });
+  }
+
   hasError = (field) =>{
     return(field.length === 0 ? '' : 'is-invalid');
   }
+
   render() {
     if(this.state.redirectToNewPage) {
       return <Redirect to="/splash"/>;
@@ -140,7 +165,7 @@ class Signup extends React.Component {
                   <input type="password" className={`form-control ${this.hasError(this.state.errors.confirmPassword)}`} id="confirmPassword" onChange={ this.handleChange }/>
                   <FormValidator field={this.state.errors.confirmPassword} />                  
                 </div>
-                <button class="btn btn-raised btn-primary" onClick={ this.register } disabled={!this.state.formValid} >Submit</button>
+                <button class="btn btn-raised btn-primary" onClick={ this.onSignup } disabled={!this.state.formValid} >Submit</button>
               </div>
               <div class="p-3 card-footer">
                 <div class="row">

@@ -36,3 +36,15 @@ This rough draft is using what is known as a MEAN stack, which uses the followin
 * Julia Lau - Tracker
 * Mikhail Kreytser - Acceptance Tester
 * Steven McDonald - 
+
+### Iteration 2
+
+* Abu Butt - Tracker
+* Steven Barrios - Customer
+* Yong Su Lee - Continuous Integrator
+* Mostafizur Rahman - 
+* Kenny Tan - Acceptance Tester
+* Yuan Zhou - Code Reviewer
+* Julia Lau - Designer
+* Mikhail Kreytser - Presenter
+* Steven McDonald - 
