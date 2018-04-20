@@ -48,3 +48,15 @@ This rough draft is using what is known as a MEAN stack, which uses the followin
 * Julia Lau - Designer
 * Mikhail Kreytser - Presenter
 * Steven McDonald - 
+
+### Iteration 3
+
+* Abu Butt - 
+* Steven Barrios - Tracker
+* Yong Su Lee - Unit Tester
+* Mostafizur Rahman - 
+* Kenny Tan - 
+* Yuan Zhou - 
+* Julia Lau - 
+* Mikhail Kreytser - 
+* Steven McDonald - 
