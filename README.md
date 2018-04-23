@@ -35,7 +35,7 @@ This rough draft is using what is known as a MEAN stack, which uses the followin
 * Yuan Zhou - Presenter
 * Julia Lau - Tracker
 * Mikhail Kreytser - Acceptance Tester
-* Steven McDonald - 
+* Stephen McDonald - Frontend Designer
 
 ### Iteration 2
 
@@ -47,4 +47,4 @@ This rough draft is using what is known as a MEAN stack, which uses the followin
 * Yuan Zhou - Code Reviewer
 * Julia Lau - Designer
 * Mikhail Kreytser - Presenter
-* Steven McDonald - 
+* Stephen McDonald - Frontend Reviewer
