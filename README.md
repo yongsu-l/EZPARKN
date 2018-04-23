@@ -56,7 +56,7 @@ This rough draft is using what is known as a MEAN stack, which uses the followin
 * Yong Su Lee - Unit Tester
 * Mostafizur Rahman - 
 * Kenny Tan - 
-* Yuan Zhou - 
+* Yuan Zhou - Customer
 * Julia Lau - 
 * Mikhail Kreytser - 
 * Steven McDonald - 
