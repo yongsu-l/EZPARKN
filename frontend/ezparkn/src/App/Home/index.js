@@ -9,6 +9,7 @@ import Switch from "react-switch";
 import { Button } from 'semantic-ui-react';
 import './style.css';
 import { store } from 'store';
+import { subscribeToParkingSpots } from '../SocketIO/index';
 
 export default class Home extends Component {
   constructor(props){
@@ -23,7 +24,16 @@ export default class Home extends Component {
       messageSent: false,
       showParking: false,
       showProfile: false,
+      parkingSpots: [],
     }
+
+    subscribeToParkingSpots((err, parkingSpots) => {
+      if(err)
+        alert(err)
+      else{
+        this.setState({parkingSpots:parkingSpots});
+      }
+    });
   }
 
   toggleParking = () => {
@@ -116,7 +126,7 @@ export default class Home extends Component {
           <div className="row">
             <div className="col-md-12">
               <div className="map-wrapper">
-                <Map></Map>
+                <Map parkingSpots={this.state.parkingSpots}></Map>
               </div>
             </div>
           </div>
