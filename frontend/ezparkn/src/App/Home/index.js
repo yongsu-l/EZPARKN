@@ -4,6 +4,7 @@ import { FormGroup, Panel } from 'react-bootstrap';
 import Map from '../Map';
 import Messages from '../Messages';
 import Profile from '../Profile';
+import UsersFeed from '../UsersFeed';
 import ParkingForm from '../ParkingForm';
 import Switch from "react-switch";
 import { Button } from 'semantic-ui-react';
@@ -141,6 +142,13 @@ export default class Home extends Component {
             <div className="row">
               <div className="col-md-12">
                 <ParkingForm show={ this.state.showParking } onClose={this.toggleParking} />
+              </div>
+            </div>
+          </div>
+          <div className="bottom-modal">
+            <div className="row">
+              <div className="col-md-12">
+                <UsersFeed show={ this.state.showParking } onClose={this.toggleParking} />
               </div>
             </div>
           </div>
