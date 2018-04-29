@@ -5,6 +5,7 @@ import Map from '../Map';
 import Messages from '../Messages';
 import Profile from '../Profile';
 import ParkingForm from '../ParkingForm';
+import ShareSpot from '../ShareSpot';
 import Switch from "react-switch";
 import { Button } from 'semantic-ui-react';
 import './style.css';
@@ -24,8 +25,12 @@ export default class Home extends Component {
       messageSent: false,
       showParking: false,
       showProfile: false,
+      showShareSpot: false, 
+      spots: [],
       parkingSpots: [],
     }
+
+    this.addShare = this.addShare.bind(this);
 
     subscribeToParkingSpots((err, parkingSpots) => {
       if(err)
@@ -44,6 +49,10 @@ export default class Home extends Component {
     this.setState({showProfile: !this.state.showProfile});
   }
 
+  toggleShareSpot = () => {
+    this.setState({showShareSpot: !this.state.showShareSpot});
+  }
+
   handleChange = (event) => {
     // alert("The value is ", e.target.value)
     
@@ -57,6 +66,13 @@ export default class Home extends Component {
     this.setState({messageSent: true})
     event.preventDefault();
   }
+
+  addShare(spot) {
+        const spots = this.state.players.concat(spot);
+        this.setState({
+            spots: spots
+        });
+    }
 
   addMessage = () => {
     const newState = Object.assign({}, this.state);
@@ -114,10 +130,10 @@ export default class Home extends Component {
             <a className="nav-link" href="#" onClick={ this.toggleParking } >Find Parking</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Chat</a>
+            <a className="nav-link" href="#">Feed</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Feed</a>
+            <a className="nav-link" href="#" onClick={ this.toggleShareSpot }>Share Spot</a>
           </li>
         </ul>
       </div>
@@ -141,6 +157,14 @@ export default class Home extends Component {
             <div className="row">
               <div className="col-md-12">
                 <ParkingForm show={ this.state.showParking } onClose={this.toggleParking} />
+              </div>
+            </div>
+
+          </div>
+          <div className="share-modal">
+            <div className="row">
+              <div className="col-md-12">
+                <ShareSpot addShare = {this.addShare} show={ this.state.showShareSpot } onClose={this.toggleShareSpot} />
               </div>
             </div>
           </div>
