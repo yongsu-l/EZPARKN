@@ -1,4 +1,4 @@
-// models/parked.js
+// models/parking.js
 
 module.exports = (sequelize, Sequelize) => {
   const Parking = sequelize.define('parkings', {
