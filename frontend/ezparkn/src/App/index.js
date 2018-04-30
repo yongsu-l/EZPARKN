@@ -29,7 +29,7 @@ class App extends Component {
         <MainView>
 
           <Switch>
-            <Route exact path='/splash' component={Splash} />
+            <Route exact path='/' component={Splash} />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/home' component={Home} />
           </Switch>

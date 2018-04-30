@@ -6,7 +6,9 @@
   "scripts": {
     "test": "NODE_ENV=test NODE_PATH=. mocha --reporter nyan --exit",
     "migrate": "sequelize db:migrate",
-    "start": "NODE_PATH=. node server.js"
+    "start": "NODE_PATH=. node server.js",
+    "seed": "sequelize db:seed:all",
+    "undoseed": "sequelize db:seed:undo:all"
   },
   "repository": {
     "type": "git",

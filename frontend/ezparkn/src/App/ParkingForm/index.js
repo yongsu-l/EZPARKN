@@ -5,6 +5,7 @@ export default class ParkingForm extends React.Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     // Render nothing if the "show" prop is false
     if(!this.props.show) {
@@ -27,30 +28,13 @@ export default class ParkingForm extends React.Component {
                 </span>
               </div>
             </div>
-            <div className="form-group row USERS_LEAVING">
+            <div className="row">
               <div className="col-md-12">
-                <ul className="list-group">
-                  <li className="list-group-item">
-                    <div className="user">
-                      <div className="pr-20">
-                        <a className="avatar">
-                          <img className="img-fluid" src="../../../img/champagne_papi.png"/>
-                        </a>
-                      </div>
-                      <div className="user-body">
-                        <p className="h5">Drake <span> Leaving in 10 min</span></p>
-                        <small>Range Rover</small>
-                      </div>
-                      <div className="pl-20">
-
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+	        <h1>Form here</h1>
               </div>
             </div>
-            <div className="row"> 
-              <div className="col-md-3 col-lg-2 col-xl-1"> 
+            <div className="row">
+              <div className="col-md-3 col-lg-2 col-xl-1">
                 <button onClick={this.props.onClose} className="btn btn-primary">
                   Close
                 </button>
