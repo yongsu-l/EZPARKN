@@ -149,7 +149,7 @@ export default class Home extends Component {
             <a className="nav-link" href="#" onClick={ this.toggleParking }>Find Parking</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Feed</a>
+            <a className="nav-link" href="#" onClick={ this.toggleShareSpot }>Share Spot</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#" onClick={ this.toggleFeed }>Feed</a>
@@ -190,7 +190,7 @@ export default class Home extends Component {
           <div className="share-modal">
             <div className="row">
               <div className="col-md-12">
-                <ShareSpot addShare = {this.addShare} show={ this.state.showShareSpot } onClose={this.toggleShareSpot} />
+                <ShareSpot addShare = {this.addShare}  show={ this.state.showShareSpot } onClose={this.toggleShareSpot} />
               </div>
             </div>
           </div>
