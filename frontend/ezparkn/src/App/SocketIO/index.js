@@ -10,18 +10,33 @@ function subscribeToParkingSpots(cb) {
   socket.on('error', err => cb(err, {}));
 }
 
-// function makeParking(cb) {
-	
-//   socket.emit('park', {
-//         lat: 123,
-//         long: 456,
-//         userId: 1
-//       });
+function iAmParking(lat, long, userID, cb) {
+  socket.emit('park', {
+        lat: lat,
+        long: long,
+        userId: userID,
+      });
 
-//   socket.on('parking spots', parkings => {
-//   	console.log(parkings);
-//   })
+  socket.on('parking spots', parkings => {
+  	console.log(parkings);
+  })
+}
+
+function iAmLeaving(leavingTime, lat, long, parkingId, cb) {
+  socket.emit('leaving parking', {
+  		leavingTime: leavingTime,
+        lat: lat,
+        long: long,
+        id: parkingId,
+      });
+
+  socket.on('parking spots', parkings => {
+  	console.log(parkings);
+  })
+}
+
+// function queue(cb){
+// 	socket.emit('join queue').then((joined) => {console.log(joined)});
 // }
 
-
-export { subscribeToParkingSpots };
+export { subscribeToParkingSpots, iAmParking, iAmLeaving };
