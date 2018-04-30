@@ -190,7 +190,7 @@ export default class Home extends Component {
           <div className="share-modal">
             <div className="row">
               <div className="col-md-12">
-                <ShareSpot show={ this.state.showShareSpot } onClose={this.toggleShareSpot} />
+                <ShareSpot addShare = {this.addShare}  show={ this.state.showShareSpot } onClose={this.toggleShareSpot} />
               </div>
             </div>
           </div>
