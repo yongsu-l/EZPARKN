@@ -18,6 +18,8 @@ module.exports = function Server(io, socket, db) {
           console.log(err);
         });
       };
+    }).catch((err) => {
+      console.log(err);
     });
   });
 
@@ -26,7 +28,7 @@ module.exports = function Server(io, socket, db) {
     db.parkings.update({leavingTime: data.leavingTime}, 
       {
         where: {
-          id: data.id 
+          userId: data.userId
         }
       })
       .then((result) => {
@@ -56,4 +58,18 @@ module.exports = function Server(io, socket, db) {
         console.log(err);
       });
   });
+
+  // To mark that one is leaving, the leaving time is passed.
+  // If the user doesn't want to park first but just state that they're leaving,
+  // then it'll automatically be created in the db.
+  socket.on('leaving parking', function(data) {
+    db.parkings.findOrCreate({
+      where: {userId: data.userId}
+    }).then((results) => {
+      
+    }).catch((err) => {
+      console.log(err);
+    });
+  });
+
 };

@@ -4,6 +4,7 @@ import { FormGroup, Panel } from 'react-bootstrap';
 import Map from '../Map';
 import Messages from '../Messages';
 import Profile from '../Profile';
+import UsersFeed from '../UsersFeed';
 import ParkingForm from '../ParkingForm';
 import ShareSpot from '../ShareSpot';
 import Switch from "react-switch";
@@ -27,6 +28,9 @@ export default class Home extends Component {
       showProfile: false,
       showShareSpot: false, 
       spots: [],
+      showFeed: false,
+      feed: [],
+      findingSpot:false,
       parkingSpots: [],
     }
 
@@ -41,13 +45,18 @@ export default class Home extends Component {
       console.log(store.getState())
     });
   }
-
+  getFeed = () => {
+    // function call
+  }
   toggleParking = () => {
     this.setState({showParking: !this.state.showParking});
   }
 
   toggleProfile = () => {
     this.setState({showProfile: !this.state.showProfile});
+  }
+  toggleFeed = () => {
+    this.setState({showFeed: !this.state.showFeed});
   }
 
   toggleShareSpot = () => {
@@ -56,7 +65,7 @@ export default class Home extends Component {
 
   handleChange = (event) => {
     // alert("The value is ", e.target.value)
-    
+
     this.setState({selectValue: event.target.value,
       messageSent: true,
     });
@@ -100,7 +109,11 @@ export default class Home extends Component {
     this.setState({ checkedLocation });
     // alert("The value is" + checked);
   }
-
+  toggleQueue = () =>{
+    this.setState({findingSpot: !this.state.findingSpot});
+    if (this.state.findingSpot) {
+    }
+  }
   render() {
     var parkingMessage='You Parking Waiting Time is : '+this.state.selectValue;
 
@@ -110,18 +123,20 @@ export default class Home extends Component {
           <div>
             { this.state.messages.map((messageBody, id) => { return ( <Messages key={id} messageBody={messageBody}/>) })}
           </div>
-          <div> 
+          <div>
             <div className="panel panel-default message-editor">
-            <div className="panel-body"> 
+            <div className="panel-body">
             <textarea className="form-control message-editor-input" value={this.state.newMessageBody}onChange={this.handleInputChange}/>
             <button className="btn btn-success message-editor-button" onClick={this.addMessage}>Message</button> </div>
-            </div> 
+            </div>
           </div>
         </div>
       )
     }
     return (
     <div id="wrapper">
+      <div className="topbar">
+      </div>
       <div id="sidebar">
         <ul className="nav">
           <li className="nav-item align-middle">
@@ -131,13 +146,13 @@ export default class Home extends Component {
             <a className="nav-link" href="#" onClick={ this.toggleProfile }>Profile</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#" onClick={ this.toggleParking } >Find Parking</a>
+            <a className="nav-link" href="#" onClick={ this.toggleParking }>Find Parking</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#">Feed</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#" onClick={ this.toggleShareSpot }>Share Spot</a>
+            <a className="nav-link" href="#" onClick={ this.toggleFeed }>Feed</a>
           </li>
         </ul>
       </div>
@@ -160,7 +175,14 @@ export default class Home extends Component {
           <div className="right-modal">
             <div className="row">
               <div className="col-md-12">
-                <ParkingForm show={ this.state.showParking } onClose={this.toggleParking} />
+                <ParkingForm show={ this.state.showParking } onClose={this.toggleParking} joinQueue={this.toggleQueue} status={this.state.findingSpot} />
+              </div>
+            </div>
+          </div>
+          <div className="bottom-modal">
+            <div className="row">
+              <div className="col-md-12">
+                <UsersFeed show={ this.state.showFeed } onClose={ this.toggleFeed } getFeed={ this.getFeed } feed={this.state.feed}/>
               </div>
             </div>
 
