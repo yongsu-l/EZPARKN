@@ -6,11 +6,12 @@ import Messages from '../Messages';
 import Profile from '../Profile';
 import UsersFeed from '../UsersFeed';
 import ParkingForm from '../ParkingForm';
+import ShareSpot from '../ShareSpot';
 import Switch from "react-switch";
 import { Button } from 'semantic-ui-react';
 import './style.css';
 import { store } from 'store';
-import { subscribeToParkingSpots } from '../SocketIO/index';
+import { subscribeToParkingSpots, iAmParking, iAmLeaving } from '../SocketIO/index';
 
 export default class Home extends Component {
   constructor(props){
@@ -25,11 +26,15 @@ export default class Home extends Component {
       messageSent: false,
       showParking: false,
       showProfile: false,
+      showShareSpot: false, 
+      spots: [],
       showFeed: false,
       feed: [],
       findingSpot:false,
       parkingSpots: [],
     }
+
+    this.addShare = this.addShare.bind(this);
 
     subscribeToParkingSpots((err, parkingSpots) => {
       if(err)
@@ -37,6 +42,7 @@ export default class Home extends Component {
       else{
         this.setState({parkingSpots:parkingSpots});
       }
+      console.log(store.getState())
     });
   }
   getFeed = () => {
@@ -53,6 +59,10 @@ export default class Home extends Component {
     this.setState({showFeed: !this.state.showFeed});
   }
 
+  toggleShareSpot = () => {
+    this.setState({showShareSpot: !this.state.showShareSpot});
+  }
+
   handleChange = (event) => {
     // alert("The value is ", e.target.value)
 
@@ -66,6 +76,16 @@ export default class Home extends Component {
     this.setState({messageSent: true})
     event.preventDefault();
   }
+
+  addShare(spot) {
+      // iAmLeaving(leavingTime, lat, long, parkingId, ()=>{
+
+      // })
+        // const spots = this.state.players.concat(spot);
+        // this.setState({
+        //     spots: spots
+        // });
+    }
 
   addMessage = () => {
     const newState = Object.assign({}, this.state);
@@ -129,7 +149,7 @@ export default class Home extends Component {
             <a className="nav-link" href="#" onClick={ this.toggleParking }>Find Parking</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Chat</a>
+            <a className="nav-link" href="#">Feed</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#" onClick={ this.toggleFeed }>Feed</a>
@@ -163,6 +183,14 @@ export default class Home extends Component {
             <div className="row">
               <div className="col-md-12">
                 <UsersFeed show={ this.state.showFeed } onClose={ this.toggleFeed } getFeed={ this.getFeed } feed={this.state.feed}/>
+              </div>
+            </div>
+
+          </div>
+          <div className="share-modal">
+            <div className="row">
+              <div className="col-md-12">
+                <ShareSpot addShare = {this.addShare} show={ this.state.showShareSpot } onClose={this.toggleShareSpot} />
               </div>
             </div>
           </div>
