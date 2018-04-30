@@ -27,8 +27,7 @@ export default class Map extends Component {
   render() {
 
     return (
-    <Gmaps width={"100%"} height={"100%"} lat={40.8197255} lng={-73.9501939} zoom={16} params={params} onMapCreated={this.onMapCreated} scrollwheel={false}>
-
+    <Gmaps width={'950px'} height={'400px'} lat={40.8197255} lng={-73.9501939} zoom={16} params={params} onMapCreated={this.onMapCreated} scrollwheel={false}>
       {this.props.parkingSpots
         .map((parkingSpot, index) => {
                 return <Marker key={index} lat={parkingSpot.lat} lng={parkingSpot.long} draggable={false} />;
