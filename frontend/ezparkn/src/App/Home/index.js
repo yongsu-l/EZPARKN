@@ -10,7 +10,7 @@ import Switch from "react-switch";
 import { Button } from 'semantic-ui-react';
 import './style.css';
 import { store } from 'store';
-import { subscribeToParkingSpots } from '../SocketIO/index';
+import { subscribeToParkingSpots, iAmParking, iAmLeaving } from '../SocketIO/index';
 
 export default class Home extends Component {
   constructor(props){
@@ -38,6 +38,7 @@ export default class Home extends Component {
       else{
         this.setState({parkingSpots:parkingSpots});
       }
+      console.log(store.getState())
     });
   }
 
@@ -68,10 +69,13 @@ export default class Home extends Component {
   }
 
   addShare(spot) {
-        const spots = this.state.players.concat(spot);
-        this.setState({
-            spots: spots
-        });
+      // iAmLeaving(leavingTime, lat, long, parkingId, ()=>{
+
+      // })
+        // const spots = this.state.players.concat(spot);
+        // this.setState({
+        //     spots: spots
+        // });
     }
 
   addMessage = () => {
