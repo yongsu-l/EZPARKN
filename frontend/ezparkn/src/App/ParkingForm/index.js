@@ -22,8 +22,8 @@ export default class ParkingForm extends React.Component {
             <div className="row">
               <div className="col-md-12 input-group">
                 <span className="switch">
-                  <input type="checkbox" className="switch" id="looking"/>
-                  <label htmlFor="looking">Looking for a spot</label>
+                  <input type="checkbox" checked={this.props.status} className="switch" onChange={ this.props.joinQueue } id="looking"/>
+                  <label htmlFor="looking">{this.props.status ? 'Searching for a spot' : '' }</label>
                 </span>
               </div>
             </div>

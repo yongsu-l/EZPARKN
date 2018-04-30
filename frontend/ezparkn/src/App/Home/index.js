@@ -4,22 +4,24 @@ import { FormGroup, Panel } from 'react-bootstrap';
 import Map from '../Map';
 import Messages from '../Messages';
 import Profile from '../Profile';
+import UsersFeed from '../UsersFeed' ;
 import ParkingForm from '../ParkingForm';
 import ShareSpot from '../ShareSpot';
 import Switch from "react-switch";
 import { Button } from 'semantic-ui-react';
 import './style.css';
 import { store } from 'store';
-import { subscribeToParkingSpots, iAmParking, iAmLeaving } from '../SocketIO/index';
+import { subscribeToParkingSpots, iAmParking, iAmLeaving, joinQueue, leaveQueue} from '../SocketIO/index';
 
 export default class Home extends Component {
   constructor(props){
     super(props);
 
-    this.state ={
+    this.state = {
       selectValue:'',
       checkedSpot: false,
       checkedLocation: false,
+      currentLocation: null,
       messages: [],
       newMessageBody: '',
       messageSent: false,
@@ -31,6 +33,8 @@ export default class Home extends Component {
     }
 
     this.addShare = this.addShare.bind(this);
+    this.getCurrentLocation = this.getCurrentLocation.bind(this);
+    this.setCurrentLocation = this.setCurrentLocation.bind(this);
 
     subscribeToParkingSpots((err, parkingSpots) => {
       if(err)
@@ -68,7 +72,9 @@ export default class Home extends Component {
     event.preventDefault();
   }
 
-  addShare(spot) {
+  addShare(shareSpot) {
+    console.log(shareSpot)
+
       // iAmLeaving(leavingTime, lat, long, parkingId, ()=>{
 
       // })
@@ -77,6 +83,23 @@ export default class Home extends Component {
         //     spots: spots
         // });
     }
+
+  getCurrentLocation(val){
+    this.setState({
+      getCurrentLocation:val
+    })
+  }
+
+  setCurrentLocation(pos){
+    if(pos)
+      this.setState({
+        checkedLocation: true,
+        currentLocation: {
+          lat:pos.coords.latitude,
+          long: pos.coords.longitude,
+        },
+      })
+  }
 
   addMessage = () => {
     const newState = Object.assign({}, this.state);
@@ -96,11 +119,11 @@ export default class Home extends Component {
     // alert("The value is" + checked);
   }
 
-  handleChangeLocation = (checkedLocation) => {
-    this.setState({ checkedLocation });
-    // alert("The value is" + checked);
-  }
+  toggleQueue = async () =>{
+    await this.setState({findingSpot: !this.state.findingSpot});
 
+    this.state.findingSpot ? joinQueue() : leaveQueue()
+  }
   render() {
     var parkingMessage='You Parking Waiting Time is : '+this.state.selectValue;
 
@@ -146,7 +169,7 @@ export default class Home extends Component {
           <div className="row">
             <div className="col-md-12">
               <div className="map-wrapper">
-                <Map parkingSpots={this.state.parkingSpots}></Map>
+                <Map parkingSpots={this.state.parkingSpots} getCurrentLocation={this.state.getCurrentLocation} setCurrentLocation={this.setCurrentLocation}> </Map>
               </div>
             </div>
           </div>
@@ -160,15 +183,21 @@ export default class Home extends Component {
           <div className="right-modal">
             <div className="row">
               <div className="col-md-12">
-                <ParkingForm show={ this.state.showParking } onClose={this.toggleParking} />
+                <ParkingForm show={ this.state.showParking } onClose={this.toggleParking} currentQueueState = {this.state.findingSpot} joinQueue={this.toggleQueue} status={this.state.findingSpot} />
               </div>
             </div>
-
+          </div>
+          <div className="bottom-modal">
+            <div className="row">
+              <div className="col-md-12">
+                <UsersFeed show={ this.state.showFeed } onClose={ this.toggleFeed } getFeed={ this.getFeed } feed={this.state.feed}/>
+              </div>
+            </div>
           </div>
           <div className="share-modal">
             <div className="row">
               <div className="col-md-12">
-                <ShareSpot addShare = {this.addShare} show={ this.state.showShareSpot } onClose={this.toggleShareSpot} />
+                <ShareSpot addShare = {this.addShare} checkedLocation={this.state.checkedLocation} getCurrentLocation={ this.getCurrentLocation } show={ this.state.showShareSpot } onClose={this.toggleShareSpot} />
               </div>
             </div>
           </div>
