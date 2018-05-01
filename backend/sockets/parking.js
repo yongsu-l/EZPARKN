@@ -7,23 +7,49 @@ module.exports = function Server(io, socket, db) {
 
 	// To park must send request to db
 	socket.on('park', function(data) {
-		db.parkings.create({
-			lat: data.lat,
-			long: data.long,
-			userId: data.userId
-		}).then((parking) => {
-			if (!parking)
-				console.log('Error in submitting parking');
-			else {
-				db.parkings.findAll().then(function(parkings) {
-					io.emit('parking spots', parkings);
-				}).catch(err => {
-					// console.log(err);
-				});
-			};
-		}).catch(err => {
-			// console.log(err);
-		});
+    // Verify user by token
+    if (!data.token) {
+      socket.emit('error', "Need to send token");
+    } else {
+      jwt.verify(data.token, config.secretOrKey, (err, decoded) => {
+        if (err)
+          socket.emit('error', "Invalid token");
+        else {
+          let id = decoded.id;
+          // Check if parking is in db
+          db.parkings.find({
+            where: {
+              userId: id
+            },
+          }).then(parking => {
+            if (!parking) {
+              db.parkings.create({
+                lat: data.lat,
+                long: data.long,
+                userId: data.userId
+              }).then((parking) => {
+                if (!parking)
+                  console.log('Error in submitting parking');
+                else {
+                  db.parkings.findAll().then(function(parkings) {
+                    io.emit('parking spots', parkings);
+                  }).catch(err => {
+                    console.log(err);
+                  });
+                };
+              }).catch(err => {
+                console.log(err);
+              });
+            } else {
+              // Emit error where the user already parked
+              socket.emit('error', "Already parked");
+            }
+          }).catch(err => {
+            console.log(err);
+          });
+        }
+      });
+    }
 	});
 
 	// Update parking spot
