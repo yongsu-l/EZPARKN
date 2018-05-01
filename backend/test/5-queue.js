@@ -23,8 +23,9 @@ describe('Socket IO Queue Connection', function() {
 		it('Client should be notified when another client is posting leave time', function(done){
 
       // First park a user
-      sender.emit('park', {lat: 1, long: 1, userId: 2});
-      sender.emit('leaving parking', {leavingTime: Date.now(), id: 1});
+      sender.emit('park', {lat: 1, long: 1, userId: 1});
+
+      sender.emit('leaving parking', {leavingTime: Date.now(), token: token});
 
       sender.on('updated parking', function(data) {
         expect(data.leavingTime).to.not.be.null;
@@ -33,6 +34,11 @@ describe('Socket IO Queue Connection', function() {
       notreceiver.on('spots', function(spots) {
         // Those who didn't subscribe to queue should not receive anything so this would automatically throw error
         expect(1).to.equal(0);
+      });
+      
+      receiver.on('error', (msg) => {
+        expect(1).to.equal(0);
+        done();
       });
 
       // The clients who are in the queue should now be able to get an emit
