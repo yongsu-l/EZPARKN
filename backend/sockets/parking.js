@@ -26,7 +26,7 @@ module.exports = function Server(io, socket, db) {
               db.parkings.create({
                 lat: data.lat,
                 long: data.long,
-                userId: data.userId
+                userId: id
               }).then((parking) => {
                 if (!parking)
                   console.log('Error in submitting parking');
@@ -42,7 +42,40 @@ module.exports = function Server(io, socket, db) {
               });
             } else {
               // Emit error where the user already parked
-              socket.emit('error', "Already parked");
+              console.log(parking['dataValues']);
+              // Delete the entry and make new enty in db
+              if (parking['dataValues'].leavingTime != null) {
+                db.parkings.destroy({
+                  where: {
+                    userId: id
+                  },
+                }).then(res => {
+                  db.parkings.create({
+                    lat: data.lat,
+                    long: data.long,
+                    userId: id
+                  }).then(res => {
+                    if (!res) 
+                      console.log("Error creating new parking");
+                    else {
+                      db.parkings.findAll().then(parkings => {
+                        io.emit('parking spots', parkings);
+                      }).catch(err => {
+                        console.log(err);
+                      });
+                    }
+                  }).catch(err => {
+                    console.log(err);
+                    socket.emit('error', "Error creating new entry");
+                  });
+                }).catch(err => {
+                  console.log(err);
+                  socket.emit('error', "Error deleting entry to create new one");
+                });
+              }
+              else {
+                socket.emit('error', "Already parked");
+              }
             }
           }).catch(err => {
             console.log(err);
@@ -70,7 +103,41 @@ module.exports = function Server(io, socket, db) {
 						},
 					}).then(parking => {
 						if (!parking) {
-							// No parking found
+							// No parking found hence need to create in db
+              if (!data.leavingTime || !data.lat || !data.long)
+                socket.emit('error', "Need leaving time, lat and long");
+              else {
+                db.parkings.create({
+                  userId: id,
+                  leavingTime: data.leavingTime,
+                  lat: data.lat,
+                  long: data.long
+                }).then(res => {
+                  if (!res)
+                    socket.emit('error', "Error entering leaving time");
+                  else {
+										db.parkings.findAll({
+											where: {
+												leavingTime: {
+													[db.op.ne]: null
+												}
+											}
+										}).then(spots => {
+											if (!spots)
+												io.to('queue').emit('error', "Error updating parking spots");
+											else {
+												io.to('queue').emit('notify', spots);
+												socket.emit('spots', spots);
+											}
+										}).catch(err => {
+                      // io.to('queue').emit('notify', "HELLO WORLD");
+											console.log(err);
+										}); 
+                  }
+                }).catch(err => {
+                  console.log(err);
+                });
+              }
 							console.log("NO parking found");
 						} else {
 							// Update leaving time accordingly 
@@ -85,7 +152,7 @@ module.exports = function Server(io, socket, db) {
 										userId: id
 									},
 								}).then(res => {
-                  console.log("HELLO WORLD");
+                  // console.log("HELLO WORLD");
 									if (!res)
 										socket.emit('error', "Error updating time");
 									else {
@@ -103,7 +170,7 @@ module.exports = function Server(io, socket, db) {
 												socket.emit('spots', spots);
 											}
 										}).catch(err => {
-                      io.to('queue').emit('notify', "HELLO WORLD");
+                      // io.to('queue').emit('notify', "HELLO WORLD");
 											console.log(err);
 										}); 
                   }
