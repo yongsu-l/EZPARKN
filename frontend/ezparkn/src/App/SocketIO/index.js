@@ -35,8 +35,12 @@ function iAmLeaving(leavingTime, lat, long, parkingId, cb) {
   })
 }
 
-// function queue(cb){
-// 	socket.emit('join queue').then((joined) => {console.log(joined)});
-// }
+function joinQueue(cb){
+	socket.emit('join queue');
+}
 
-export { subscribeToParkingSpots, iAmParking, iAmLeaving };
+function leaveQueue(cb){
+	socket.emit('leave queue');
+}
+
+export { subscribeToParkingSpots, iAmParking, iAmLeaving, joinQueue, leaveQueue };

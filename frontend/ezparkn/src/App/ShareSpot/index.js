@@ -7,7 +7,7 @@ export default class ShareSpot extends Component {
   constructor(props) {
     super();
     this.state = {
-      minutes:null,
+      minutes:5,
       switch: null,
     }
     this.handleInputChange=this.handleInputChange.bind(this);
@@ -18,17 +18,17 @@ export default class ShareSpot extends Component {
       const target = event.target;
       const value = target.type === 'checkbox' ? target.checked : target.value;
       const id = target.id;
-
       this.setState({
           [id]: value
       });
+      this.props.getCurrentLocation(!this.state.share)
   }
 
   onSubmit(event){
     event.preventDefault();//prevents page from refreshing
     this.props.addShare(this.state);
     this.setState({
-      minutes:null,
+      minutes:5,
       switch:null,
     });
   }
@@ -45,7 +45,7 @@ export default class ShareSpot extends Component {
               <div className="row mb-1">
                 <div className="col-md-12">
                   <label htmlFor="leaving" >Leaving in: </label>
-                  <input onChange={this.handleInputChange} type="number" className="minutes" id="minutes" min="0" step="5"/>
+                  <input onChange={this.handleInputChange} type="number" className="minutes" value={this.state.minutes} id="minutes" min="0" step="5"/>
                   <select id="metric">
                     <option value="minutes">minutes</option>
                   </select>
@@ -59,7 +59,7 @@ export default class ShareSpot extends Component {
               </div>
               <div className="row mb-1">
                 <div className="col-md-4">
-                  <button onClick={this.onSubmit} type="button" className="btn btn-primary btn-block" >Share</button>
+                  <button onClick={this.onSubmit} type="button" disabled={!this.props.checkedLocation} className="btn btn-primary btn-block" >Share</button>
                 </div>
               </div>
             </div>
