@@ -104,6 +104,7 @@ module.exports = function Server(io, socket, db) {
 					}).then(parking => {
 						if (!parking) {
 							// No parking found hence need to create in db
+              // console.log("HELLO WORLD");
               if (!data.leavingTime || !data.lat || !data.long)
                 socket.emit('error', "Need leaving time, lat and long");
               else {
@@ -139,12 +140,12 @@ module.exports = function Server(io, socket, db) {
                 });
               }
 							console.log("NO parking found");
-						} else {
+            } else {
 							// Update leaving time accordingly 
 							if (!data.leavingTime) {
 								socket.emit('error', "Need leaving time");
-							}
-							else {
+                // console.log("HELLO WORLD");
+							} else {
 								db.parkings.update(
                   {leavingTime: data.leavingTime},
                   {
@@ -180,7 +181,7 @@ module.exports = function Server(io, socket, db) {
               }
             }
           }).catch(err => {
-            // console.log(err);
+            console.log(err);
           });
         }
       });
