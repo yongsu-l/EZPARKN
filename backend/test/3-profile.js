@@ -9,30 +9,15 @@ describe('Profile', () => {
 	describe('GET Profile of User with token', () => {
 
 		it('it should try to get the user profile', (done) => {
-      var user = {
-        username: username,
-        password: password
-      };
-			request
-				.post('/api/user/login')
-				.send(user)
-				.end((err,res) => {
-					res.should.have.status(200);
-					res.body.should.be.a('object');
-					res.body.should.have.property('success',true);
-
-          token = res.body.token;
-
-					request
-						.get('/api/user/profile')
-						.set('x-access-token', token)
-						.end((err, res) => {
-							res.should.have.status(200);
-							res.body.should.be.a('object');
-							res.body.should.property('success', true);
-              done();
-						});
-				});
+      request
+        .get('/api/user/profile')
+        .set('x-access-token', token1)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.should.property('success', true);
+          done();
+        });
 		});
 	});
 
@@ -47,7 +32,7 @@ describe('Profile', () => {
       request
         .put('/api/user/profile')
         .send(profile)
-        .set('x-access-token', token)
+        .set('x-access-token', token1)
         .end((err, res) => {
           res.should.have.status(201);
           console.log("DONE TESTING FOR PROFILE");

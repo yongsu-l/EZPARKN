@@ -41,7 +41,7 @@ describe('Users',() => {
 				.end((err,res) => {
 					res.should.have.status(200);
 					res.body.should.be.a('object');
-          token = res.body.token;
+          token1 = res.body.token;
 					res.body.should.have.property('success',true);
 				done();
 				});
@@ -79,6 +79,7 @@ describe('Users',() => {
 				.end((err,res) => {
 					res.should.have.status(200);
 					res.body.should.be.a('object');
+          token2 = res.body.token2;
 					res.body.should.have.property('success',true);
 				done();
 				});

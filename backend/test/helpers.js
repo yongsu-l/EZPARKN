@@ -7,10 +7,14 @@ const db        = require('models');
 const io        = require('socket.io-client');
 const socketURL = 'http://localhost:3001';
 
-const username = "TESTUSER";
-const password = "password";
+const user1 = "TESTUSER";
+const pass1 = "password";
 
-var token = "";
+const user2 = "TESTUSER2";
+const pass2 = "password";
+
+var token1 = "";
+var token2 = "";
 
 chai.use(chaiHttp);
 
@@ -21,6 +25,9 @@ global.request = chai.request(app);
 global.db = db;
 global.io = io;
 global.socketURL = socketURL;
-global.username = username;
-global.password = password;
-global.token = token;
+global.user1 = user1;
+global.pass1 = pass1;
+global.user2 = user2;
+global.pass2 = pass2;
+global.token1 = token1;
+global.token2 = token2;
