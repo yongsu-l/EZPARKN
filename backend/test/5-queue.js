@@ -57,7 +57,12 @@ describe('Socket IO Queue Connection', function() {
   describe('Notify users that parking spot is opened', function() {
     it('User can leave parking spot opened even though initially not parked', function(done) {
       sender.emit('leaving parking', {lat: 1, long: 1, token: token1});
-      done();      
+
+      receiver.emit('join queue', {});
+      receiver.on('notify', function(spots) {
+        expect(spots).to.not.be.empty;
+        done();
+      });
     });
   });
 
