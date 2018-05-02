@@ -55,7 +55,7 @@ This rough draft is using what is known as a MEAN stack, which uses the followin
 * Steven Barrios - Tracker
 * Yong Su Lee - Coach
 * Mostafizur Rahman - 
-* Kenny Tan - 
+* Kenny Tan - Unit Tester
 * Yuan Zhou - Customer
 * Julia Lau - Presenter
 * Mikhail Kreytser - Code Reviewer
