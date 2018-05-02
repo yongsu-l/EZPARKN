@@ -135,7 +135,7 @@ class Signup extends React.Component {
 
   render() {
     if(this.state.redirectToNewPage) {
-      return <Redirect to="/splash"/>;
+      return <Redirect to="/"/>;
     }
     return (
       <div className="container-fluid">
@@ -170,7 +170,7 @@ class Signup extends React.Component {
               <div class="p-3 card-footer">
                 <div class="row">
                   <div class="col-12">
-                    <p className="text-center text-muted">Already have an account? <a href="/splash">Sign in</a></p>
+                    <p className="text-center text-muted">Already have an account? <a href="/">Sign in</a></p>
                   </div>
                 </div>
               </div>
