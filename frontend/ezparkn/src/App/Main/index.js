@@ -8,10 +8,11 @@ import UsersFeed from '../UsersFeed';
 import ParkingForm from '../ParkingForm';
 import ShareSpot from '../ShareSpot';
 import Switch from "react-switch";
+import moment from "moment";
 import { Button } from 'semantic-ui-react';
 import "typeface-raleway";
 import { store } from 'store';
-import { subscribeToParkingSpots, iAmParking, iAmLeaving } from '../SocketIO/index';
+import { subscribeToParkingSpots, iAmParking, iAmLeaving, joinQueue, leaveQueue} from '../SocketIO/index';
 
 
 import {
@@ -34,25 +35,30 @@ export default class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-            selectValue:'',
-            checkedSpot: false,
-            checkedLocation: false,
-            messages: [],
-            newMessageBody: '',
-            messageSent: false,
-            showParking: false,
-            showProfile: false,
-            showShareSpot: false, 
-            spots: [],
-            showFeed: false,
-            feed: [],
-            findingSpot:false,
-            parkingSpots: [],
-            isToggledOn: true,
-        };
+      isToggledOn: true,
+      selectValue:'',
+      checkedSpot: false,
+      getLocationToggle: false,
+      checkedLocation: false,
+      currentLocation: null,
+      messages: [],
+      newMessageBody: '',
+      messageSent: false,
+      showParking: false,
+      showProfile: false,
+      showShareSpot: false, 
+      spots: [],
+      showFeed: false,
+      feed: [],
+      findingSpot:false,
+      parkingSpots: [],
+    };
 
     this.handleClick = this.handleClick.bind(this);
+
     this.addShare = this.addShare.bind(this);
+    this.getCurrentLocation = this.getCurrentLocation.bind(this);
+    this.setCurrentLocation = this.setCurrentLocation.bind(this);
 
     subscribeToParkingSpots((err, parkingSpots) => {
       if(err)
@@ -60,11 +66,10 @@ export default class Main extends Component {
       else{
         this.setState({parkingSpots:parkingSpots});
       }
-      console.log(store.getState())
     });
 
 }
-getFeed = () => {
+  getFeed = () => {
     // function call
   }
   toggleParking = () => {
@@ -96,15 +101,49 @@ getFeed = () => {
     event.preventDefault();
   }
 
-  addShare(spot) {
-      // iAmLeaving(leavingTime, lat, long, parkingId, ()=>{
-
-      // })
-        // const spots = this.state.players.concat(spot);
-        // this.setState({
-        //     spots: spots
-        // });
+  addShare(shareSpot) {
+    // console.log(store.getState().token);
+    var currentDateTime = new Date();
+    var leavingDateTime = new Date(currentDateTime.getTime() + shareSpot.minutes*60000);
+    console.log(leavingDateTime)
+      iAmLeaving(leavingDateTime, this.state.currentLocation.lat, this.state.currentLocation.long, store.getState().token, (err , parkingSpots)=>{
+        if(err)
+          console.log(err)
+        else {
+          alert("Parking spot submitted, Thank you!")
+          this.setState({parkingSpots:parkingSpots});  
+          // console.log(moment(parkingSpots[1].leavingTime).format()) 
+        }
+      })
     }
+
+  getCurrentLocation(val){
+    this.setState({
+      getLocationToggle:val
+    })
+  }
+
+  setCurrentLocation(pos){
+    if(pos){
+      if(pos.coords.latitude == null || pos.coords.longitude == null){
+        alert('Failed to get location try again') 
+        this.setState({getLocationToggle:false})
+      }
+      else{
+        this.setState({
+          checkedLocation: true,
+          currentLocation: {
+            lat:pos.coords.latitude,
+            long: pos.coords.longitude,
+          },
+        })
+      }
+    }
+    else{
+      alert('Failed to get location try again') 
+      this.setState({getLocationToggle:false})
+    }
+  }
 
   addMessage = () => {
     const newState = Object.assign({}, this.state);
@@ -128,10 +167,10 @@ getFeed = () => {
     this.setState({ checkedLocation });
     // alert("The value is" + checked);
   }
-  toggleQueue = () =>{
-    this.setState({findingSpot: !this.state.findingSpot});
-    if (this.state.findingSpot) {
-    }
+  toggleQueue = async () =>{
+    await this.setState({findingSpot: !this.state.findingSpot});
+
+    this.state.findingSpot ? joinQueue() : leaveQueue()
   }
 
   handleClick(){
@@ -220,7 +259,7 @@ getFeed = () => {
           <div classNameName="row">
             <div classNameName="col-md-12">
               <div classNameName="map-wrapper">
-                <Map parkingSpots={this.state.parkingSpots}></Map>
+                <Map parkingSpots={this.state.parkingSpots} getCurrentLocation={this.state.getLocationToggle} setCurrentLocation={this.setCurrentLocation}> </Map>
               </div>
             </div>
           </div>
@@ -235,7 +274,7 @@ getFeed = () => {
           <div className="right-modal">
             <div className="row">
               <div className="col-md-12">
-                <ParkingForm show={ this.state.showParking } onClose={this.toggleParking} joinQueue={this.toggleQueue} status={this.state.findingSpot} />
+                <ParkingForm show={ this.state.showParking } onClose={this.toggleParking} currentQueueState = {this.state.findingSpot} joinQueue={this.toggleQueue} status={this.state.findingSpot} />              
               </div>
             </div>
           </div>
@@ -250,7 +289,7 @@ getFeed = () => {
           <div className="share-modal">
             <div className="row">
               <div className="col-md-12">
-                <ShareSpot addShare = {this.addShare}  show={ this.state.showShareSpot } onClose={this.toggleShareSpot} />
+                <ShareSpot addShare = {this.addShare}  toggleState={this.state.getLocationToggle}  checkedLocation={this.state.checkedLocation} getCurrentLocation={ this.getCurrentLocation } show={ this.state.showShareSpot } onClose={this.toggleShareSpot} />
               </div>
             </div>
           </div>
