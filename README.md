@@ -58,5 +58,5 @@ This rough draft is using what is known as a MEAN stack, which uses the followin
 * Kenny Tan - 
 * Yuan Zhou - Customer
 * Julia Lau - Presenter
-* Mikhail Kreytser - 
+* Mikhail Kreytser - Code Reviewer
 * Steven McDonald - 
