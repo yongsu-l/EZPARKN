@@ -21,6 +21,7 @@ export default class Home extends Component {
     this.state = {
       selectValue:'',
       checkedSpot: false,
+      getLocationToggle: false,
       checkedLocation: false,
       currentLocation: null,
       messages: [],
@@ -98,19 +99,30 @@ export default class Home extends Component {
 
   getCurrentLocation(val){
     this.setState({
-      getCurrentLocation:val
+      getLocationToggle:val
     })
   }
 
   setCurrentLocation(pos){
-    if(pos)
-      this.setState({
-        checkedLocation: true,
-        currentLocation: {
-          lat:pos.coords.latitude,
-          long: pos.coords.longitude,
-        },
-      })
+    if(pos){
+      if(pos.coords.latitude == null || pos.coords.longitude == null){
+        alert('Failed to get location try again') 
+        this.setState({getLocationToggle:false})
+      }
+      else{
+        this.setState({
+          checkedLocation: true,
+          currentLocation: {
+            lat:pos.coords.latitude,
+            long: pos.coords.longitude,
+          },
+        })
+      }
+    }
+    else{
+      alert('Failed to get location try again') 
+      this.setState({getLocationToggle:false})
+    }
   }
 
   addMessage = () => {
@@ -183,7 +195,7 @@ export default class Home extends Component {
           <div className="row">
             <div className="col-md-12">
               <div className="map-wrapper">
-                <Map parkingSpots={this.state.parkingSpots} getCurrentLocation={this.state.getCurrentLocation} setCurrentLocation={this.setCurrentLocation}> </Map>
+                <Map parkingSpots={this.state.parkingSpots} getCurrentLocation={this.state.getLocationToggle} setCurrentLocation={this.setCurrentLocation}> </Map>
               </div>
             </div>
           </div>
@@ -210,7 +222,7 @@ export default class Home extends Component {
           <div className="share-modal">
             <div className="row">
               <div className="col-md-12">
-                <ShareSpot addShare = {this.addShare} checkedLocation={this.state.checkedLocation} getCurrentLocation={ this.getCurrentLocation } show={ this.state.showShareSpot } onClose={this.toggleShareSpot} />
+                <ShareSpot addShare = {this.addShare}  toggleState={this.state.getLocationToggle}  checkedLocation={this.state.checkedLocation} getCurrentLocation={ this.getCurrentLocation } show={ this.state.showShareSpot } onClose={this.toggleShareSpot} />
               </div>
             </div>
           </div>
