@@ -53,10 +53,10 @@ This rough draft is using what is known as a MEAN stack, which uses the followin
 
 * Abu Butt - 
 * Steven Barrios - Tracker
-* Yong Su Lee - Unit Tester
+* Yong Su Lee - Coach
 * Mostafizur Rahman - 
 * Kenny Tan - 
 * Yuan Zhou - Customer
-* Julia Lau - 
+* Julia Lau - Presenter
 * Mikhail Kreytser - 
 * Steven McDonald - 
