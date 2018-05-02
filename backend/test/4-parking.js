@@ -1,8 +1,8 @@
-// tests/3-parking.js  
+// tests/4-parking.js  
 
 const expect = chai.expect;
 
-describe('Socket IO Queue Connection', function() {
+describe('Socket IO Parking Connection', function() {
 	beforeEach(function(done) {
 		sender = io(socketURL);
 		receiver = io(socketURL);
@@ -30,7 +30,7 @@ describe('Socket IO Queue Connection', function() {
       sender.emit('park', {
         lat: 123,
         long: 456,
-        userId: 1
+        token: token1
       });
       receiver.on('parking spots', function(parkings){
         expect(parkings).to.not.be.null;

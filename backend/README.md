@@ -38,6 +38,7 @@ Creating Users:     (POST) /api/user/create (Body: username, email and password)
 Login User:         (POST) /api/user/login (Body: username, password)
 Create/Update Car:  (PUT)  /api/car/create (Body: make, model, color, size)(Header: x-access-token)
 Get profile:        (GET)  /api/user/profile
+Update profile:     (PUT)  /api/user/profile
 ```
 
 ## Socket Enpoint
@@ -54,6 +55,8 @@ To post a place of where you've parked: socket.emit('park', {lat: LATVAL, long: 
 
 To request to be added in queue, and ask for notifications emit: socket.emit('join queue')
 This will allow the user to be added into a room for the queue then the client can listen for notify with socket.on('notify' (data) =>) which will listen on notification but only be send to those who have subscribed to the queue
+
+Mark leaving parking:   socket.emit('leaving parking', data) where data must contain lat, long, token, and leavingTime
 ```
 
 ## Running the tests
