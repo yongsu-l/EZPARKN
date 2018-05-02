@@ -5,14 +5,15 @@ import { store } from 'store';
 
 export default class ShareSpot extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       minutes:5,
-      switch: null,
+      share: false,
     }
     this.handleInputChange=this.handleInputChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+
 
   handleInputChange(event) {
       const target = event.target;
@@ -29,7 +30,6 @@ export default class ShareSpot extends Component {
     this.props.addShare(this.state);
     this.setState({
       minutes:5,
-      switch:null,
     });
   }
   render() {
@@ -53,7 +53,7 @@ export default class ShareSpot extends Component {
               </div>
               <div className="row mb-3">
                 <span className="switch">
-                  <input onChange={this.handleInputChange} type="checkbox" className="switch" id="share"/>
+                  <input onChange={this.handleInputChange} type="checkbox" checked={this.state.share} className="switch" id="share"/>
                   <label htmlFor="share">Share Location</label>
                 </span>
               </div>
