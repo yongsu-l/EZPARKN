@@ -22,17 +22,16 @@ function iAmParking(lat, long, userID, cb) {
   })
 }
 
-function iAmLeaving(leavingTime, lat, long, parkingId, cb) {
+function iAmLeaving(leavingTime, lat, long, token, cb) {
   socket.emit('leaving parking', {
   		leavingTime: leavingTime,
         lat: lat,
         long: long,
-        id: parkingId,
+        token: token,
       });
+  socket.on('spots', parkingSpots => cb(null, parkingSpots));
+  socket.on('error', err => cb(err, {}));
 
-  socket.on('parking spots', parkings => {
-  	console.log(parkings);
-  })
 }
 
 function joinQueue(cb){

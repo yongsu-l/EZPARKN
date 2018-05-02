@@ -8,6 +8,7 @@ import UsersFeed from '../UsersFeed';
 import ParkingForm from '../ParkingForm';
 import ShareSpot from '../ShareSpot';
 import Switch from "react-switch";
+import moment from "moment";
 import { Button } from 'semantic-ui-react';
 import './style.css';
 import { store } from 'store';
@@ -45,7 +46,6 @@ export default class Home extends Component {
       else{
         this.setState({parkingSpots:parkingSpots});
       }
-      console.log(store.getState())
     });
   }
   getFeed = () => {
@@ -81,15 +81,19 @@ export default class Home extends Component {
   }
 
   addShare(shareSpot) {
-    console.log(shareSpot)
-
-      // iAmLeaving(leavingTime, lat, long, parkingId, ()=>{
-
-      // })
-        // const spots = this.state.players.concat(spot);
-        // this.setState({
-        //     spots: spots
-        // });
+    // console.log(store.getState().token);
+    var currentDateTime = new Date();
+    var leavingDateTime = new Date(currentDateTime.getTime() + shareSpot.minutes*60000);
+    console.log(leavingDateTime)
+      iAmLeaving(leavingDateTime, this.state.currentLocation.lat, this.state.currentLocation.long, store.getState().token, (err , parkingSpots)=>{
+        if(err)
+          console.log(err)
+        else {
+          alert("Parking spot submitted, Thank you!")
+          this.setState({parkingSpots:parkingSpots});  
+          // console.log(moment(parkingSpots[1].leavingTime).format()) 
+        }
+      })
     }
 
   getCurrentLocation(val){
