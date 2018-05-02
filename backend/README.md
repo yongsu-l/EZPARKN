@@ -69,7 +69,7 @@ npm run test
 To run the migrations run the following below.
 
 ```
-npm run migrations
+npm run migrate
 ```
 
 ### Break down into end to end tests

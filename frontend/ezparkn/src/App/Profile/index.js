@@ -13,7 +13,7 @@ export default class Profile extends Component {
       return null;
     }
     return (
-      <div className="card">
+      <div className="card" >
         <div className="card-body">
           <div className="row">
             <div className="form-group col-md-3">

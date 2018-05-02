@@ -27,14 +27,19 @@ export default class Map extends Component {
   render() {
 
     return (
-    <Gmaps width={'950px'} height={'400px'} lat={40.8197255} lng={-73.9501939} zoom={16} params={params} onMapCreated={this.onMapCreated} scrollwheel={false}>
-      <Marker lat={40.819970} lng={-73.946783} draggable={false} name={'Current location'} />
-      {/* <InfoWindow lat={40.819970} lng={-73.946783} content={'139 ST: St Nicholas Ave'} onCloseClick={this.onCloseClick} onClick={this.onClick}/> */}
-      <Marker lat={40.819508} lng={-73.951885} draggable={false} />
-      {/* <InfoWindow lat={40.819508} lng={-73.951885} content={'136 ST: Amsterdam Ave'} onCloseClick={this.onCloseClick} /> */}
-      <Marker lat={40.817870} lng={-73.949802} draggable={false} />
-      {/* <InfoWindow lat={40.817870} lng={-73.949802} content={'135 ST: St Nicholas Terrace'} onCloseClick={this.onCloseClick} /> */}
+    <Gmaps width={'1000px'} height={'600px'} lat={40.8197255} lng={-73.9501939} zoom={16} params={params} onMapCreated={this.onMapCreated} scrollwheel={false}>
+      {this.props.parkingSpots
+        .map((parkingSpot, index) => {
+                return <Marker key={index} lat={parkingSpot.lat} lng={parkingSpot.long} draggable={false} />;
+            })}
     </Gmaps>
     );
   }
 }
+
+      // <Marker lat={40.819970} lng={-73.946783} draggable={false} name={'Current location'} />
+      // {/* <InfoWindow lat={40.819970} lng={-73.946783} content={'139 ST: St Nicholas Ave'} onCloseClick={this.onCloseClick} onClick={this.onClick}/> */}
+      // <Marker lat={40.819508} lng={-73.951885} draggable={false} />
+      // {/* <InfoWindow lat={40.819508} lng={-73.951885} content={'136 ST: Amsterdam Ave'} onCloseClick={this.onCloseClick} /> */}
+      // <Marker lat={40.817870} lng={-73.949802} draggable={false} />
+      // {/* <InfoWindow lat={40.817870} lng={-73.949802} content={'135 ST: St Nicholas Terrace'} onCloseClick={this.onCloseClick} /> */}

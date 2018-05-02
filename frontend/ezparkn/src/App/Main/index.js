@@ -9,31 +9,49 @@ import ParkingForm from '../ParkingForm';
 import ShareSpot from '../ShareSpot';
 import Switch from "react-switch";
 import { Button } from 'semantic-ui-react';
-import './style.css';
+import "typeface-raleway";
 import { store } from 'store';
 import { subscribeToParkingSpots, iAmParking, iAmLeaving } from '../SocketIO/index';
 
-export default class Home extends Component {
-  constructor(props){
+
+import {
+  AppView,
+  MainView,
+  Para,
+  Wrapper,
+  Sidebar,
+  SideHead,
+  SideActive,
+  SideComponents,
+  SideUlP,
+  SideUlUlA,
+  Content,
+  SideComponentsMore,
+  NavDisplay,
+} from './styled';
+
+export default class Main extends Component {
+  constructor(props) {
     super(props);
+    this.state = {
+            selectValue:'',
+            checkedSpot: false,
+            checkedLocation: false,
+            messages: [],
+            newMessageBody: '',
+            messageSent: false,
+            showParking: false,
+            showProfile: false,
+            showShareSpot: false, 
+            spots: [],
+            showFeed: false,
+            feed: [],
+            findingSpot:false,
+            parkingSpots: [],
+            isToggledOn: true,
+        };
 
-    this.state ={
-      selectValue:'',
-      checkedSpot: false,
-      checkedLocation: false,
-      messages: [],
-      newMessageBody: '',
-      messageSent: false,
-      showParking: false,
-      showProfile: false,
-      showShareSpot: false, 
-      spots: [],
-      showFeed: false,
-      feed: [],
-      findingSpot:false,
-      parkingSpots: [],
-    }
-
+    this.handleClick = this.handleClick.bind(this);
     this.addShare = this.addShare.bind(this);
 
     subscribeToParkingSpots((err, parkingSpots) => {
@@ -44,8 +62,9 @@ export default class Home extends Component {
       }
       console.log(store.getState())
     });
-  }
-  getFeed = () => {
+
+}
+getFeed = () => {
     // function call
   }
   toggleParking = () => {
@@ -114,6 +133,13 @@ export default class Home extends Component {
     if (this.state.findingSpot) {
     }
   }
+
+  handleClick(){
+    this.setState(prevState => ({
+      isToggledOn: !prevState.isToggledOn
+    }));
+  }
+
   render() {
     var parkingMessage='You Parking Waiting Time is : '+this.state.selectValue;
 
@@ -134,36 +160,70 @@ export default class Home extends Component {
       )
     }
     return (
-    <div id="wrapper">
-      <div className="topbar">
-      </div>
-      <div id="sidebar">
-        <ul className="nav">
-          <li className="nav-item align-middle">
-            <p className="h5">EZ<span>PARKN</span></p>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#" onClick={ this.toggleProfile }>Profile</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#" onClick={ this.toggleParking }>Find Parking</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#" onClick={ this.toggleShareSpot }>Share Spot</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#" onClick={ this.toggleFeed }>Feed</a>
-          </li>
-        </ul>
-      </div>
-      <div id="main-view">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="map-wrapper">
+      <AppView>
+        <Wrapper>
+        
+        {
+            this.state.isToggledOn &&
+            <Sidebar>
+                <SideHead>
+                    <h3>EzPARKN</h3>
+                </SideHead>
+
+                <SideComponents>
+                    <SideUlP>An easier way to find parking</SideUlP>
+                    <SideComponentsMore>
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+                    </SideComponentsMore>
+                    <SideComponentsMore>
+                        <a href="#" onClick={ this.toggleProfile } >Profile</a>
+                    </SideComponentsMore>
+                    <SideComponentsMore>
+                        <a href="#" onClick={ this.toggleParking } >Find Parking</a>
+                    </SideComponentsMore>
+                    <SideComponentsMore>
+                        <a href="#" onClick={this.toggleShareSpot} >Share Spot</a>
+                    </SideComponentsMore>
+                    <SideComponentsMore>
+                        <a href="#" onClick={this.toggleFeed} >Feed</a>
+                    </SideComponentsMore>
+                </SideComponents>
+
+            </Sidebar>
+
+          }
+            <Content>
+
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+               <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" onClick={this.handleClick}>
+                                <i class="glyphicon glyphicon-align-left"></i>
+                                <span>Sidebar</span>
+                            </button>
+
+              <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav mr-auto">
+                  <li className="nav-item">
+                    <a className="nav-link" href="./">Log In</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="./signup">Sign Up</a>
+                  </li>
+                </ul>
+                <form className="form-inline my-2 my-lg-0">
+                  <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                  <button className="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              </div>
+            </nav>
+
+          <div classNameName="container-fluid">
+          <div classNameName="row">
+            <div classNameName="col-md-12">
+              <div classNameName="map-wrapper">
                 <Map parkingSpots={this.state.parkingSpots}></Map>
               </div>
             </div>
+          </div>
           </div>
           <div className="profile-modal">
             <div className="row">
@@ -194,9 +254,11 @@ export default class Home extends Component {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    );
+          
+
+            </Content>
+        </Wrapper> 
+      </AppView>    
+    )
   }
 }
