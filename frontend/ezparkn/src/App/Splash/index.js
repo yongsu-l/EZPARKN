@@ -60,7 +60,7 @@ class Splash extends React.Component{
 
   render(){
     if(this.state.redirectToNewPage) {
-      return <Redirect to="/home"/>;
+      return <Redirect to="/main"/>;
     }
     return (
       <Container>
