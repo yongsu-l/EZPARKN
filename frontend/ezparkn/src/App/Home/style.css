@@ -106,14 +106,15 @@ a:hover {
 .right-modal {
   position: absolute;
   top:0;
-  right: 1.5%;
+  right: 0.5%;
   width: 22.5%;
 
 }
 .bottom-modal {
   position: absolute;
-  top: 48.5%;
-  width: 55.5%;
+  bottom: 3.5%;
+  right: 0.5%;
+  width: 35.5%;
 }
 .pr-20 {
   padding-right: 20px !important;
