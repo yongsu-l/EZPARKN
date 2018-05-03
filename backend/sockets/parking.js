@@ -1,59 +1,191 @@
 // sockets/park.js
+const jwt = require('jsonwebtoken');
+const env = process.env.NODE_ENV || 'development';
+const config = require('../config/config')[env];
 
 module.exports = function Server(io, socket, db) {
 
-  // To park must send request to db
-  socket.on('park', function(data) {
-    db.parkings.create({
-      lat: data.lat,
-      long: data.long,
-      userId: data.userId
-    }).then((parking) => {
-      if (!parking)
-        console.log('Error in submitting parking');
-      else {
-        db.parkings.findAll().then(function(parkings) {
-          io.emit('parking spots', parkings);
-        }).catch(function(err) {
-          console.log(err);
-        });
-      };
-    });
-  });
-
-  // To mark that one is leaving, the leaving time value is passed
-  socket.on('leaving parking', function(data) {
-    db.parkings.update({leavingTime: data.leavingTime}, 
-      {
-        where: {
-          id: data.id 
-        }
-      })
-      .then((result) => {
-        if (!result)
-          socket.emit('error', 'Error in add leaving time');
+	// To park must send request to db
+	socket.on('park', function(data) {
+    // Verify user by token
+    if (!data.token) {
+      socket.emit('error', "Need to send token");
+    } else {
+      jwt.verify(data.token, config.secretOrKey, (err, decoded) => {
+        if (err)
+          socket.emit('error', "Invalid token");
         else {
-          db.parkings.findAll({
+          let id = decoded.id;
+          // Check if parking is in db
+          db.parkings.find({
             where: {
-              leavingTime: {
-                [db.op.ne]: null
+              userId: id
+            },
+          }).then(parking => {
+            if (!parking) {
+              db.parkings.create({
+                lat: data.lat,
+                long: data.long,
+                userId: id
+              }).then((parking) => {
+                if (!parking)
+                  console.log('Error in submitting parking');
+                else {
+                  db.parkings.findAll().then(function(parkings) {
+                    io.emit('parking spots', parkings);
+                  }).catch(err => {
+                    console.log(err);
+                  });
+                };
+              }).catch(err => {
+                console.log(err);
+              });
+            } else {
+              // Emit error where the user already parked
+              console.log(parking['dataValues']);
+              // Delete the entry and make new enty in db
+              if (parking['dataValues'].leavingTime != null) {
+                db.parkings.destroy({
+                  where: {
+                    userId: id
+                  },
+                }).then(res => {
+                  db.parkings.create({
+                    lat: data.lat,
+                    long: data.long,
+                    userId: id
+                  }).then(res => {
+                    if (!res) 
+                      console.log("Error creating new parking");
+                    else {
+                      db.parkings.findAll().then(parkings => {
+                        io.emit('parking spots', parkings);
+                      }).catch(err => {
+                        console.log(err);
+                      });
+                    }
+                  }).catch(err => {
+                    console.log(err);
+                    socket.emit('error', "Error creating new entry");
+                  });
+                }).catch(err => {
+                  console.log(err);
+                  socket.emit('error', "Error deleting entry to create new one");
+                });
+              }
+              else {
+                socket.emit('error', "Already parked");
               }
             }
-          }).then((spots) => {
-            if (!spots)
-              io.to('queue').emit('error', "Error updating parking spots");
-            else {
-              io.to('queue').emit('notify', spots);
-              socket.emit('spots', spots);
-            }
-          })
-            .catch(err => {
-              console.log(err);
-            });
+          }).catch(err => {
+            console.log(err);
+          });
         }
-      })
-      .catch(err => {
-        console.log(err);
       });
+    }
+	});
+
+	// Update parking spot
+	socket.on('leaving parking', function(data) {
+		// First check if the parking spot is in db
+		if (!data.token) {
+			// Must pass token to check in db
+			socket.emit('error', "Need to send token");
+		} else {
+			jwt.verify(data.token, config.secretOrKey, (err, decoded) => {
+				if (err)
+					socket.emit('error', "Invalid token");
+				else {
+					let id = decoded.id;
+					db.parkings.find({
+						where: {
+							userId: id
+						},
+					}).then(parking => {
+						if (!parking) {
+							// No parking found hence need to create in db
+              // console.log("HELLO WORLD");
+              if (!data.leavingTime || !data.lat || !data.long)
+                socket.emit('error', "Need leaving time, lat and long");
+              else {
+                db.parkings.create({
+                  userId: id,
+                  leavingTime: data.leavingTime,
+                  lat: data.lat,
+                  long: data.long
+                }).then(res => {
+                  if (!res)
+                    socket.emit('error', "Error entering leaving time");
+                  else {
+										db.parkings.findAll({
+											where: {
+												leavingTime: {
+													[db.op.ne]: null
+												}
+											}
+										}).then(spots => {
+											if (!spots)
+												io.to('queue').emit('error', "Error updating parking spots");
+											else {
+												io.to('queue').emit('notify', spots);
+												socket.emit('spots', spots);
+											}
+										}).catch(err => {
+                      // io.to('queue').emit('notify', "HELLO WORLD");
+											console.log(err);
+										}); 
+                  }
+                }).catch(err => {
+                  console.log(err);
+                });
+              }
+							console.log("NO parking found");
+            } else {
+							// Update leaving time accordingly 
+							if (!data.leavingTime) {
+								socket.emit('error', "Need leaving time");
+                // console.log("HELLO WORLD");
+							} else {
+								db.parkings.update(
+                  {leavingTime: data.leavingTime},
+                  {
+									where: {
+										userId: id
+									},
+								}).then(res => {
+                  // console.log("HELLO WORLD");
+									if (!res)
+										socket.emit('error', "Error updating time");
+									else {
+										db.parkings.findAll({
+											where: {
+												leavingTime: {
+													[db.op.ne]: null
+												}
+											}
+										}).then(spots => {
+											if (!spots)
+												io.to('queue').emit('error', "Error updating parking spots");
+											else {
+												io.to('queue').emit('notify', spots);
+												socket.emit('spots', spots);
+											}
+										}).catch(err => {
+                      // io.to('queue').emit('notify', "HELLO WORLD");
+											console.log(err);
+										}); 
+                  }
+                }).catch(err => {
+                  console.log(err);
+                });
+              }
+            }
+          }).catch(err => {
+            console.log(err);
+          });
+        }
+      });
+    }
   });
+
 };

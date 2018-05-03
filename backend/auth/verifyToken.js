@@ -6,7 +6,6 @@ const config  = require('config/config')[env];
 
 module.exports = function verifyToken(req, res, next) {
   let token = req.headers['x-access-token'];
-  console.log(token);
 
   if (!token)
     return res.status(403).json({success: false, message: 'No token provided'});
@@ -16,6 +15,7 @@ module.exports = function verifyToken(req, res, next) {
       return res.status(500).json({success: false, msg: 'Failed to authenticate'});
 
     req.id = decoded.id;
+
     next();
   });
 };

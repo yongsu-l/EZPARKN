@@ -6,7 +6,9 @@
   "scripts": {
     "test": "NODE_ENV=test NODE_PATH=. mocha --reporter nyan --exit",
     "migrate": "sequelize db:migrate",
-    "start": "NODE_PATH=. node server.js"
+    "start": "NODE_PATH=. node server.js",
+    "seed": "sequelize db:seed:all",
+    "undoseed": "sequelize db:seed:undo:all"
   },
   "repository": {
     "type": "git",
@@ -19,7 +21,7 @@
   },
   "homepage": "https://github.com/CSC59939/EZPARKN#readme",
   "dependencies": {
-    "bcrypt": "^1.0.3",
+    "bcrypt": "^2.0.1",
     "body-parser": "^1.18.2",
     "colors": "^1.2.1",
     "cookie-parser": "^1.4.3",
