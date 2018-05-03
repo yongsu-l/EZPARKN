@@ -58,3 +58,12 @@
 .avatar-leaving i {
   background-color: #11c26d;
 }
+.avatar-looking i {
+  background-color: #516395;
+}
+.card {
+  max-height: 425px;
+}
+.card-body {
+  overflow: auto;
+}
