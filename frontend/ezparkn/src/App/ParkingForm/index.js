@@ -30,7 +30,7 @@ export default class ParkingForm extends React.Component {
             </div>
             <div className="row">
               <div className="col-md-12">
-	        <h1>Form here</h1>
+                <h4 className="text-muted">{this.props.status ? 'Approximate waiting time' : '' }</h4>
               </div>
             </div>
             <div className="row">

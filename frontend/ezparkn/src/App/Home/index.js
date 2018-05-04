@@ -13,6 +13,7 @@ import { Button } from 'semantic-ui-react';
 import './style.css';
 import { store } from 'store';
 import { subscribeToParkingSpots, iAmParking, iAmLeaving, joinQueue, leaveQueue} from '../SocketIO/index';
+import getProfile from '../../lib/getProfile';
 
 export default class Home extends Component {
   constructor(props){
@@ -145,7 +146,7 @@ export default class Home extends Component {
 
   toggleQueue = async () =>{
     await this.setState({findingSpot: !this.state.findingSpot});
-
+    
     this.state.findingSpot ? joinQueue() : leaveQueue()
   }
   render() {
@@ -215,7 +216,7 @@ export default class Home extends Component {
           <div className="bottom-modal">
             <div className="row">
               <div className="col-md-12">
-                <UsersFeed show={ this.state.showFeed } onClose={ this.toggleFeed } getFeed={ this.getFeed } feed={this.state.feed}/>
+                <UsersFeed show={ this.state.showFeed } onClose={ this.toggleFeed } feed={this.state.parkingSpots}/>
               </div>
             </div>
           </div>

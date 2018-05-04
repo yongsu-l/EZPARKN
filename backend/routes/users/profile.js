@@ -31,15 +31,18 @@ module.exports = (db, express, createToken, verifyToken) => ({
         if (!req.body.firstname || !req.body.lastname || !req.body.email)
           res.status(400).json({success: false, msg: 'Must send firstname, lastname, and email'});
         else {
-          db.users.update({
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            email: req.body.email,
-            where: {
-              id: req.id
+          db.users.update(
+            {
+              firstname: req.body.firstname,
+              lastname: req.body.lastname,
+              email: req.body.email
             },
-          }).then(res => {
-            if (!res) 
+            {
+              where: {
+                id: req.id
+            },
+          }).then(user => {
+            if (!user) 
               res.status(400).json({success: false, msg: 'Failed to update profile'});
             else {
               res.status(201).json({success: true, msg: 'Successfully updated profile'});
