@@ -13,6 +13,7 @@ import { Button } from 'semantic-ui-react';
 import "typeface-raleway";
 import { store } from 'store';
 import { subscribeToParkingSpots, iAmParking, iAmLeaving, joinQueue, leaveQueue} from '../SocketIO/index';
+import getProfile from '../../lib/getProfile';
 
 
 import {
@@ -61,6 +62,8 @@ export default class Main extends Component {
     this.setCurrentLocation = this.setCurrentLocation.bind(this);
 
     subscribeToParkingSpots((err, parkingSpots) => {
+      console.log(parkingSpots);
+      
       if(err)
         alert(err)
       else{
@@ -167,10 +170,9 @@ export default class Main extends Component {
     this.setState({ checkedLocation });
     // alert("The value is" + checked);
   }
-  toggleQueue = async () =>{
-    await this.setState({findingSpot: !this.state.findingSpot});
-
-    this.state.findingSpot ? joinQueue() : leaveQueue()
+  toggleQueue = () =>{
+   this.setState({findingSpot: !this.state.findingSpot});
+    this.state.findingSpot ? joinQueue() : leaveQueue() ;
   }
 
   handleClick(){
@@ -234,8 +236,8 @@ export default class Main extends Component {
             <Content>
 
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-               <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" onClick={this.handleClick}>
-                                <i class="glyphicon glyphicon-align-left"></i>
+               <button type="button" id="sidebarCollapse" className="btn btn-info navbar-btn" onClick={this.handleClick}>
+                                <i className="glyphicon glyphicon-align-left"></i>
                                 <span>Sidebar</span>
                             </button>
 
@@ -255,10 +257,10 @@ export default class Main extends Component {
               </div>
             </nav>
 
-          <div classNameName="container-fluid">
-          <div classNameName="row">
-            <div classNameName="col-md-12">
-              <div classNameName="map-wrapper">
+          <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="map-wrapper">
                 <Map parkingSpots={this.state.parkingSpots} getCurrentLocation={this.state.getLocationToggle} setCurrentLocation={this.setCurrentLocation}> </Map>
               </div>
             </div>
@@ -274,14 +276,14 @@ export default class Main extends Component {
           <div className="right-modal">
             <div className="row">
               <div className="col-md-12">
-                <ParkingForm show={ this.state.showParking } onClose={this.toggleParking} currentQueueState = {this.state.findingSpot} joinQueue={this.toggleQueue} status={this.state.findingSpot} />              
+                <ParkingForm show={ this.state.showParking } onClose={this.toggleParking} currentQueueState = {this.state.findingSpot} joinQueue={this.toggleQueue} status={this.state.findingSpot}/>              
               </div>
             </div>
           </div>
           <div className="bottom-modal">
             <div className="row">
               <div className="col-md-12">
-                <UsersFeed show={ this.state.showFeed } onClose={ this.toggleFeed } getFeed={ this.getFeed } feed={this.state.feed}/>
+                <UsersFeed show={ this.state.showFeed } onClose={ this.toggleFeed } feed={this.state.parkingSpots}/>
               </div>
             </div>
 

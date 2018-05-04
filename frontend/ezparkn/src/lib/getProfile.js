@@ -2,8 +2,8 @@
 
 import {URL, API, USER, PROFILE} from 'urls/API';
 import { store } from 'store';
-
-function postLogin(body){
+// TODO: error regarding body of request.. needs to be addressed
+function getProfile(body){
   return (
     fetch(API+USER+PROFILE, {
       method: 'GET',
@@ -17,4 +17,4 @@ function postLogin(body){
   );
 }
 
-export default postLogin;
+export default getProfile;

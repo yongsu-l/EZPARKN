@@ -14,8 +14,8 @@ export default class SingleUser extends Component {
             </a>
           </div>
           <div className="user-body">
-            <p className="h5">{this.props.name} <span> Leaving in {this.props.leavingIn}</span></p>
-            <small>Some car</small>
+            <p className="h6">{this.props.name} <span> Leaving at {this.props.leavingIn}</span></p>
+            <p className="text-muted"><small>Parked at {this.props.parkedTime} with some car</small></p>            
           </div>
         </div>
       </li>
