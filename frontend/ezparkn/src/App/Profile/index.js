@@ -4,6 +4,8 @@ import './style.css';
 import { store } from 'store';
 import { setProfile } from 'actions';
 import putProfile from 'lib/putProfile';
+import postCar from 'lib/postCar';
+
 
 export default class Profile extends Component {
   constructor(props) {
@@ -28,6 +30,16 @@ export default class Profile extends Component {
     // Using API gives us no token error...
     putProfile(this.state).then(response =>{
       console.log(response);
+    });
+    postCar(this.state).then(response =>{
+      console.log(response);
+    }).catch(reason =>{
+      if (reason.status == 403) {
+        console.log('token missing');
+      } 
+      else {
+        console.log(reason);
+      }     
     });
     store.dispatch(setProfile(this.state));
     // This should work once the token is correctly attached to the PUT request upon firing
