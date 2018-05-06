@@ -14,10 +14,10 @@ export default class Profile extends Component {
       lastname: store.getState().profile.lastname,
       email: store.getState().profile.email,
       car:{
-        model: store.getState().profile.car.model,
-        color: store.getState().profile.car.color,
-        size: store.getState().profile.car.size,
-        make: store.getState().profile.car.make
+        model: store.getState().profile.car ? store.getState().profile.car.model : "",
+        color: store.getState().profile.car ? store.getState().profile.car.color : "",
+        size: store.getState().profile.car ? store.getState().profile.car.size : "",
+        make: store.getState().profile.car ? store.getState().profile.car.make : ""
       }
     };
     this.handleChange = this.handleChange.bind(this);
