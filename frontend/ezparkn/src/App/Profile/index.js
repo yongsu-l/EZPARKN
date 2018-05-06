@@ -54,8 +54,15 @@ export default class Profile extends Component {
     putProfile(this.state).then(response =>{
       console.log(response);
     });
-    putCar(this.state.car).then(response =>{
+    postCar(this.state.car).then(response =>{
       console.log(response);
+    }).catch(reason =>{
+      if (reason.status == 403) {
+        console.log('token missing');
+      } 
+      else {
+        console.log(reason);
+      }     
     });
     store.dispatch(setProfile(this.state));
     // This should work once the token is correctly attached to the PUT request upon firing
