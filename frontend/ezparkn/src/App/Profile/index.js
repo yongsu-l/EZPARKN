@@ -54,7 +54,7 @@ export default class Profile extends Component {
     putProfile(this.state).then(response =>{
       console.log(response);
     });
-    postCar(this.state.car).then(response =>{
+    putCar(this.state.car).then(response =>{
       console.log(response);
     }).catch(reason =>{
       if (reason.status == 403) {
