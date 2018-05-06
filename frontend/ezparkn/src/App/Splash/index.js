@@ -29,8 +29,8 @@ class Splash extends React.Component{
     this.onChange = this.onChange.bind(this);
   }
 
-  onLogin(e) {
-    e.preventDefault;
+  onLogin = (e) => {
+    e.preventDefault();
     const username = this.state.username;
     const password = this.state.password;
 
@@ -67,7 +67,8 @@ class Splash extends React.Component{
         <Box>
           <Box2>
             <Title> EZPARKN </Title>
-              <div className="form-group">
+            <form onSubmit = { this.onLogin }>
+            <div className="form-group">
                 <LeftSide>
                   <label for="username">Username</label>
                 </LeftSide>
@@ -98,9 +99,9 @@ class Splash extends React.Component{
               <br></br>
               <br></br>
               <br></br>
-              <button class="btn btn-raised btn-primary" onClick={ this.onLogin } >Log In</button>
-              
-              <p> Don't have an account? <a href="/signup">Sign Up</a></p>
+              <button type="submit" class="btn btn-raised btn-primary" onSubmit={ this.onLogin } >Log In</button>
+            </form>
+            <p> Don't have an account? <a href="/signup">Sign Up</a></p>
             </Box2>
           </Box>
       </Container>
