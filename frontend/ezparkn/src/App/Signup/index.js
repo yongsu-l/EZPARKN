@@ -103,8 +103,8 @@ class Signup extends React.Component {
   validateForm = () => {
     this.setState({formValid: this.state.usernameValid && this.state.emailValid && this.state.passwordValid && this.state.confirmPasswordValid});
   }
-  onSignup(e) {
-    e.preventDefault;
+  onSignup = (e) => {
+    e.preventDefault();
     const username = this.state.username;
     const password = this.state.password;
     const email = this.state.email;
@@ -145,27 +145,29 @@ class Signup extends React.Component {
               <div className="card-body">
                 <p className="h2">Sign up</p>
                 <p className="text-muted">Create your account below.</p>
-                <div className="form-group">
-                  <label htmlFor="username">Username</label>
-                  <input type="username" className={`form-control ${this.hasError(this.state.errors.username)}`} id="username" onChange={ this.handleChange }/>
-                  <FormValidator field={this.state.errors.username} />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="email">Email address</label>
-                  <input type="email" className={`form-control ${this.hasError(this.state.errors.email)}`} id="email" onChange={ this.handleChange }/>
-                  <FormValidator field={this.state.errors.email} />
-                </div>
-                <div class="form-group">
-                  <label htmlFor="password">Password</label>
-                  <input type="password" className={`form-control ${this.hasError(this.state.errors.password)}`} id="password" onChange={ this.handleChange }/>
-                  <FormValidator field={this.state.errors.password} />
-                </div>
-                <div class="form-group">
-                  <label htmlFor="confirmPassword">Confirm Password</label>
-                  <input type="password" className={`form-control ${this.hasError(this.state.errors.confirmPassword)}`} id="confirmPassword" onChange={ this.handleChange }/>
-                  <FormValidator field={this.state.errors.confirmPassword} />                  
-                </div>
-                <button class="btn btn-raised btn-primary" onClick={ this.onSignup } disabled={!this.state.formValid} >Submit</button>
+                <form onSubmit = { this.onSignup }>
+                  <div className="form-group">
+                    <label htmlFor="username">Username</label>
+                    <input type="username" className={`form-control ${this.hasError(this.state.errors.username)}`} id="username" onChange={ this.handleChange }/>
+                    <FormValidator field={this.state.errors.username} />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="email">Email address</label>
+                    <input type="email" className={`form-control ${this.hasError(this.state.errors.email)}`} id="email" onChange={ this.handleChange }/>
+                    <FormValidator field={this.state.errors.email} />
+                  </div>
+                  <div class="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input type="password" className={`form-control ${this.hasError(this.state.errors.password)}`} id="password" onChange={ this.handleChange }/>
+                    <FormValidator field={this.state.errors.password} />
+                  </div>
+                  <div class="form-group">
+                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <input type="password" className={`form-control ${this.hasError(this.state.errors.confirmPassword)}`} id="confirmPassword" onChange={ this.handleChange }/>
+                    <FormValidator field={this.state.errors.confirmPassword} />                  
+                  </div>
+                  <button type="submit" class="btn btn-raised btn-primary" onSubmit={ this.onSignup } disabled={!this.state.formValid}>Submit</button>
+                </form>
               </div>
               <div class="p-3 card-footer">
                 <div class="row">
