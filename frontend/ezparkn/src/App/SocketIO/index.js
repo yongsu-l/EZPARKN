@@ -2,7 +2,7 @@ import openSocket from 'socket.io-client';
 import { URL } from 'urls/API';
 
 
-const  socket = openSocket(URL);
+const  socket = openSocket('/');
 
 function subscribeToParkingSpots(cb) {
   socket.emit('parking');

@@ -8,7 +8,8 @@
     "migrate": "sequelize db:migrate",
     "start": "NODE_PATH=. node server.js",
     "seed": "sequelize db:seed:all",
-    "undoseed": "sequelize db:seed:undo:all"
+    "undoseed": "sequelize db:seed:undo:all",
+    "heroku-postbuild": "cd frontend/ezparkn && npm install && npm run build"
   },
   "repository": {
     "type": "git",

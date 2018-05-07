@@ -27,9 +27,14 @@ server.listen(port, () => {
   console.log("Server is up and running on port ".green + port.yellow);
 });
 
-app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
+
+app.use(express.static(path.resolve(__dirname, 'frontend/ezparkn/build')));
+
+// All remaining requests return the React app, so it can handle routing.
+app.get('/', function(request, response) {
+  response.sendFile(path.resolve(__dirname, 'frontend/ezparkn/build', 'index.html'));
 });
+
 
 //Add socket directory
 require('sockets')(io, db);
