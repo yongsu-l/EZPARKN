@@ -27,13 +27,15 @@ server.listen(port, () => {
   console.log("Server is up and running on port ".green + port.yellow);
 });
 
+if process.env.NODE_ENV === "production" {
+  app.use(express.static(path.resolve(__dirname, 'frontend/ezparkn/build')));
 
-app.use(express.static(path.resolve(__dirname, 'frontend/ezparkn/build')));
+  // All remaining requests return the React app, so it can handle routing.
+  app.get('/', function(request, response) {
+    response.sendFile(path.resolve(__dirname, 'frontend/ezparkn/build', 'index.html'));
+  });	
+}
 
-// All remaining requests return the React app, so it can handle routing.
-app.get('/', function(request, response) {
-  response.sendFile(path.resolve(__dirname, 'frontend/ezparkn/build', 'index.html'));
-});
 
 
 //Add socket directory
