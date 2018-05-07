@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
   app.get('/', function(request, response) {
     response.sendFile(path.resolve(__dirname, 'frontend/ezparkn/build', 'index.html'));
   });	
-}
+};
 
 
 
