@@ -50,21 +50,33 @@ export default class Profile extends Component {
     }
   };
   updateProfile = () => {
+    var failed = false;
     // Using API gives us no token error...
     putProfile(this.state).then(response =>{
       console.log(response);
+    }).catch(reason =>{
+      if (reason.status == 403) {
+        alert('token missing');
+      } 
+      else {
+        alert(reason);
+      }
+      failed = true;     
     });
     putCar(this.state.car).then(response =>{
       console.log(response);
     }).catch(reason =>{
       if (reason.status == 403) {
-        console.log('token missing');
+        alert('token missing');
       } 
       else {
-        console.log(reason);
+        alert(reason);
       }     
+      failed = true;
     });
     store.dispatch(setProfile(this.state));
+    if(!failed)
+      document.getElementById("close").click(); 
     // This should work once the token is correctly attached to the PUT request upon firing
   }
   render() {
@@ -122,7 +134,7 @@ export default class Profile extends Component {
                   <button type="button" className="btn btn-primary btn-block" onClick={ this.updateProfile }>Save</button>
                 </div>
                 <div className="col-md-4">
-                  <button type="button" className="btn btn-secondary btn-block" onClick={ this.props.onClose }>Cancel</button>
+                  <button type="button" id="close" className="btn btn-secondary btn-block" onClick={ this.props.onClose }>Cancel</button>
                 </div>
               </div>
             </div>
