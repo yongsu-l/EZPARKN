@@ -56,10 +56,10 @@ export default class Profile extends Component {
       console.log(response);
     }).catch(reason =>{
       if (reason.status == 403) {
-        console.log('token missing');
+        alert('token missing');
       } 
       else {
-        console.log(reason);
+        alert(reason);
       }
       failed = true;     
     });
@@ -67,10 +67,10 @@ export default class Profile extends Component {
       console.log(response);
     }).catch(reason =>{
       if (reason.status == 403) {
-        console.log('token missing');
+        alert('token missing');
       } 
       else {
-        console.log(reason);
+        alert(reason);
       }     
       failed = true;
     });
