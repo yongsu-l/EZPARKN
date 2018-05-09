@@ -27,10 +27,18 @@ export default class Map extends Component {
 
   render() {
     return (
-    <Gmaps width={'1000px'} height={'600px'} lat={40.8197255} lng={-73.9501939} zoom={16} params={params} onMapCreated={this.onMapCreated} scrollwheel={false}>
+    <Gmaps width={'1000px'} height={'600px'} lat={40.8197255} lng={-73.9501939} zoom={16} params={params} onMapCreated={this.onMapCreated}>
       {this.props.parkingSpots
         .map((parkingSpot, index) => {
-                return <Marker key={index} lat={parkingSpot.lat} lng={parkingSpot.long} draggable={false} />;
+                return (
+                  <Marker key={index} lat={parkingSpot.lat}  lng={parkingSpot.long} draggable={false} />
+                )
+            })}
+        {this.props.parkingSpots
+        .map((parkingSpot, index) => {
+                return (
+                  <InfoWindow lat={parkingSpot.lat}  lng={parkingSpot.long} content={'ADD NAME'} onCloseClick={this.onCloseClick} onClick={this.onClick}/> 
+                )
             })}
         {this.props.getCurrentLocation && <Geolocation onSuccess={(position)=>{console.log(position); this.props.setCurrentLocation(position)}} onError={console.log}/> }
     </Gmaps>
