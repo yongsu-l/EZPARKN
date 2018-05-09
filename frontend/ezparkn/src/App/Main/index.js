@@ -238,16 +238,13 @@ export default class Main extends Component {
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                <button type="button" id="sidebarCollapse" className="btn btn-info navbar-btn" onClick={this.handleClick}>
                                 <i className="glyphicon glyphicon-align-left"></i>
-                                <span>Sidebar</span>
+                                <span>=</span>
                             </button>
 
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                   <li className="nav-item">
-                    <a className="nav-link" href="./">Log In</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="./signup">Sign Up</a>
+                    <a className="nav-link" href="./">Sign Out</a>
                   </li>
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
