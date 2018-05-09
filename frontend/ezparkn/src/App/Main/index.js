@@ -14,6 +14,8 @@ import "typeface-raleway";
 import { store } from 'store';
 import { subscribeToParkingSpots, iAmParking, iAmLeaving, joinQueue, leaveQueue} from '../SocketIO/index';
 import getProfile from '../../lib/getProfile';
+import { setToken, setProfile, setUser } from 'actions';
+import { Redirect } from 'react-router-dom';
 
 
 import {
@@ -52,7 +54,7 @@ export default class Main extends Component {
       showFeed: false,
       feed: [],
       findingSpot:false,
-      parkingSpots: [],
+      parkingSpots: []
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -72,6 +74,13 @@ export default class Main extends Component {
     });
 
 }
+  signout = () =>{
+    store.dispatch(setToken(null));
+    store.dispatch(setUser(null));
+    store.dispatch(setProfile(null));
+    window.location.href ='/'
+  }
+
   getFeed = () => {
     // function call
   }
@@ -202,6 +211,7 @@ export default class Main extends Component {
     }
     return (
       <AppView>
+
         <Wrapper>
         
         {
@@ -243,12 +253,20 @@ export default class Main extends Component {
 
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
-                  <li className="nav-item">
-                    <a className="nav-link" href="./">Log In</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="./signup">Sign Up</a>
-                  </li>
+                  {
+                  //   <li className="nav-item">
+                  //   <a className="nav-link" href="./">Log In</a>
+                  // </li>
+
+                  // <li className="nav-item">
+                  //   <a className="nav-link" href="./signup">Sign Up</a>
+                  // </li>
+                    }
+                    <button type="button" className="btn btn-outline-info my-2 my-sm-0"href="/" onClick={this.signout}>
+                                <i className="glyphicon glyphicon-align-left"></i>
+                                <span>Sign out</span>
+                            </button>
+                    
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
                   <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
