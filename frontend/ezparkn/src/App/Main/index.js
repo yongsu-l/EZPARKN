@@ -30,6 +30,7 @@ import {
   Content,
   SideComponentsMore,
   NavDisplay,
+  MapDisplay,
 } from './styled';
 
 export default class Main extends Component {
@@ -234,7 +235,6 @@ export default class Main extends Component {
 
           }
             <Content>
-
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                <button type="button" id="sidebarCollapse" className="btn btn-info navbar-btn" onClick={this.handleClick}>
                                 <i className="glyphicon glyphicon-align-left"></i>
@@ -255,7 +255,7 @@ export default class Main extends Component {
                   <button className="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
                 </form>
               </div>
-            </nav>
+            </nav> 
 
           <div className="container-fluid">
           <div className="row">

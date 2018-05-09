@@ -83,12 +83,27 @@ const SideUlUlA = styled.li`
 `
 const Content = styled.div `
   padding: 20px;
-  min-height: 100vh;
-  transition: all 0.3s;
+  overflow: hidden;
+  width: 100%; 
+  margin: 0px;
+  padding: 0px;
 `
 
 const NavDisplay = styled.li`
   display: inline-block;
+  overflow: hidden;
+  width: 100%; 
+  margin: 0px;
+  padding: 0px;
+`
+
+const MapDisplay = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+
 `
 
 
@@ -106,4 +121,5 @@ export {
   Content,
   SideComponentsMore,
   NavDisplay,
+  MapDisplay,
 };

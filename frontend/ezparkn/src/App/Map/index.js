@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps';
+import createReactClass from 'create-react-class';
 import Geolocation from "react-geolocation";
-import './styled.css';
+import MapEvents from './map'
+
+
 
 const params = {key: 'AIzaSyCQac5G7XjeVqPqFf8b9C0x5u40eyUd1KM'};
 
+
 export default class Map extends Component {
+
   onMapCreated(map) {
     map.setOptions({
       disableDefaultUI: true
@@ -26,16 +31,28 @@ export default class Map extends Component {
   }
 
   render() {
+
     return (
-    <Gmaps width={'1000px'} height={'600px'} lat={40.8197255} lng={-73.9501939} zoom={16} params={params} onMapCreated={this.onMapCreated} scrollwheel={false}>
-      {this.props.parkingSpots
-        .map((parkingSpot, index) => {
-                return <Marker key={index} lat={parkingSpot.lat} lng={parkingSpot.long} draggable={false} />;
-            })}
-        {this.props.getCurrentLocation && <Geolocation onSuccess={(position)=>{console.log(position); this.props.setCurrentLocation(position)}} onError={console.log}/> }
-    </Gmaps>
+      <div>
+        <Gmaps
+          width={'100%'}
+          height={'500px'}
+          lat={40.8197255} 
+          lng={-73.9501939} 
+          zoom={16}
+           >
+
+          {this.props.parkingSpots
+            .map((parkingSpot, index) => {
+                    return <Marker key={index} lat={parkingSpot.lat} lng={parkingSpot.long} draggable={false} />;
+                })}
+          {this.props.getCurrentLocation && <Geolocation onSuccess={(position)=>{console.log(position); this.props.setCurrentLocation(position)}} onError={console.log}/> }
+        </Gmaps>
+      </div>
     );
+
   }
+
 }
 
       // <Marker lat={40.819970} lng={-73.946783} draggable={false} name={'Current location'} />
