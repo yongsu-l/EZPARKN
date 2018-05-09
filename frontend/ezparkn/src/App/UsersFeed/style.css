@@ -1,7 +1,7 @@
 /* Parked users */
 .list-group .user {
   width: 100%;
-  padding: 2px 0;
+  padding: 1px 0;
   border-bottom: 0;
 }
 .user {
@@ -62,8 +62,11 @@
   background-color: #516395;
 }
 .card {
-  max-height: 425px;
+  max-height: 325px;
 }
 .card-body {
   overflow: auto;
+}
+p small {
+  right: 0;
 }
