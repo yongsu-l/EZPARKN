@@ -31,6 +31,7 @@ export default class ShareSpot extends Component {
     this.setState({
       minutes:5,
     });
+    this.props.onClose();
   }
   render() {
     // Render nothing if the "show" prop is false
@@ -40,6 +41,7 @@ export default class ShareSpot extends Component {
     return (
       <div className="card">
         <div className="card-body">
+          <p className="h5">When do you plan on leaving?</p>
           <div className="row">
             <div className="form-group col-md-6">
               <label htmlFor="leaving" >Leaving in: </label>
@@ -49,13 +51,18 @@ export default class ShareSpot extends Component {
               </select>
             </div>
             <div className="form-group col-md-3">
-              <span className="switch">
+              <span className="switch bottom">
                 <input onChange={this.handleInputChange} type="checkbox" checked={this.state.share} className="switch" id="share"/>
                 <label htmlFor="share">Share Location</label>
               </span>
             </div>
+          </div>
+          <div className="row">
             <div className="form-group col-md-3">
               <button onClick={this.onSubmit} type="button" disabled={!this.props.checkedLocation} className="btn btn-primary btn-block" >Share</button>
+            </div>
+            <div className="form-group col-md-3">
+              <button onClick={this.props.onClose} type="button" className="btn btn-secondary btn-block">Close</button>
             </div>
           </div>
          </div>

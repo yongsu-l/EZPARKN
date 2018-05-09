@@ -118,7 +118,10 @@ a:hover {
 }
 .share-modal {
   position: absolute;
-  bottom: 0.5%;
+  top: 16.5%;
+  right: 14.5%;
+  bottom: 14.5%;
+  left: 14.5%;
   width: 75.5%;
 }
 .pr-20 {
