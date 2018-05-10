@@ -33,6 +33,7 @@ export default class Map extends Component {
   render() {
 
     return (
+
       <div>
         <Gmaps
           width={'100%'}
@@ -46,6 +47,14 @@ export default class Map extends Component {
             .map((parkingSpot, index) => {
                     return <Marker key={index} lat={parkingSpot.lat} lng={parkingSpot.long} draggable={false} />;
                 })}
+          
+          {this.props.parkingSpots
+        .map((parkingSpot, index) => {
+                return (
+                  <InfoWindow lat={parkingSpot.lat}  lng={parkingSpot.long} content={'ADD NAME'} onCloseClick={this.onCloseClick} onClick={this.onClick}/> 
+                )
+            })}
+
           {this.props.getCurrentLocation && <Geolocation onSuccess={(position)=>{console.log(position); this.props.setCurrentLocation(position)}} onError={console.log}/> }
         </Gmaps>
       </div>
