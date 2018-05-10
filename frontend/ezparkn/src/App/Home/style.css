@@ -61,6 +61,7 @@
     transition: left .5s;
     z-index: 9999;
   }
+
   #main-view {
     margin-left: 0;
   }
@@ -96,19 +97,18 @@ a:hover {
   color: #614385 !important;
 }
 .profile-modal {
-  background-color: #fff;
   position: absolute;
-  top:0;
-  left:1.5;
+  top: 14.5%;
+  left: 22.75%;
   margin: 0 auto;
-  width: 57.5%;
+  width: 75.5%;
 }
 .right-modal {
   position: absolute;
-  top:0;
-  right: 0.5%;
-  width: 22.5%;
-
+  top: 14.75%;
+  left: 22.75%;
+  width: 55.5%;
+  margin: 0 auto;
 }
 .bottom-modal {
   position: absolute;
@@ -118,10 +118,9 @@ a:hover {
 }
 .share-modal {
   position: absolute;
-  top: 16.5%;
-  right: 14.5%;
-  bottom: 14.5%;
-  left: 14.5%;
+  top: 14.5%;
+  left: 22.75%;
+  margin: 0 auto;
   width: 75.5%;
 }
 .pr-20 {

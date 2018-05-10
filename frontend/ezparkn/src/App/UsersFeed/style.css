@@ -62,7 +62,7 @@
   background-color: #516395;
 }
 .card {
-  max-height: 325px;
+  height: 100%;
 }
 .card-body {
   overflow: auto;
