@@ -68,7 +68,7 @@ This rough draft is using what is known as a MEAN stack, which uses the followin
 * Yong Su Lee - Acceptance Tester
 * Mostafizur Rahman - 
 * Kenny Tan - 
-* Yuan Zhou - 
+* Yuan Zhou - Tracker
 * Julia Lau - 
 * Mikhail Kreytser - 
 * Steven McDonald - 
