@@ -69,6 +69,6 @@ This rough draft is using what is known as a MEAN stack, which uses the followin
 * Mostafizur Rahman - 
 * Kenny Tan - 
 * Yuan Zhou - Tracker
-* Julia Lau - 
+* Julia Lau - Code Reviewer
 * Mikhail Kreytser - 
 * Steven McDonald - 
