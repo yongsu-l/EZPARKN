@@ -32,6 +32,7 @@ import {
   Content,
   SideComponentsMore,
   NavDisplay,
+  MapDisplay,
 } from './styled';
 
 export default class Main extends Component {
@@ -244,36 +245,24 @@ export default class Main extends Component {
 
           }
             <Content>
-
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                <button type="button" id="sidebarCollapse" className="btn btn-info navbar-btn" onClick={this.handleClick}>
                                 <i className="glyphicon glyphicon-align-left"></i>
-                                <span>Sidebar</span>
+                                <span>=</span>
                             </button>
 
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
-                  {
-                  //   <li className="nav-item">
-                  //   <a className="nav-link" href="./">Log In</a>
-                  // </li>
-
-                  // <li className="nav-item">
-                  //   <a className="nav-link" href="./signup">Sign Up</a>
-                  // </li>
-                    }
-                    <button type="button" className="btn btn-outline-info my-2 my-sm-0"href="/" onClick={this.signout}>
-                                <i className="glyphicon glyphicon-align-left"></i>
-                                <span>Sign out</span>
-                            </button>
-                    
+                  <li className="nav-item">
+                    <a className="nav-link" href="./">Sign Out</a>
+                  </li>
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
                   <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
                   <button className="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
                 </form>
               </div>
-            </nav>
+            </nav> 
 
           <div className="container-fluid">
           <div className="row">
