@@ -14,6 +14,8 @@ import "typeface-raleway";
 import { store } from 'store';
 import { subscribeToParkingSpots, iAmParking, iAmLeaving, joinQueue, leaveQueue} from '../SocketIO/index';
 import getProfile from '../../lib/getProfile';
+import { setToken, setProfile, setUser } from 'actions';
+import { Redirect } from 'react-router-dom';
 
 
 import {
@@ -53,7 +55,7 @@ export default class Main extends Component {
       showFeed: false,
       feed: [],
       findingSpot:false,
-      parkingSpots: [],
+      parkingSpots: []
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -73,6 +75,13 @@ export default class Main extends Component {
     });
 
 }
+  signout = () =>{
+    store.dispatch(setToken(null));
+    store.dispatch(setUser(null));
+    store.dispatch(setProfile(null));
+    window.location.href ='/'
+  }
+
   getFeed = () => {
     // function call
   }
@@ -203,6 +212,7 @@ export default class Main extends Component {
     }
     return (
       <AppView>
+
         <Wrapper>
         
         {
