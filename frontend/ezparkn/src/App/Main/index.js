@@ -79,7 +79,6 @@ export default class Main extends Component {
     store.dispatch(setToken(null));
     store.dispatch(setUser(null));
     store.dispatch(setProfile(null));
-    window.location.href ='/'
   }
 
   getFeed = () => {
@@ -254,7 +253,7 @@ export default class Main extends Component {
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                   <li className="nav-item">
-                    <a className="nav-link" href="./">Sign Out</a>
+                    <a className="nav-link" href="./" onClick={this.signout}>Sign Out</a>
                   </li>
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
