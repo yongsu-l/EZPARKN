@@ -53,20 +53,7 @@ export default class Home extends Component {
   getFeed = () => {
     // function call
   }
-  toggleParking = () => {
-    this.setState({showParking: !this.state.showParking});
-  }
 
-  toggleProfile = () => {
-    this.setState({showProfile: !this.state.showProfile});
-  }
-  toggleFeed = () => {
-    this.setState({showFeed: !this.state.showFeed});
-  }
-
-  toggleShareSpot = () => {
-    this.setState({showShareSpot: !this.state.showShareSpot});
-  }
 
   handleChange = (event) => {
     // alert("The value is ", e.target.value)

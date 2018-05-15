@@ -89,18 +89,38 @@ export default class Main extends Component {
     // function call
   }
   toggleParking = () => {
-    this.setState({showParking: !this.state.showParking});
+    this.setState({
+      showParking: !this.state.showParking,
+      showProfile: false,
+      showShareSpot: false,
+      showFeed: false
+    });
   }
 
   toggleProfile = () => {
-    this.setState({showProfile: !this.state.showProfile});
+    this.setState({
+      showProfile: !this.state.showProfile,
+      showParking: false,
+      showShareSpot: false,
+      showFeed: false
+    });
   }
   toggleFeed = () => {
-    this.setState({showFeed: !this.state.showFeed});
+    this.setState({
+      showFeed: !this.state.showFeed,
+      showProfile: false,
+      showParking: false,
+      showShareSpot: false
+    });
   }
 
   toggleShareSpot = () => {
-    this.setState({showShareSpot: !this.state.showShareSpot});
+    this.setState({
+      showShareSpot: !this.state.showShareSpot,
+      showProfile: false,
+      showParking: false,
+      showFeed: false
+    });
   }
 
   handleChange = (event) => {
