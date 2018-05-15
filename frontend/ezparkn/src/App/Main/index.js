@@ -82,7 +82,6 @@ export default class Main extends Component {
     store.dispatch(setToken(null));
     store.dispatch(setUser(null));
     store.dispatch(setProfile(null));
-    window.location.href ='/'
   }
 
   getFeed = () => {
@@ -270,6 +269,7 @@ var styles = {
                   <Hover id="feed" className="menu-item" onClick={this.toggleFeed} href="#">  About</Hover>
                   <Hover id="splash" className="menu-item" onClick={this.signout} href="./">  Log Out</Hover>
                 </Menu>
+
 
           <div className="container-fluid" id = "page-wrap">
           <div className="row">
