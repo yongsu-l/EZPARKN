@@ -5,7 +5,7 @@ const AppView = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: #fff
+  background-color: #fff;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -103,7 +103,21 @@ const MapDisplay = styled.div`
   margin: 0;
   padding: 0;
   position: relative;
+  padding-top: 75px;
 
+`
+
+const Hover = styled.h2`
+  &:hover {
+    color: #c94e50;
+  };
+`
+
+const Logo = styled.img`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
 `
 
 
@@ -122,4 +136,6 @@ export {
   SideComponentsMore,
   NavDisplay,
   MapDisplay,
+  Hover,
+  Logo, 
 };

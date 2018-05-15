@@ -37,7 +37,7 @@ export default class Map extends Component {
       <div>
         <Gmaps
           width={'100%'}
-          height={'500px'}
+          height={'850px'}
           lat={40.8197255} 
           lng={-73.9501939} 
           zoom={16}

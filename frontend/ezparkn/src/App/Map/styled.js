@@ -6,6 +6,7 @@ const MapDisplay = styled.div`
   margin: 0;
   padding: 0;
   position: relative;
+  padding-top: 25px;
 
 `
 
