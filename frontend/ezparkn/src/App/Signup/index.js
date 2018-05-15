@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import FormValidator from './FormValidator';
-import './Signup.css'
 
 import postSignup from 'lib/postSignup';
+
+import {
+  Container
+} from './styled';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -138,7 +141,7 @@ class Signup extends React.Component {
       return <Redirect to="/"/>;
     }
     return (
-      <div className="container-fluid">
+      <Container>
         <div className="row mt-3">
           <div className="col-sm-6 col-md-4 offset-md-4 offset-sm-3 ">
             <div className="card">
@@ -179,7 +182,7 @@ class Signup extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     )
   }
 }

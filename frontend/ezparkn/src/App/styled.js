@@ -5,7 +5,7 @@ const AppView = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: url(../img/nycstreet.jpg);
+  background: #373a47;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

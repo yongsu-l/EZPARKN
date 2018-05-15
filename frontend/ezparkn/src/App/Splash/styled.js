@@ -29,19 +29,22 @@ const LeftSide = styled.div`
     width: 40%;
     float: left;
     text-align: right;
+    color: #c94e50;
 `
 
 const Title = styled.h1`
   color: black;
   font-size: 65px;
-  text-outline: white;
+  text-outline: #c94e50;
   font-family: "Tahoma", Times, serif;
 
 `
 
 const Box2 = styled.div`
     text-align: center;
-    vertical-align: middle; 
+    vertical-align: middle;
+    background: #373a47;
+    color: #fff;
 `
 
 const Button = styled.button`
@@ -56,6 +59,17 @@ const Button = styled.button`
   border-radius: 15px;
 `
 
+const Logo = styled.img`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+`
+
+const Input = styled.input`
+  width: 200px;
+`
+
 export {
   Button,
   Container,
@@ -63,5 +77,7 @@ export {
   Box,
   Box2,
   RightSide,
-  LeftSide
+  LeftSide,
+  Logo,
+  Input
 };

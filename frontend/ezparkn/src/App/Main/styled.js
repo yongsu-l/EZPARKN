@@ -111,6 +111,7 @@ const Hover = styled.h2`
   &:hover {
     color: #c94e50;
   };
+  cursor: pointer;
 `
 
 const Logo = styled.img`

@@ -82,6 +82,7 @@ export default class Main extends Component {
     store.dispatch(setToken(null));
     store.dispatch(setUser(null));
     store.dispatch(setProfile(null));
+    window.location.href='/';
   }
 
   getFeed = () => {
