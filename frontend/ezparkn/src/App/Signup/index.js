@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router';
 import FormValidator from './FormValidator';
 
@@ -51,6 +51,7 @@ class Signup extends React.Component {
     let passwordValid = this.state.passwordValid;
     let confirmPasswordValid = this.state.confirmPasswordValid;
     // Switch to handle the four input fields
+    var regExp;
     switch (formId) {
       case 'username':
         // Username needs to be at least 5 characters
@@ -62,7 +63,7 @@ class Signup extends React.Component {
         }
         break;
       case 'email':
-        var regExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+        regExp = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
         formControlErrors.email = (regExp.test(value)) ? '' : 'email';
         if (formControlErrors.email) {
           emailValid = false;
@@ -72,7 +73,7 @@ class Signup extends React.Component {
         break;
       case 'password':
         // Needs at least a lowercase, uppercase, and a number, and between 8 and 40 chars
-        var regExp = new RegExp(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d]).{8,40}$/);
+        regExp = new RegExp(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d]).{8,40}$/);
         formControlErrors.password = (regExp.test(value)) ? '' : 'password';
         if (formControlErrors.password) {
           passwordValid = false;
@@ -159,22 +160,22 @@ class Signup extends React.Component {
                     <input type="email" className={`form-control ${this.hasError(this.state.errors.email)}`} id="email" onChange={ this.handleChange }/>
                     <FormValidator field={this.state.errors.email} />
                   </div>
-                  <div class="form-group">
+                  <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <input type="password" className={`form-control ${this.hasError(this.state.errors.password)}`} id="password" onChange={ this.handleChange }/>
                     <FormValidator field={this.state.errors.password} />
                   </div>
-                  <div class="form-group">
+                  <div className="form-group">
                     <label htmlFor="confirmPassword">Confirm Password</label>
                     <input type="password" className={`form-control ${this.hasError(this.state.errors.confirmPassword)}`} id="confirmPassword" onChange={ this.handleChange }/>
                     <FormValidator field={this.state.errors.confirmPassword} />                  
                   </div>
-                  <button type="submit" class="btn btn-raised btn-primary" onSubmit={ this.onSignup } disabled={!this.state.formValid}>Submit</button>
+                  <button type="submit" className="btn btn-raised btn-primary" onSubmit={ this.onSignup } disabled={!this.state.formValid}>Submit</button>
                 </form>
               </div>
-              <div class="p-3 card-footer">
-                <div class="row">
-                  <div class="col-12">
+              <div className="p-3 card-footer">
+                <div className="row">
+                  <div className="col-12">
                     <p className="text-center text-muted">Already have an account? <a href="/">Sign in</a></p>
                   </div>
                 </div>

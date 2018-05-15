@@ -1,5 +1,5 @@
 import openSocket from 'socket.io-client';
-import { URL } from 'urls/API';
+// import { URL } from 'urls/API';
 
 
 const  socket = openSocket('/');

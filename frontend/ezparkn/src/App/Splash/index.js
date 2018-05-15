@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
-import { FormGroup } from 'react-bootstrap';
+import React from 'react';
+// import React, { Component } from 'react';
+// import { FormGroup } from 'react-bootstrap';
 import postLogin from 'lib/postLogin';
 import { Redirect } from 'react-router';
 import { store } from 'store';
 import { setToken, setProfile } from 'actions';
 
 import {
-  Button,
   Container,
-  Title,
   Box,
   Box2,
   LeftSide,
@@ -72,7 +71,7 @@ class Splash extends React.Component{
             <form onSubmit = { this.onLogin }>
             <div className="form-group">
                 <LeftSide>
-                  <label for="username">Username</label>
+                  <label htmlFor="username">Username</label>
                 </LeftSide>
                 <RightSide>
                   <Input 
@@ -84,9 +83,9 @@ class Splash extends React.Component{
                 </RightSide>
               </div>
 
-              <div class="form-group">
+              <div className="form-group">
                 <LeftSide>
-                  <label for="password">Password</label>
+                  <label htmlFor="password">Password</label>
                 </LeftSide>
                 <RightSide>
                   <Input 
@@ -101,7 +100,7 @@ class Splash extends React.Component{
               <br></br>
               <br></br>
               <br></br>
-              <button type="submit" class="btn btn-raised btn-primary" onSubmit={ this.onLogin } >Log In</button>
+              <button type="submit" className="btn btn-raised btn-primary" onSubmit={ this.onLogin } >Log In</button>
             </form>
             <p> Don't have an account? <a href="/signup">Sign Up</a></p>
             </Box2>

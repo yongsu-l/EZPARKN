@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import * as moment from 'moment';
 export default class SingleUser extends Component {
-  constructor() {
-    super();
-  }
+
   render() {
     console.log(moment(this.props.leavingIn, 'hh:mm:ss a'));
     console.log()
@@ -12,7 +10,7 @@ export default class SingleUser extends Component {
         <div className="user">
           <div className="pr-20">
             <a className={"avatar " + ((moment(new Date(), 'hh:mm:ss a')).diff(moment(this.props.parkedTime, 'hh:mm:ss a'), 'minutes') > 30 ? 'avatar-parked': 'avatar-leaving')}>
-              <img className="img-fluid" src="../../../img/champagne_papi.png"/>
+              <img className="img-fluid" alt="" src="../../../img/champagne_papi.png"/>
               <i></i>
             </a>
           </div>

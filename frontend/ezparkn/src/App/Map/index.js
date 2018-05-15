@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps';
-import createReactClass from 'create-react-class';
+import React, {Component} from 'react';
+// import ReactDOM from 'react-dom';
+import {Gmaps, Marker, InfoWindow} from 'react-gmaps';
+// import createReactClass from 'create-react-class';
 import Geolocation from "react-geolocation";
-import MapEvents from './map'
+// import MapEvents from './map'
 
 
 
@@ -52,7 +52,7 @@ export default class Map extends Component {
           {this.props.parkingSpots
         .map((parkingSpot, index) => {
                 return (
-                  <InfoWindow lat={parkingSpot.lat}  lng={parkingSpot.long} content={'ADD NAME'} onCloseClick={this.onCloseClick} onClick={this.onClick}/> 
+                  <InfoWindow key={index} lat={parkingSpot.lat}  lng={parkingSpot.long} content={'ADD NAME'} onCloseClick={this.onCloseClick} onClick={this.onClick}/> 
                 )
             })}
 

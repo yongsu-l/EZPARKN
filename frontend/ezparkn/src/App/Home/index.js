@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { FormGroup, Panel } from 'react-bootstrap';
+// import ReactDOM from 'react-dom';
+// import { Panel } from 'react-bootstrap';
 import Map from '../Map';
 import Messages from '../Messages';
 import Profile from '../Profile';
 import UsersFeed from '../UsersFeed';
 import ParkingForm from '../ParkingForm';
 import ShareSpot from '../ShareSpot';
-import Switch from "react-switch";
-import moment from "moment";
-import { Button } from 'semantic-ui-react';
+// import Switch from "react-switch";
+// import moment from "moment";
+// import { Button } from 'semantic-ui-react';
 import './style.css';
 import { store } from 'store';
 import { subscribeToParkingSpots, iAmParking, iAmLeaving, joinQueue, leaveQueue} from '../SocketIO/index';
-import getProfile from '../../lib/getProfile';
+// import getProfile from '../../lib/getProfile';
 
 export default class Home extends Component {
   constructor(props){

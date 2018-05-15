@@ -1,38 +1,38 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { FormGroup, Panel } from 'react-bootstrap';
+// import ReactDOM from 'react-dom';
+// import { FormGroup, Panel } from 'react-bootstrap';
 import Map from '../Map';
 import Messages from '../Messages';
 import Profile from '../Profile';
 import UsersFeed from '../UsersFeed';
 import ParkingForm from '../ParkingForm';
 import ShareSpot from '../ShareSpot';
-import Switch from "react-switch";
-import moment from "moment";
-import { Button } from 'semantic-ui-react';
+// import Switch from "react-switch";
+// import moment from "moment";
+// import { Button } from 'semantic-ui-react';
 import "typeface-raleway";
 import { store } from 'store';
-import { subscribeToParkingSpots, iAmParking, iAmLeaving, joinQueue, leaveQueue} from '../SocketIO/index';
-import getProfile from '../../lib/getProfile';
+import { subscribeToParkingSpots, iAmLeaving, joinQueue, leaveQueue} from '../SocketIO/index';
+// import getProfile from '../../lib/getProfile';
 import { setToken, setProfile, setUser } from 'actions';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import { push as Menu } from 'react-burger-menu';
 
 
 import {
   AppView,
-  MainView,
-  Para,
+  // MainView,
+  // Para,
   Wrapper,
-  Sidebar,
-  SideHead,
-  SideActive,
-  SideComponents,
-  SideUlP,
-  SideUlUlA,
+  // Sidebar,
+  // SideHead,
+  // SideActive,
+  // SideComponents,
+  // SideUlP,
+  // SideUlUlA,
   Content,
-  SideComponentsMore,
-  NavDisplay,
+  // SideComponentsMore,
+  // NavDisplay,
   MapDisplay,
   Hover,
   Logo,

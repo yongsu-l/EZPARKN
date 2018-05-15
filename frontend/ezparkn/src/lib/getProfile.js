@@ -1,7 +1,7 @@
 // src/lib/getProfile.js
 
-import {URL, API, USER, PROFILE} from 'urls/API';
-import { store } from 'store';
+import {API, USER, PROFILE} from 'urls/API';
+// import { store } from 'store';
 // TODO: error regarding body of request.. needs to be addressed
 function getProfile(body){
   return (

@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import SingleUser from './SingleUser';
 import './style.css';
-import getProfile from 'lib/getProfile';
+// import getProfile from 'lib/getProfile';
 import * as moment from 'moment';
 import { getUsers } from './test.js';
 export default class UsersFeed extends Component {
-  constructor() {
-    super();
-  }
   
   render() {
     // Actual

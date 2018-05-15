@@ -2,9 +2,6 @@ import React from 'react';
 import './style.css';
 
 export default class ParkingForm extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     // Render nothing if the "show" prop is false
