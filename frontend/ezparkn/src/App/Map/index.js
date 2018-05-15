@@ -41,6 +41,7 @@ export default class Map extends Component {
           lat={40.8197255} 
           lng={-73.9501939} 
           zoom={16}
+          params={params}
            >
 
           {this.props.parkingSpots
