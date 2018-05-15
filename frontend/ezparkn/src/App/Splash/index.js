@@ -12,7 +12,9 @@ import {
   Box,
   Box2,
   LeftSide,
-  RightSide
+  RightSide,
+  Logo,
+  Input
 } from './styled';
 
 class Splash extends React.Component{
@@ -66,14 +68,14 @@ class Splash extends React.Component{
       <Container>
         <Box>
           <Box2>
-            <Title> EZPARKN </Title>
+            <Logo src= './img/logo.png' />
             <form onSubmit = { this.onLogin }>
             <div className="form-group">
                 <LeftSide>
                   <label for="username">Username</label>
                 </LeftSide>
                 <RightSide>
-                  <input 
+                  <Input 
                     type="username" 
                     className="form-control" 
                     id="username" 
@@ -87,7 +89,7 @@ class Splash extends React.Component{
                   <label for="password">Password</label>
                 </LeftSide>
                 <RightSide>
-                  <input 
+                  <Input 
                     type="password" 
                     className="form-control" 
                     id="password" 

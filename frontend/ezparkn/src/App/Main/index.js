@@ -16,6 +16,7 @@ import { subscribeToParkingSpots, iAmParking, iAmLeaving, joinQueue, leaveQueue}
 import getProfile from '../../lib/getProfile';
 import { setToken, setProfile, setUser } from 'actions';
 import { Redirect } from 'react-router-dom';
+import { push as Menu } from 'react-burger-menu';
 
 
 import {
@@ -33,6 +34,8 @@ import {
   SideComponentsMore,
   NavDisplay,
   MapDisplay,
+  Hover,
+  Logo,
 } from './styled';
 
 export default class Main extends Component {
@@ -79,6 +82,7 @@ export default class Main extends Component {
     store.dispatch(setToken(null));
     store.dispatch(setUser(null));
     store.dispatch(setProfile(null));
+    window.location.href='/';
   }
 
   getFeed = () => {
@@ -193,6 +197,45 @@ export default class Main extends Component {
   render() {
     var parkingMessage='You Parking Waiting Time is : '+this.state.selectValue;
 
+var styles = {
+  bmBurgerButton: {
+    position: 'fixed',
+    width: '36px',
+    height: '30px',
+    left: '36px',
+    top: '36px'
+  },
+  bmBurgerBars: {
+    background: '#373a47'
+  },
+  bmCrossButton: {
+    height: '24px',
+    width: '24px'
+  },
+  bmCross: {
+    background: '#bdc3c7'
+  },
+  bmMenu: {
+    background: '#373a47',
+    padding: '2.5em 1.5em 0',
+    fontSize: '1.7em',
+    verticalAlign: 'middle',
+    color: '#fff',
+    fontWeight: '400'
+  },
+  bmMorphShape: {
+    fill: '#373a47'
+  },
+  bmItemList: {
+    color: '#b8b7ad',
+    padding: '0.8em',
+    marginLeft: '10px',
+    fontWeight: '700'
+  },
+  bmOverlay: {
+    background: 'rgba(0, 0, 0, 0.3)'
+  }
+}
     const renderMessage = () => {
       return(
         <div className="messages">
@@ -212,63 +255,29 @@ export default class Main extends Component {
     return (
       <AppView>
 
-        <Wrapper>
+        <Wrapper id = "outer-container">
         
-        {
-            this.state.isToggledOn &&
-            <Sidebar>
-                <SideHead>
-                    <h3>EzPARKN</h3>
-                </SideHead>
 
-                <SideComponents>
-                    <SideUlP>An easier way to find parking</SideUlP>
-                    <SideComponentsMore>
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
-                    </SideComponentsMore>
-                    <SideComponentsMore>
-                        <a href="#" onClick={ this.toggleProfile } >Profile</a>
-                    </SideComponentsMore>
-                    <SideComponentsMore>
-                        <a href="#" onClick={ this.toggleParking } >Find Parking</a>
-                    </SideComponentsMore>
-                    <SideComponentsMore>
-                        <a href="#" onClick={this.toggleShareSpot} >Share Spot</a>
-                    </SideComponentsMore>
-                    <SideComponentsMore>
-                        <a href="#" onClick={this.toggleFeed} >Feed</a>
-                    </SideComponentsMore>
-                </SideComponents>
-
-            </Sidebar>
-
-          }
             <Content>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-               <button type="button" id="sidebarCollapse" className="btn btn-info navbar-btn" onClick={this.handleClick}>
-                                <i className="glyphicon glyphicon-align-left"></i>
-                                <span>=</span>
-                            </button>
 
-              <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav mr-auto">
-                  <li className="nav-item">
-                    <a className="nav-link" href="./" onClick={this.signout}>Sign Out</a>
-                  </li>
-                </ul>
-                <form className="form-inline my-2 my-lg-0">
-                  <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                  <button className="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-                </form>
-              </div>
-            </nav> 
+                <Menu pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" }  styles = {styles} width={ '20%' }>
+                  <Logo src= './img/logo.png' />
+                  <Hover id="home" className="menu-item" href="#homeSubemenu"> Home  </Hover>
+                  <Hover id="profile" className="menu-item" onClick={this.toggleProfile} href="#"> Profile</Hover>
+                  <Hover id="parking" className="menu-item" onClick={this.toggleParking} href="#">  Find Parking</Hover>
+                  <Hover id="spot" className="menu-item" onClick={this.toggleShareSpot} href="#">  Share Spot</Hover>
+                  <Hover id="feed" className="menu-item" onClick={this.toggleFeed} href="#">  Feed</Hover>
+                  <Hover id="feed" className="menu-item" onClick={this.toggleFeed} href="#">  About</Hover>
+                  <Hover id="splash" className="menu-item" onClick={this.signout} href="./">  Log Out</Hover>
+                </Menu>
 
-          <div className="container-fluid">
+
+          <div className="container-fluid" id = "page-wrap">
           <div className="row">
             <div className="col-md-12">
-              <div className="map-wrapper">
+              <MapDisplay>
                 <Map parkingSpots={this.state.parkingSpots} getCurrentLocation={this.state.getLocationToggle} setCurrentLocation={this.setCurrentLocation}> </Map>
-              </div>
+              </MapDisplay>
             </div>
           </div>
           </div>
