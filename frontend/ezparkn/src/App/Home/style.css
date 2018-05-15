@@ -111,10 +111,15 @@ a:hover {
 
 }
 .bottom-modal {
+
+
+  top:0;
+  right: 0;
   position: absolute;
+  width:  35.5%;
   bottom: 0.5%;
-  right: 0.5%;
-  width: 35.5%;
+
+
 }
 .share-modal {
   position: absolute;
