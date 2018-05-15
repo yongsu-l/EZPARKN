@@ -45,7 +45,7 @@ const SideHead = Sidebar.extend`
 
 const SideActive = Sidebar.extend`
   margin-left: -250px;
-` 
+`
 
 const List = Sidebar.withComponent('ul')
 

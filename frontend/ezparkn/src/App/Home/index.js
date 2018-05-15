@@ -30,7 +30,7 @@ export default class Home extends Component {
       messageSent: false,
       showParking: false,
       showProfile: false,
-      showShareSpot: false, 
+      showShareSpot: false,
       spots: [],
       showFeed: false,
       feed: [],
@@ -92,8 +92,8 @@ export default class Home extends Component {
           console.log(err)
         else {
           alert("Parking spot submitted, Thank you!")
-          this.setState({parkingSpots:parkingSpots});  
-          // console.log(moment(parkingSpots[1].leavingTime).format()) 
+          this.setState({parkingSpots:parkingSpots});
+          // console.log(moment(parkingSpots[1].leavingTime).format())
         }
       })
     }
@@ -107,7 +107,7 @@ export default class Home extends Component {
   setCurrentLocation(pos){
     if(pos){
       if(pos.coords.latitude == null || pos.coords.longitude == null){
-        alert('Failed to get location try again') 
+        alert('Failed to get location try again')
         this.setState({getLocationToggle:false})
       }
       else{
@@ -121,7 +121,7 @@ export default class Home extends Component {
       }
     }
     else{
-      alert('Failed to get location try again') 
+      alert('Failed to get location try again')
       this.setState({getLocationToggle:false})
     }
   }
@@ -146,7 +146,7 @@ export default class Home extends Component {
 
   toggleQueue = async () =>{
     await this.setState({findingSpot: !this.state.findingSpot});
-    
+
     this.state.findingSpot ? joinQueue() : leaveQueue()
   }
   render() {
