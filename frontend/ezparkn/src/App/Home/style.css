@@ -96,19 +96,18 @@ a:hover {
   color: #614385 !important;
 }
 .profile-modal {
-  background-color: #fff;
   position: absolute;
-  top:0;
-  left:1.5;
+  top: 14.5%;
+  left: 27.75%;
   margin: 0 auto;
-  width: 57.5%;
+  width: 72.5%;
 }
 .right-modal {
   position: absolute;
-  top:0;
-  right: 0.5%;
-  width: 22.5%;
-
+  top: 14.75%;
+  left: 30.5%;
+  width: 42.5%;
+  margin: 0 auto;
 }
 .bottom-modal {
   position: absolute;
@@ -118,8 +117,10 @@ a:hover {
 }
 .share-modal {
   position: absolute;
-  bottom: 0.5%;
-  width: 75.5%;
+  top: 14.5%;
+  right: 14.5%;
+  margin: 0 auto;
+  width: 55.5%;
 }
 .pr-20 {
   padding-right: 20px !important;
