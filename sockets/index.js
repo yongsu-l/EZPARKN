@@ -12,7 +12,11 @@ module.exports = function Server(io, db) {
     });
 
     socket.on('parking', () => {
-      db.parkings.findAll().then(function(parkings) {
+      db.parkings.findAll({
+        include:[{
+          model: db.users,
+        }]
+      }).then(function(parkings) {
         socket.emit('spots', parkings);
       }).catch(function(err) {
         console.log(err);
