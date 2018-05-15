@@ -15,6 +15,7 @@ module.exports = function Server(io, db) {
       db.parkings.findAll({
         include:[{
           model: db.users,
+          include:[{model: db.cars}]
         }]
       }).then(function(parkings) {
         socket.emit('spots', parkings);
