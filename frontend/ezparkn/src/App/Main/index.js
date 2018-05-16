@@ -36,6 +36,7 @@ import {
   MapDisplay,
   Hover,
   Logo,
+  Modal
 } from './styled';
 
 export default class Main extends Component {
@@ -253,7 +254,8 @@ var styles = {
     fontWeight: '700'
   },
   bmOverlay: {
-    background: 'rgba(0, 0, 0, 0.3)'
+    background: 'rgba(0, 0, 0, 0.3)',
+    zIndex: '2'
   }
 }
     const renderMessage = () => {
@@ -280,7 +282,8 @@ var styles = {
 
             <Content>
 
-                <Menu pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" }  styles = {styles} width={ 400 }>
+                <Menu pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" }  styles = {styles} width={ 400 } zIndex={2}>
+
                   <Logo src= './img/logo.png' />
                   <Hover id="home" className="menu-item" href="#homeSubemenu"> Home  </Hover>
                   <Hover id="profile" className="menu-item" onClick={this.toggleProfile} href="#"> Profile</Hover>
@@ -293,44 +296,30 @@ var styles = {
 
 
           <div className="container-fluid" id = "page-wrap">
-          <div className="row">
-            <div className="col-md-12">
-              <MapDisplay>
+              <MapDisplay zIndex={1}>
                 <Map parkingSpots={this.state.parkingSpots} getCurrentLocation={this.state.getLocationToggle} setCurrentLocation={this.setCurrentLocation}> </Map>
               </MapDisplay>
-            </div>
-          </div>
-          </div>
-          <div className="profile-modal">
-            <div className="row">
-              <div className="col-md-12">
-                <Profile show={ this.state.showProfile } onClose={this.toggleProfile} />
-              </div>
-            </div>
-          </div>
-          <div className="right-modal">
-            <div className="row">
-              <div className="col-md-12">
-                <ParkingForm show={ this.state.showParking } onClose={this.toggleParking} currentQueueState = {this.state.findingSpot} joinQueue={this.toggleQueue} status={this.state.findingSpot}/>              
-              </div>
-            </div>
-          </div>
-          <div className="bottom-modal">
-            <div className="row">
-              <div className="col-md-12">
-                <UsersFeed show={ this.state.showFeed } onClose={ this.toggleFeed } feed={this.state.parkingSpots}/>
-              </div>
-            </div>
 
-          </div>
-          <div className="share-modal">
-            <div className="row">
-              <div className="col-md-12">
+              <Modal zIndex={3}>
+                <Profile show={ this.state.showProfile } onClose={this.toggleProfile} />
+              </Modal>
+
+              <Modal>
+                <ParkingForm show={ this.state.showParking } onClose={this.toggleParking} currentQueueState = {this.state.findingSpot} joinQueue={this.toggleQueue} status={this.state.findingSpot}/>              
+              </Modal>
+
+              <Modal>
+                <UsersFeed show={ this.state.showFeed } onClose={ this.toggleFeed } feed={this.state.parkingSpots}/>              
+              </Modal>
+
+              <Modal>
                 <ShareSpot addShare = {this.addShare}  toggleState={this.state.getLocationToggle}  checkedLocation={this.state.checkedLocation} getCurrentLocation={ this.getCurrentLocation } show={ this.state.showShareSpot } onClose={this.toggleShareSpot} />
-              </div>
-            </div>
+           
+              </Modal>
           </div>
-          
+
+         
+  
 
             </Content>
         </Wrapper> 
