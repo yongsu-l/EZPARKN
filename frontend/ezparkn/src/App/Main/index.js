@@ -17,7 +17,7 @@ import getProfile from '../../lib/getProfile';
 import { setToken, setProfile, setUser } from 'actions';
 import { Redirect } from 'react-router-dom';
 import { push as Menu } from 'react-burger-menu';
-
+import './style.css';
 
 import {
   AppView,
