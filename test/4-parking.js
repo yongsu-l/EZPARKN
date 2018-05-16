@@ -39,4 +39,18 @@ describe('Socket IO Parking Connection', function() {
     });
   });
 
+  describe('Select a parking spot', function(){
+    it('When client chooses a parking ahead of time, it should update that they are parked', function(done){
+      sender.emit('take spot', {token: token1, parkingId: 1});
+      sender.on('spots', (parkings) => {
+        expect(parkings).to.not.be.null;
+        receiver.on('spots', function(parkings){
+          console.log(parkings);
+          expect(parkings).to.not.be.null;
+          done();
+        });
+      });
+    });
+  });
+  
 });
