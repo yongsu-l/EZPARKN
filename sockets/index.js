@@ -13,6 +13,7 @@ module.exports = function Server(io, db) {
 
     socket.on('parking', () => {
       db.parkings.findAll({
+        attributes:['id', 'leavingTime', 'parkedTime', 'lat', 'long']
         include:[{
           model: db.users,
           attributes: ['username'],
