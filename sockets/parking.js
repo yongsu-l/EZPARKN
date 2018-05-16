@@ -188,4 +188,48 @@ module.exports = function Server(io, socket, db) {
     }
   });
 
+  // Allow User to claim parking spot
+  socket.on('take spot', function (data) {
+    // data.usernameOfParked 
+    /*
+    1. Find the parking spot with respect to username
+       then delete the parking spot.
+    */
+    if (!data.token) {
+      socket.emit('error', "Need to send token");
+    } else {
+      jwt.verify(data.token, config.secretOrKey, (err, decoded) => {
+        if (err)
+          socket.emit('error', "Invalid token");
+        else {
+          let id = decoded.id;
+          db.parkings.destroy({
+            where: {
+              id: data.parkingId
+            }
+          }).then(res => {
+            //console.log(res === 1);
+            if (res === 1) {
+              db.parkings.findAll({
+                include:[{
+                  model: db.users,
+                  include: [{model: db.cars}]
+                }]
+              }).then(parkings => {
+                //console.log("PARKING SPOTS");
+                //console.log(parkings);
+                io.emit('spots', parkings);
+              }).catch(err => {
+                //console.log(err);
+                socket.emit('error', 'Failed to take parking spot.');
+              });
+            } else {
+              socket.emit('error', 'Failed to take parking spot.');
+            }
+          });
+        }
+      });
+    }
+  });
+
 };
