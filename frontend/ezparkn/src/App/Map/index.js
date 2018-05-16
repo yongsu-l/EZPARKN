@@ -67,7 +67,7 @@ export default class Map extends Component {
           {this.props.parkingSpots
         .map((parkingSpot, index) => {
                 return (
-                  <InfoWindow lat={parkingSpot.lat}  lng={parkingSpot.long} content={this.props.name} onCloseClick={this.onCloseClick} onClick={this.onClick}/> 
+                  <InfoWindow lat={parkingSpot.lat}  lng={parkingSpot.long} content={parkingSpot.user.username} onCloseClick={this.onCloseClick} onClick={this.onClick}/> 
                 )
             })}
 
