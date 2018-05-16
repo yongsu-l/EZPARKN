@@ -5,24 +5,18 @@ import getProfile from 'lib/getProfile';
 import * as moment from 'moment';
 import { getUsers } from './test.js';
 export default class UsersFeed extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
   
   render() {
-    // Actual
-    // let Users = this.props.feed.map( (user) => {
-    //   // TODO: Need to make sure firstname attribute from Users table is put into 'user' object
-    //   return(
-    //     <SingleUser name={user.firstname} size={user.car.size} leavingIn={moment(user.leavingTime).format('hh:mm a')} parkedTime={moment(user.parkedTime).format('hh:mm a')}/>
-    //   );
-    // });
-
     // TEST
-    let Users = getUsers().map( (user) => {
-
+    let Users = this.props.feed.sort((spotA, spotB) => {
+                      return (spotA.leavingTime < spotB.leavingTime)
+                  }).map( (parking,index) => {
+    
       return(
-        <SingleUser name={user.firstname} size={user.car.size} leavingIn={moment(user.leavingTime).format('hh:mm a')} parkedTime={moment(user.parkedTime).format('hh:mm a')}/>
+        <SingleUser key={index} parkingId={parking.id} name={parking.user ? parking.user.firstname?parking.user.firstname:"Anonymous":"Anonymous"} size={parking.user ? parking.user.car ? parking.user.car.size ? parking.user.car.size:"Vehicle":"Vehicle":"Vehicle"} leavingIn={moment(parking.leavingTime).format('hh:mm a')} parkedTime={moment(parking.parkedTime).format('hh:mm a')}/>
       );
     });
     //

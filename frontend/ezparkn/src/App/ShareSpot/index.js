@@ -102,3 +102,13 @@ export default class ShareSpot extends Component {
     )
   }
 }
+
+// =======
+//             </div>
+//             <div className="col-md-3 col-lg-2 col-xl-1">
+//               <button onClick={this.props.onClose} className="btn btn-primary">
+//                 Close
+//               </button>
+//             </div>
+//           </div>
+// >>>>>>> master
