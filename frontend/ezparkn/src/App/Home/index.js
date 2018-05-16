@@ -10,7 +10,6 @@ import ShareSpot from '../ShareSpot';
 import Switch from "react-switch";
 import moment from "moment";
 import { Button } from 'semantic-ui-react';
-import './style.css';
 import { store } from 'store';
 import { subscribeToParkingSpots, iAmParking, iAmLeaving, joinQueue, leaveQueue} from '../SocketIO/index';
 import getProfile from '../../lib/getProfile';
