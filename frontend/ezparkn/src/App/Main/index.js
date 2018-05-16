@@ -263,6 +263,7 @@ var styles = {
             <Content>
 
                 <Menu pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" }  styles = {styles} width={ 400 } zIndex={2}>
+
                   <Logo src= './img/logo.png' />
                   <Hover id="home" className="menu-item" href="#homeSubemenu"> Home  </Hover>
                   <Hover id="profile" className="menu-item" onClick={this.toggleProfile} href="#"> Profile</Hover>

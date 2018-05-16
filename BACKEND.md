@@ -57,6 +57,8 @@ To request to be added in queue, and ask for notifications emit: socket.emit('jo
 This will allow the user to be added into a room for the queue then the client can listen for notify with socket.on('notify' (data) =>) which will listen on notification but only be send to those who have subscribed to the queue
 
 Mark leaving parking:   socket.emit('leaving parking', data) where data must contain lat, long, token, and leavingTime
+
+To take parking spot: socket.emit('take spot', {token: TOKEN, parkingId: idOfParkingSpot}).
 ```
 
 ## Running the tests
