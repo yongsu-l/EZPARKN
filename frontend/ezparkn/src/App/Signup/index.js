@@ -5,7 +5,8 @@ import FormValidator from './FormValidator';
 import postSignup from 'lib/postSignup';
 
 import {
-  Container
+  Container,
+  Button
 } from './styled';
 
 class Signup extends React.Component {
@@ -142,46 +143,33 @@ class Signup extends React.Component {
       return <Redirect to="/"/>;
     }
     return (
+
       <Container>
-        <div className="row mt-3">
           <div className="col-sm-6 col-md-4 offset-md-4 offset-sm-3 ">
-            <div className="card">
-              <div className="card-body">
                 <p className="h2">Sign up</p>
                 <p className="text-muted">Create your account below.</p>
-                <form onSubmit = { this.onSignup }>
-                  <div className="form-group">
-                    <label htmlFor="username">Username</label>
-                    <input type="username" className={`form-control ${this.hasError(this.state.errors.username)}`} id="username" onChange={ this.handleChange }/>
-                    <FormValidator field={this.state.errors.username} />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="email">Email address</label>
-                    <input type="email" className={`form-control ${this.hasError(this.state.errors.email)}`} id="email" onChange={ this.handleChange }/>
-                    <FormValidator field={this.state.errors.email} />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" className={`form-control ${this.hasError(this.state.errors.password)}`} id="password" onChange={ this.handleChange }/>
-                    <FormValidator field={this.state.errors.password} />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="confirmPassword">Confirm Password</label>
-                    <input type="password" className={`form-control ${this.hasError(this.state.errors.confirmPassword)}`} id="confirmPassword" onChange={ this.handleChange }/>
-                    <FormValidator field={this.state.errors.confirmPassword} />                  
-                  </div>
-                  <button type="submit" className="btn btn-raised btn-primary" onSubmit={ this.onSignup } disabled={!this.state.formValid}>Submit</button>
-                </form>
-              </div>
-              <div className="p-3 card-footer">
-                <div className="row">
-                  <div className="col-12">
-                    <p className="text-center text-muted">Already have an account? <a href="/">Sign in</a></p>
-                  </div>
+                <div className="form-group">
+                  <label htmlFor="username">Username</label>
+                  <input type="username" className={`form-control ${this.hasError(this.state.errors.username)}`} id="username" onChange={ this.handleChange }/>
+                  <FormValidator field={this.state.errors.username} />
                 </div>
-              </div>
-            </div>
-          </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email address</label>
+                  <input type="email" className={`form-control ${this.hasError(this.state.errors.email)}`} id="email" onChange={ this.handleChange }/>
+                  <FormValidator field={this.state.errors.email} />
+                </div>
+                <div class="form-group">
+                  <label htmlFor="password">Password</label>
+                  <input type="password" className={`form-control ${this.hasError(this.state.errors.password)}`} id="password" onChange={ this.handleChange }/>
+                  <FormValidator field={this.state.errors.password} />
+                </div>
+                <div class="form-group">
+                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <input type="password" className={`form-control ${this.hasError(this.state.errors.confirmPassword)}`} id="confirmPassword" onChange={ this.handleChange }/>
+                  <FormValidator field={this.state.errors.confirmPassword} />                  
+                </div>
+                <Button small onClick={ this.onSignup } disabled={!this.state.formValid} >Submit</Button>
+                <p className="text-center text-muted">Already have an account? <a href="/">Sign in</a></p>
         </div>
       </Container>
     )

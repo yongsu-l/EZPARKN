@@ -84,10 +84,17 @@ export default class Profile extends Component {
       return null;
     }
     return (
-      
-      <div className="card" >
+
+      <div className= "container">
+      <div className="card">
+        <div className="card-header">
+          Profile
+          <button type="button" className="btn float-right" aria-label="Close" onClick={this.props.onClose}>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <div className="card-body">
-          <div className="row">
+                <div className="row">
             <div className="form-group col-md-3">
               <a className="avatar-lg">
                 <img alt=""src="../../img/champagne_papi.png" />
@@ -138,8 +145,12 @@ export default class Profile extends Component {
               </div>
             </div>
           </div>
-         </div>
+          </div>
+        </div>
       </div>
+
+      
+  
     )
   }
 }

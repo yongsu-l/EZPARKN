@@ -18,3 +18,16 @@
 .form-control {
   font-size: .85rem !important;
 }
+
+.card-body {
+  background-color: #373a47;
+  width: 800px;
+  height: 1000px;
+  color: #fff;
+  
+}
+
+.card {
+  width: 800px;
+  height: 800px;
+}

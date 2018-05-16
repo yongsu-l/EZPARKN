@@ -10,15 +10,14 @@ function subscribeToParkingSpots(cb) {
   socket.on('error', err => cb(err, {}));
 }
 
-function iAmParking(lat, long, userID, cb) {
-  socket.emit('park', {
-        lat: lat,
-        long: long,
-        userId: userID,
-      });
-
-  socket.on('parking spots', parkings => {
-  	console.log(parkings);
+function iAmParking(token, parkingId, cb) {
+  socket.emit('take spot', {
+    parkingId:parkingId,
+    token:token,
+  });
+  socket.on('error', err => cb(err, {}));
+  socket.on('spots', parkings => {
+    console.log(parkings);
   })
 }
 

@@ -62,11 +62,15 @@
   background-color: #516395;
 }
 .card {
-  max-height: 325px;
+  max-height: 500px;
 }
 .card-body {
   overflow: auto;
 }
 p small {
   right: 0;
+}
+
+#take {
+  background-color: #c94e50;
 }

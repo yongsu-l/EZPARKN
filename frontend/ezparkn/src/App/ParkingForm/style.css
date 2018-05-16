@@ -1,15 +1,23 @@
 .backdrop {
   position: 'fixed';
   right: 0;
-  background-color: rgba(0,0,0,0.3);
+  background-color: #373a47;
   padding: 50;
 }
 .view {
-  background-color: #fff;
+  background-color: #373a47;
   max-width: 500px;
   min-height: 300px;
   margin: 0 auto;
   padding: 30px;
+}
+
+.card-body {
+  background-color: #373a47;
+  width: 800px;
+  height: 800px;
+  color: #fff;
+  
 }
 /* Switch style sheet */
 .switch {

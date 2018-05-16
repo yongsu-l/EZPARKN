@@ -104,6 +104,7 @@ const MapDisplay = styled.div`
   padding: 0;
   position: relative;
   padding-top: 75px;
+  z-index: 1;
 
 `
 
@@ -119,6 +120,20 @@ const Logo = styled.img`
   margin-left: auto;
   margin-right: auto;
   width: 250px;
+`
+
+const Modal = styled.div`
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+`
+
+const RightModal = styled.div`
+
 `
 
 
@@ -139,4 +154,5 @@ export {
   MapDisplay,
   Hover,
   Logo, 
+  Modal
 };

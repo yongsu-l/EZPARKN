@@ -16,8 +16,6 @@ const Box = styled.div`
     margin: -100px 0 0 -200px;
     top: 50%;
     left: 50%;
-    background-color: white;
-    opacity: 0.9;
 `
 const RightSide = styled.div`
     width: 30%;
@@ -48,7 +46,7 @@ const Box2 = styled.div`
 `
 
 const Button = styled.button`
-  background-color: #4CAF50; /* Green */
+  background-color: #c94e50;
   border: none;
   color: white;
   text-align: center;
