@@ -16,7 +16,7 @@ class AboutPage extends React.Component{
             This is a great space to write long text about your company and your services. You can use this space to go into a little more detail about your company. Talk about your team and what services you provide. Tell your visitors the story of how you came up with the idea for your business and what makes you different from your competitors. Make your company stand out and show your visitors who you are.</p>
         </div>
         <h2 class="team">TEAM</h2>	
-        <div style="margin-top: 50px" class="row1">	
+        <div class="row1">	
           <div class="member1">
             <img src="images/member.jpeg" title="member 1" alt="member 1"/>
             <div class="member_info">	
@@ -32,7 +32,7 @@ class AboutPage extends React.Component{
             </div>
           </div>
         </div>
-        <div style="margin-top: 150px" class="row1">	
+        <div  class="row1">	
           <div class="member1">
             <img src="images/member.jpeg" title="member 1" alt="member 1"/>
             <div class="member_info">	
@@ -48,7 +48,7 @@ class AboutPage extends React.Component{
             </div>
           </div>
         </div>
-        <div style="margin-top: 150px" class="row1">	
+        <div class="row1">	
           <div class="member1">
             <img src="images/member.jpeg" title="member 1" alt="member 1"/>
             <div class="member_info">	
@@ -64,7 +64,7 @@ class AboutPage extends React.Component{
             </div>
           </div>
         </div>
-        <div style="margin-top: 150px" class="row1">	
+        <div class="row1">	
           <div class="member1">
             <img src="images/member.jpeg" title="member 1" alt="member 1"/>
             <div class="member_info">	
@@ -80,7 +80,7 @@ class AboutPage extends React.Component{
             </div>
           </div>
         </div>
-        <div style="margin-top: 150px" class="row1">	
+        <div class="row1">	
           <div class="member3">
             <img src="images/member.jpeg" title="member 1" alt="member 1"/>
             <div class="member_info">	
