@@ -7,6 +7,7 @@ import { store } from 'store';
 import { setToken, setProfile } from 'actions';
 
 import {
+  Button,
   Container,
   Box,
   Box2,

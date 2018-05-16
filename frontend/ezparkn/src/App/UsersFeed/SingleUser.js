@@ -26,9 +26,9 @@ export default class SingleUser extends Component {
     return(
       <li className="list-group-item">
         <div className="user">
-          <div className="pr-20"
+          <div className="pr-20">
             <a className={"avatar " + ((moment(new Date(), 'hh:mm:ss a')).diff(moment(this.props.leavingIn, 'hh:mm:ss a'), 'minutes') < -30 ? 'avatar-parked': 'avatar-leaving')}>
-              <img className="img-fluid" alt="" src="../../../img/champagne_papi.png"/>
+              <img className="img-fluid" src="../../../img/champagne_papi.png"/>
               <i></i>
             </a>
           </div>
