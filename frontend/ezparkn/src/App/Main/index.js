@@ -114,6 +114,12 @@ export default class Main extends Component {
       showShareSpot: false
     });
   }
+  contactPage = () => {
+    window.location.href='/contact'
+  }
+  aboutPage = () => {
+    window.location.href='/about'
+  }
 
   toggleShareSpot = () => {
     this.setState({
@@ -290,7 +296,8 @@ var styles = {
                   <Hover id="parking" className="menu-item" onClick={this.toggleParking} href="#">  Find Parking</Hover>
                   <Hover id="spot" className="menu-item" onClick={this.toggleShareSpot} href="#">  Share Spot</Hover>
                   <Hover id="feed" className="menu-item" onClick={this.toggleFeed} href="#">  Feed</Hover>
-                  <Hover id="feed" className="menu-item" onClick={this.toggleFeed} href="#">  About</Hover>
+                  <Hover id="about" className="menu-item" onClick={this.aboutPage} href="#">  About</Hover>
+                  <Hover id="contact" className="menu-item" onClick={this.contactPage} href="#">  Contact us</Hover>
                   <Hover id="splash" className="menu-item" onClick={this.signout} href="./">  Log Out</Hover>
                 </Menu>
 
