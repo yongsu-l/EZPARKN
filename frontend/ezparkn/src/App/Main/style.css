@@ -1,0 +1,34 @@
+
+.profile-modal {
+  position: absolute;
+  top: 14.5%;
+  left: 27.75%;
+  margin: 0 auto;
+  width: 72.5%;
+}
+.right-modal {
+  position: absolute;
+  top: 14.75%;
+  left: 30.5%;
+  width: 42.5%;
+  margin: 0 auto;
+}
+.bottom-modal {
+  position: absolute;
+  bottom: 0.5%;
+  right: 0.5%;
+  width: 35.5%;
+}
+.share-modal {
+  position: absolute;
+  top: 14.5%;
+  right: 14.5%;
+  margin: 0 auto;
+  width: 55.5%;
+}
+.pr-20 {
+  padding-right: 20px !important;
+}
+.pl-20 {
+  padding-left: 20px !important;
+}
