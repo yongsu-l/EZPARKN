@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import './style.css';
-import { store } from 'store';
+// import { store } from 'store';
 
 export default class ShareSpot extends Component {
   constructor(props) {

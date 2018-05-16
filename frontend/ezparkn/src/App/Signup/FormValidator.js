@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 // Functional component to help us render form feedback
 
 const FormValidator = props => {

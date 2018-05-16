@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router';
 import FormValidator from './FormValidator';
 
@@ -52,6 +52,7 @@ class Signup extends React.Component {
     let passwordValid = this.state.passwordValid;
     let confirmPasswordValid = this.state.confirmPasswordValid;
     // Switch to handle the four input fields
+    var regExp;
     switch (formId) {
       case 'username':
         // Username needs to be at least 5 characters
@@ -63,7 +64,7 @@ class Signup extends React.Component {
         }
         break;
       case 'email':
-        var regExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+        regExp = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
         formControlErrors.email = (regExp.test(value)) ? '' : 'email';
         if (formControlErrors.email) {
           emailValid = false;
@@ -73,7 +74,7 @@ class Signup extends React.Component {
         break;
       case 'password':
         // Needs at least a lowercase, uppercase, and a number, and between 8 and 40 chars
-        var regExp = new RegExp(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d]).{8,40}$/);
+        regExp = new RegExp(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d]).{8,40}$/);
         formControlErrors.password = (regExp.test(value)) ? '' : 'password';
         if (formControlErrors.password) {
           passwordValid = false;

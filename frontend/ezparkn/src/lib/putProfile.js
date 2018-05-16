@@ -1,6 +1,6 @@
 // src/lib/putProfile.js
 
-import {URL, API, USER, PROFILE} from 'urls/API';
+import {API, USER, PROFILE} from 'urls/API';
 import { store } from 'store';
 function putProfile(body){
   return (

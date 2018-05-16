@@ -1,6 +1,6 @@
 // src/lib/postSignup.js
 
-import {URL, API, LOGIN, USER, CREATE} from 'urls/API';
+import {API, USER, CREATE} from 'urls/API';
 
 function postSignup(body) {
 

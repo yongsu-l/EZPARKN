@@ -1,7 +1,7 @@
 // src/lib/postLogin.js
 
-import {URL, API, LOGIN, USER, CREATE} from 'urls/API';
-import getProfile from 'lib/getProfile';
+import {API, LOGIN, USER} from 'urls/API';
+// import getProfile from 'lib/getProfile';
 
 function postLogin(body){
   return (

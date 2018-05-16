@@ -1,4 +1,4 @@
-import {URL, API, CAR, CREATE} from 'urls/API';
+import {API, CAR, CREATE} from 'urls/API';
 import { store } from 'store';
 function putCar(body){
   return (

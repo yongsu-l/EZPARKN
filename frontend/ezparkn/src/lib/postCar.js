@@ -1,6 +1,6 @@
 // src/lib/postCar.js
 
-import {URL, API, CAR, USER, CREATE} from 'urls/API';
+import {API, CAR, USER, CREATE} from 'urls/API';
 import { store } from 'store';
 function postCar(body){
   return (

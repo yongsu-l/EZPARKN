@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import './style.css';
 import { store } from 'store';
 import { setProfile } from 'actions';
@@ -10,9 +9,9 @@ export default class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: store.getState().profile.firstname,
-      lastname: store.getState().profile.lastname,
-      email: store.getState().profile.email,
+      firstname: store.getState().profile.firstname?store.getState().profile.firstname:"",
+      lastname: store.getState().profile.lastname ? store.getState().profile.lastname:"",
+      email: store.getState().profile.email ? store.getState().profile.email: "",
       car:{
         model: store.getState().profile.car ? store.getState().profile.car.model : "",
         color: store.getState().profile.car ? store.getState().profile.car.color : "",
@@ -55,7 +54,7 @@ export default class Profile extends Component {
     putProfile(this.state).then(response =>{
       console.log(response);
     }).catch(reason =>{
-      if (reason.status == 403) {
+      if (reason.status === 403) {
         alert('token missing');
       } 
       else {
@@ -66,7 +65,7 @@ export default class Profile extends Component {
     putCar(this.state.car).then(response =>{
       console.log(response);
     }).catch(reason =>{
-      if (reason.status == 403) {
+      if (reason.status === 403) {
         alert('token missing');
       } 
       else {
@@ -97,8 +96,8 @@ export default class Profile extends Component {
         <div className="card-body">
                 <div className="row">
             <div className="form-group col-md-3">
-              <a className="avatar-lg" href="javascript:void(0)">
-                <img src="../../img/champagne_papi.png" />
+              <a className="avatar-lg">
+                <img alt=""src="../../img/champagne_papi.png" />
               </a>
             </div>
             <div className="form-group col-md-3">
