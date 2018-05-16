@@ -11,10 +11,12 @@ export default class UsersFeed extends Component {
   
   render() {
     // TEST
-    let Users = this.props.feed.map( (user,index) => {
-
+    let Users = this.props.feed.sort((spotA, spotB) => {
+                      return (spotA.leavingTime < spotB.leavingTime)
+                  }).map( (parking,index) => {
+    
       return(
-        <SingleUser key={index} name={user.user.firstname ? user.user.firstname:"Anonymous"} size={user.user.car ? user.user.car.size?user.user.car.size:"Vehicle":"Vehicle"} leavingIn={moment(user.leavingTime).format('hh:mm a')} parkedTime={moment(user.parkedTime).format('hh:mm a')}/>
+        <SingleUser key={index} parkingId={parking.id} name={parking.user ? parking.user.firstname?parking.user.firstname:"Anonymous":"Anonymous"} size={parking.user ? parking.user.car ? parking.user.car.size ? parking.user.car.size:"Vehicle":"Vehicle":"Vehicle"} leavingIn={moment(parking.leavingTime).format('hh:mm a')} parkedTime={moment(parking.parkedTime).format('hh:mm a')}/>
       );
     });
     //
