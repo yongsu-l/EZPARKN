@@ -103,7 +103,6 @@ export default class Main extends Component {
   toggleProfile = () => {
     this.setState({
       showProfile: !this.state.showProfile,
-      showParking: false,
       showShareSpot: false,
       showFeed: false
     });
@@ -112,7 +111,6 @@ export default class Main extends Component {
     this.setState({
       showFeed: !this.state.showFeed,
       showProfile: false,
-      showParking: false,
       showShareSpot: false
     });
   }
@@ -121,7 +119,6 @@ export default class Main extends Component {
     this.setState({
       showShareSpot: !this.state.showShareSpot,
       showProfile: false,
-      showParking: false,
       showFeed: false
     });
   }
@@ -289,7 +286,6 @@ var styles = {
                   <Logo src= './img/logo.png' />
                   <Hover id="home" className="menu-item" href="#homeSubemenu"> Home  </Hover>
                   <Hover id="profile" className="menu-item" onClick={this.toggleProfile} href="#"> Profile</Hover>
-                  <Hover id="parking" className="menu-item" onClick={this.toggleParking} href="#">  Find Parking</Hover>
                   <Hover id="spot" className="menu-item" onClick={this.toggleShareSpot} href="#">  Share Spot</Hover>
                   <Hover id="feed" className="menu-item" onClick={this.toggleFeed} href="#">  Feed</Hover>
                   <Hover id="about" className="menu-item" onClick={this.about} href="/about">  About</Hover>

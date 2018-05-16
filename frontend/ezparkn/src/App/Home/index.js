@@ -180,9 +180,6 @@ export default class Home extends Component {
             <a className="nav-link" href="#" onClick={ this.toggleProfile }>Profile</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#" onClick={ this.toggleParking }>Find Parking</a>
-          </li>
-          <li className="nav-item">
             <a className="nav-link" href="#" onClick={ this.toggleShareSpot }>Share Spot</a>
           </li>
           <li className="nav-item">
