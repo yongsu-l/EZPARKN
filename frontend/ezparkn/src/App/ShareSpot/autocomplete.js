@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+import './style.css';
 
 class LocationSearchInput extends React.Component {
   constructor(props) {
@@ -54,7 +55,6 @@ class LocationSearchInput extends React.Component {
     const { address, isGeocoding, errorMessage,} = this.state;
 
     return (
-      <div className = "container">
       <PlacesAutocomplete
         value={address}
         onChange={this.handleAddressChange}
@@ -62,7 +62,7 @@ class LocationSearchInput extends React.Component {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps }) => (
           <div>
-            <input
+            <input id="search" type="text" className="form-control"
               {...getInputProps({
                 placeholder: 'Search Places ...',
                 className: 'location-search-input'
@@ -74,8 +74,8 @@ class LocationSearchInput extends React.Component {
                 const className = suggestion.active ? 'suggestion-item--active' : 'suggestion-item';
                 // inline style for demonstration purpose
                 const style = suggestion.active
-                            ? { backgroundColor: 'black', cursor: 'pointer' }
-                            : { backgroundColor: 'black', cursor: 'pointer' };
+                            ? { backgroundColor: '#black', cursor: 'pointer' }
+                            : { backgroundColor: '#black', cursor: 'pointer' };
                 return (
                   <div {...getSuggestionItemProps(suggestion, { className, style })}>
                     <span>{suggestion.description}</span>
@@ -87,9 +87,6 @@ class LocationSearchInput extends React.Component {
         )}
       
       </PlacesAutocomplete> 
-      <button onClick={this.onSubmit} type="button"> Choose </button>
-
-      </div>
     );
   }
 }
