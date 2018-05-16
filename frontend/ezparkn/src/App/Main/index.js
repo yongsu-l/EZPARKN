@@ -97,7 +97,9 @@ export default class Main extends Component {
       showFeed: false
     });
   }
-
+  about = () =>{
+    window.location.href='/about';
+  }
   toggleProfile = () => {
     this.setState({
       showProfile: !this.state.showProfile,
@@ -290,7 +292,7 @@ var styles = {
                   <Hover id="parking" className="menu-item" onClick={this.toggleParking} href="#">  Find Parking</Hover>
                   <Hover id="spot" className="menu-item" onClick={this.toggleShareSpot} href="#">  Share Spot</Hover>
                   <Hover id="feed" className="menu-item" onClick={this.toggleFeed} href="#">  Feed</Hover>
-                  <Hover id="feed" className="menu-item" onClick={this.toggleFeed} href="#">  About</Hover>
+                  <Hover id="about" className="menu-item" onClick={this.about} href="/about">  About</Hover>
                   <Hover id="splash" className="menu-item" onClick={this.signout} href="./">  Log Out</Hover>
                 </Menu>
 
