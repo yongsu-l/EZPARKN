@@ -38,9 +38,17 @@ export default class ShareSpot extends Component {
       return null;
     }
     return (
-      <div className="card">
+
+
+       <div className="card">
+        <div className="card-header">
+          Share Spot
+          <button type="button" className="btn float-right" aria-label="Close" onClick={this.props.onClose}>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <div className="card-body">
-          <div className="row">
+                <div className="row">
             <div className="form-group col-md-6">
               <label htmlFor="leaving" >Leaving in: </label>
               <input onChange={this.handleInputChange} type="number" className="minutes form-control" value={this.state.minutes} id="minutes" min="0" step="5"/>
@@ -48,18 +56,17 @@ export default class ShareSpot extends Component {
                 <option value="minutes">minutes</option>
               </select>
             </div>
-            <div className="form-group col-md-3">
               <span className="switch">
                 <input onChange={this.handleInputChange} type="checkbox" checked={this.state.share} className="switch" id="share"/>
                 <label htmlFor="share">Share Location</label>
               </span>
-            </div>
             <div className="form-group col-md-3">
               <button onClick={this.onSubmit} type="button" disabled={!this.props.checkedLocation} className="btn btn-primary btn-block" >Share</button>
             </div>
           </div>
-         </div>
+        </div>
       </div>
+
     )
   }
 }

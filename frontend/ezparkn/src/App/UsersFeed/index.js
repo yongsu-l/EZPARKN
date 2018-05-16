@@ -32,15 +32,25 @@ export default class UsersFeed extends Component {
       return null;
     }
     return (
-      <div className="card">
+
+
+     <div className="card">
+        <div className="card-header">
+          Feed
+          <button type="button" className="btn float-right" aria-label="Close" onClick={this.props.onClose}>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <div className="card-body">
-          <div className="form-group row USERS_LEAVING">
+                <div className="form-group row USERS_LEAVING">
             <div className="col-md-12">
               <ul className="list-group">{Users}</ul>
             </div>
           </div>
+
         </div>
-    </div>
+      </div>
+
     )
   }
 }
