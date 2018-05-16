@@ -63,11 +63,6 @@ export default class ShareSpot extends Component {
             <div className="form-group col-md-3">
               <button onClick={this.onSubmit} type="button" disabled={!this.props.checkedLocation} className="btn btn-primary btn-block" >Share</button>
             </div>
-            <div className="col-md-3 col-lg-2 col-xl-1">
-              <button onClick={this.props.onClose} className="btn btn-primary">
-                Close
-              </button>
-            </div>
           </div>
         </div>
       </div>
