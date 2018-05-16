@@ -101,9 +101,9 @@ class Splash extends React.Component{
               <br></br>
               <br></br>
               <br></br>
-              <button type="submit" class="btn btn-raised btn-primary" onSubmit={ this.onLogin } >Log In</button>
+              <Button small onSubmit={ this.onLogin } >Log In</Button>
             </form>
-            <p> Don't have an account? <a href="/signup">Sign Up</a></p>
+            <p className="text-center text-muted" > Don't have an account? <a href="/signup">Sign Up</a></p>
             </Box2>
           </Box>
       </Container>

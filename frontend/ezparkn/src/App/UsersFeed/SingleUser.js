@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import * as moment from 'moment';
+import './style.css';
 export default class SingleUser extends Component {
   constructor() {
     super();
@@ -20,6 +21,7 @@ export default class SingleUser extends Component {
             <p className="h6">{this.props.name} <span> is leaving at {this.props.leavingIn}</span></p>
             <p className="text-muted"> { this.props.size } <small>parked at {this.props.parkedTime}</small></p>            
           </div>
+          <button id = 'take'className="btn btn-raised" onSubmit={ this.onLogin } >Take Spot</button>
         </div>
       </li>
     )

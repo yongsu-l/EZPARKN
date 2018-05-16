@@ -6,6 +6,10 @@ import Geolocation from "react-geolocation";
 import MapEvents from './map'
 
 
+const coords = {
+  lat: 40.8197255,
+  lng: -73.9501939
+};
 
 const params = {key: 'AIzaSyCQac5G7XjeVqPqFf8b9C0x5u40eyUd1KM'};
 
@@ -44,6 +48,17 @@ export default class Map extends Component {
           params={params}
            >
 
+           <Marker
+          lat={coords.lat}
+          lng={coords.lng}
+          draggable={true}
+          onDragEnd={this.onDragEnd} />
+          <InfoWindow
+          lat={coords.lat}
+          lng={coords.lng}
+          content={this.props.name}
+          onCloseClick={this.onCloseClick} />
+
           {this.props.parkingSpots
             .map((parkingSpot, index) => {
                     return <Marker key={index} lat={parkingSpot.lat} lng={parkingSpot.long} draggable={false} />;
@@ -52,7 +67,7 @@ export default class Map extends Component {
           {this.props.parkingSpots
         .map((parkingSpot, index) => {
                 return (
-                  <InfoWindow lat={parkingSpot.lat}  lng={parkingSpot.long} content={'ADD NAME'} onCloseClick={this.onCloseClick} onClick={this.onClick}/> 
+                  <InfoWindow lat={parkingSpot.lat}  lng={parkingSpot.long} content={this.props.name} onCloseClick={this.onCloseClick} onClick={this.onClick}/> 
                 )
             })}
 

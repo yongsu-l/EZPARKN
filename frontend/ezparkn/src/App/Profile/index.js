@@ -86,7 +86,7 @@ export default class Profile extends Component {
     }
     return (
 
-
+      <div className= "container">
       <div className="card">
         <div className="card-header">
           Profile
@@ -146,7 +146,7 @@ export default class Profile extends Component {
               </div>
             </div>
           </div>
-
+          </div>
         </div>
       </div>
 
