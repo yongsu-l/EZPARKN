@@ -49,6 +49,7 @@ export default class Main extends Component {
       getLocationToggle: false,
       checkedLocation: false,
       currentLocation: null,
+      adressLocation: null,
       messages: [],
       newMessageBody: '',
       messageSent: false,
@@ -67,6 +68,7 @@ export default class Main extends Component {
     this.addShare = this.addShare.bind(this);
     this.getCurrentLocation = this.getCurrentLocation.bind(this);
     this.setCurrentLocation = this.setCurrentLocation.bind(this);
+    this.addressLocation = this.addressLocation.bind(this);
 
     subscribeToParkingSpots((err, parkingSpots) => {
       console.log(parkingSpots);
@@ -123,7 +125,7 @@ export default class Main extends Component {
     var currentDateTime = new Date();
     var leavingDateTime = new Date(currentDateTime.getTime() + shareSpot.minutes*60000);
     console.log(leavingDateTime)
-      iAmLeaving(leavingDateTime, this.state.currentLocation.lat, this.state.currentLocation.long, store.getState().token, (err , parkingSpots)=>{
+      iAmLeaving(leavingDateTime, this.state.getLocationToggle ? this.state.currentLocation.lat : this.state.addressLocation.lat, this.state.getLocationToggle ? this.state.currentLocation.long :this.state.addressLocation.long, store.getState().token, (err , parkingSpots)=>{
         if(err)
           console.log(err)
         else {
@@ -152,6 +154,29 @@ export default class Main extends Component {
           currentLocation: {
             lat:pos.coords.latitude,
             long: pos.coords.longitude,
+          },
+        })
+      }
+    }
+    else{
+      alert('Failed to get location try again') 
+      this.setState({getLocationToggle:false})
+    }
+  }
+
+  addressLocation(pos){
+    console.log(pos)
+    if(pos){
+      if(pos.latitude == null || pos.longitude == null){
+        alert('Failed to get location try again') 
+        this.setState({getLocationToggle:false})
+      }
+      else{
+        this.setState({
+          checkedLocation: true,
+          addressLocation: {
+            lat:pos.latitude,
+            long: pos.longitude,
           },
         })
       }
@@ -261,7 +286,7 @@ var styles = {
         
 
             <Content>
-
+              
                 <Menu pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" }  styles = {styles} width={ 400 } zIndex={2}>
 
                   <Logo src= './img/logo.png' />
@@ -293,7 +318,7 @@ var styles = {
               </Modal>
 
               <Modal>
-                <ShareSpot addShare = {this.addShare}  toggleState={this.state.getLocationToggle}  checkedLocation={this.state.checkedLocation} getCurrentLocation={ this.getCurrentLocation } show={ this.state.showShareSpot } onClose={this.toggleShareSpot} />
+                <ShareSpot addShare = {this.addShare}  toggleState={this.state.getLocationToggle} addressLocation={this.addressLocation} checkedLocation={this.state.checkedLocation} getCurrentLocation={ this.getCurrentLocation } show={ this.state.showShareSpot } onClose={this.toggleShareSpot} />
            
               </Modal>
           </div>
